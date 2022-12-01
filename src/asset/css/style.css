@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*특정 부분 스크롤바 없애기*/
+
+.box {
+    -ms-overflow-style: none;
+}
+.box::-webkit-scrollbar {
+    display: none;
+}

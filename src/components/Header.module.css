@@ -1,0 +1,22 @@
+.container {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    background-color: #ffe15d;
+}
+
+.container * {
+    color: white;
+}
+
+.logo {
+    margin-left: 2rem;
+    width: 4rem;
+    height: 100%;
+    font-weight: 800;
+}
+
+.navi {
+    height: 100%;
+    flex: 1 0 auto;
+}

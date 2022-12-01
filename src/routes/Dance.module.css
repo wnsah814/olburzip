@@ -1,0 +1,21 @@
+.wrapper {
+    padding: 3rem;
+}
+
+.video {
+    margin-bottom: 1rem;
+}
+
+.video iframe {
+    width: 35rem;
+    aspect-ratio: 16 / 9;
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        padding: 0;
+    }
+    .video iframe {
+        width: 100%;
+    }
+}

@@ -1,0 +1,8 @@
+.navigation {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.nav {
+    width: 4rem;
+}

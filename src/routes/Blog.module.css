@@ -1,0 +1,21 @@
+.wrapper {
+    padding: 3rem;
+}
+
+.youtube {
+    aspect-ratio: 16 / 9;
+    width: 35rem;
+}
+
+.video {
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        padding: 0;
+    }
+    .youtube {
+        width: 100%;
+    }
+}

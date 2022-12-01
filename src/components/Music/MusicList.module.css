@@ -1,0 +1,18 @@
+.wrapper {
+    padding: 3rem;
+}
+
+.category {
+    margin-bottom: 1rem;
+}
+
+.songs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (width <= 480px) {
+    .wrapper {
+        padding: 2rem;
+    }
+}
