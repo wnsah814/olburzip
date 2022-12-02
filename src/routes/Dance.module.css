@@ -2,6 +2,7 @@
     padding: 3rem;
 }
 
+
 .video {
     margin-bottom: 1rem;
 }
@@ -9,6 +10,14 @@
 .video iframe {
     width: 35rem;
     aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    box-shadow: 5px 5px 0px #ffe15d;
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.video iframe:hover{
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px #ffe15d;
 }
 
 @media screen and (max-width: 480px) {

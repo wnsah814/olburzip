@@ -11,12 +11,18 @@
 
 .logo {
     margin-left: 2rem;
-    width: 4rem;
-    height: 100%;
     font-weight: 800;
 }
+#headerImg{
+    height: 2rem;
+    margin: 1rem;
+}
+
 
 .navi {
     height: 100%;
     flex: 1 0 auto;
+    font-weight: bold;
+    text-align: center;
 }
+

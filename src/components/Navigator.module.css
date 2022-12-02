@@ -4,5 +4,10 @@
 }
 
 .nav {
-    width: 4rem;
+    width: 5rem;
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+.nav:hover{
+    background-color: white;
 }

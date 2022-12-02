@@ -10,23 +10,37 @@
     align-items: center;
 }
 
+.formWrapper{
+    width: 300px;
+}
 .title {
     margin-bottom: 1.5rem;
+    
 }
 
 .form {
     /* flex: 1; */
 }
 
+
 .input {
     width: 100%;
     display: block;
     padding: 1rem;
     margin-bottom: 0.5rem;
-    border: 1px solid gray;
+    border: none;
+    box-shadow: 1px 1px 5px #c8c8c8;
     border-radius: 0.5rem;
+    outline: none;
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.input:focus{
+    background-color: #ffe15d;
+    color: #562b08;
 }
 
 .button {
-    background-color: #ffe15d;
+    margin-top: 1rem;
+    background-color: #562b08;
+    color: white;
 }
