@@ -7,13 +7,11 @@
     flex-direction: column;
 }
 
-.logoImg{
-    width: 270px;
-    margin-bottom: 2.5rem;
-	animation: float 6s ease-in-out infinite;
+.logoImg {
+    width: 50rem;
+    /* margin-bottom: 2.5rem; */
+    animation: float 6s ease-in-out infinite;
 }
-
-
 
 .applyBtn {
     cursor: pointer;
@@ -24,24 +22,22 @@
     background-color: #ffe15d;
     color: #562b08;
     border: 1px solid #f2f2f2;
-    transition: all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.applyBtn:hover{
+.applyBtn:hover {
     background-color: #562b08;
     color: #ffe15d;
     padding: 1em 2.5em;
 }
 
-
-
 @keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-10px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-10px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
 }

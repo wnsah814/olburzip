@@ -13,11 +13,11 @@
     margin-left: 2rem;
     font-weight: 800;
 }
-#headerImg{
-    height: 2rem;
-    margin: 1rem;
-}
 
+#headerImg {
+    margin: 0.25rem;
+    height: 3.5rem;
+}
 
 .navi {
     height: 100%;
@@ -25,4 +25,3 @@
     font-weight: bold;
     text-align: center;
 }
-
