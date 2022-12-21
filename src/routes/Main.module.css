@@ -30,6 +30,11 @@
     padding: 1em 2.5em;
 }
 
+.title {
+    text-align: center;
+    word-break: keep-all;
+}
+
 @keyframes float {
     0% {
         transform: translatey(0px);
@@ -39,5 +44,11 @@
     }
     100% {
         transform: translatey(0px);
+    }
+}
+
+@media screen and (width <= 480px) {
+    .logoImg {
+        width: 100%;
     }
 }

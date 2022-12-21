@@ -3,11 +3,75 @@
     flex-direction: row-reverse;
 }
 
+.mobileFullNav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.mobileNavs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mobileNav {
+    text-align: center;
+    color: white;
+}
+
+.mobieNavigation {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 4rem;
+    line-height: 4rem;
+}
+
+.desktopNavigation {
+    display: none;
+}
+
+.mobileNavBtn {
+    width: 3rem;
+    background-color: inherit;
+    border: none;
+    margin-right: 0.5rem;
+}
+
+.mobileOpenBtn {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.menuImg {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+}
+
 .nav {
     width: 5rem;
-    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.nav:hover{
+.nav:hover {
     background-color: white;
+}
+
+@media screen and (width <= 480px) {
+    .mobieNavigation {
+        display: flex;
+    }
+}
+
+@media screen and (width > 480px) {
+    .desktopNavigation {
+        display: block;
+    }
+    .mobieNavigation {
+        display: none;
+    }
 }
