@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import headerImg from "../asset/img/header_logo.png";
 import headerImg from "asset/img/logo.svg";
 
-const Header = () => {
+const Header = ({ userObj, isSignedIn }) => {
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
@@ -15,7 +15,7 @@ const Header = () => {
                 </Link>
             </div>
             <div className={styles.navi}>
-                <Navigator />
+                <Navigator userObj={userObj} isSignedIn={isSignedIn} />
             </div>
         </div>
     );

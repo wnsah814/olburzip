@@ -1,0 +1,41 @@
+.wrapper {
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form {
+    margin-bottom: 1rem;
+}
+
+.googleForm {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.signUpForm {
+    width: 100%;
+}
+.input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #562b08;
+}

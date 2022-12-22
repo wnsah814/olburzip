@@ -1,9 +1,9 @@
 import AppRouter from "components/AppRouter";
 import styles from "./Contents.module.css";
-const Contents = () => {
+const Contents = ({ userObj }) => {
     return (
         <div className={styles.container}>
-            <AppRouter />
+            <AppRouter userObj={userObj} />
         </div>
     );
 };

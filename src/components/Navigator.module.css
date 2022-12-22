@@ -4,6 +4,7 @@
 }
 
 .mobileFullNav {
+    z-index: 999;
     position: fixed;
     left: 0;
     top: 0;
@@ -35,6 +36,17 @@
     display: none;
 }
 
+.mobileSignBtn {
+    width: 3rem;
+    background-color: inherit;
+    border: none;
+}
+
+.mobileSignSvg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .mobileNavBtn {
     width: 3rem;
     background-color: inherit;
@@ -42,7 +54,7 @@
     margin-right: 0.5rem;
 }
 
-.mobileOpenBtn {
+.mobileNavOpenSvg {
     width: 1.5rem;
     height: 1.5rem;
 }
