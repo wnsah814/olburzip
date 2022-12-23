@@ -1,24 +1,19 @@
 import styles from "./Navigator.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import menuImg from "asset/img/menu.png";
-import { useEffect, useState } from "react";
-import { auth } from "fbase";
+// import menuImg from "asset/img/menu.png";
+import { useState } from "react";
+import SignBtn from "./SignBtn";
 
-const Navigator = ({ userObj, isSignedIn }) => {
+const Navigator = ({ isSignedIn }) => {
     const [opened, setOpened] = useState(false);
     const toggleMenu = (e) => {
         setOpened((prev) => !prev);
     };
-    const navigate = useNavigate();
-    const onSignOut = () => {
-        console.log("log out");
-        console.log(userObj);
-        auth.signOut();
-        navigate("/");
-    };
+
     return (
         <>
+            {/* 모바일 전체화면 메뉴 */}
             {opened === true ? (
                 <div className={styles.mobileFullNav}>
                     <div onClick={toggleMenu}>X</div>
@@ -43,101 +38,52 @@ const Navigator = ({ userObj, isSignedIn }) => {
                 </div>
             ) : null}
 
-            <div className={styles.mobieNavigation}>
-                <button onClick={toggleMenu} className={styles.mobileNavBtn}>
-                    <svg
-                        className={styles.mobileNavOpenSvg}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                        />
-                    </svg>
-                </button>
-                {!isSignedIn ? (
-                    <button className={styles.mobileSignBtn}>
-                        <Link to="sign">
-                            <svg
-                                className={styles.mobileSignSvg}
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
-                                />
-                            </svg>
-                        </Link>
-                    </button>
-                ) : (
+            {/* 모바일 메뉴 */}
+            <div className={styles.mobileNavigation}>
+                <div>
+                    <SignBtn isSignedIn={isSignedIn} />
+
                     <button
-                        className={styles.mobileSignBtn}
-                        onClick={onSignOut}
+                        onClick={toggleMenu}
+                        className={styles.mobileNavBtn}
                     >
                         <svg
-                            className={styles.mobileSignSvg}
+                            className={styles.mobileNavOpenSvg}
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                         >
                             <path
                                 fillRule="evenodd"
-                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
-                            />
-                            <path
-                                fillRule="evenodd"
-                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                             />
                         </svg>
                     </button>
-                )}
+                </div>
             </div>
 
+            {/* 데스크탑 메뉴 */}
             <div className={styles.desktopNavigation}>
-                <nav className={styles.navigation}>
-                    <div className={styles.nav}>
-                        <Link to="/member">Member</Link>
-                    </div>
-                    <div className={styles.nav}>
-                        <Link to="/music">Music</Link>
-                    </div>
-                    <div className={styles.nav}>
-                        <Link to="/dance">Dance</Link>
-                    </div>
-                    <div className={styles.nav}>
-                        <Link to="/blog">Blog</Link>
-                    </div>
-                    <div className={styles.nav}>
-                        <Link to="/about">About</Link>
-                    </div>
-                </nav>
-                <button className={styles.mobileSignBtn}>
-                    <Link to="sign">
-                        <svg
-                            className={styles.mobileSignSvg}
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"
-                            />
-                            <path
-                                fillRule="evenodd"
-                                d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
-                            />
-                        </svg>
-                    </Link>
-                </button>
+                <div>
+                    <nav className={styles.desktopNavs}>
+                        <div className={styles.desktopNav}>
+                            <Link to="/about">About</Link>
+                        </div>
+                        <div className={styles.desktopNav}>
+                            <Link to="/member">Member</Link>
+                        </div>
+                        <div className={styles.desktopNav}>
+                            <Link to="/blog">Blog</Link>
+                        </div>
+                        <div className={styles.desktopNav}>
+                            <Link to="/music">Music</Link>
+                        </div>
+                        <div className={styles.desktopNav}>
+                            <Link to="/dance">Dance</Link>
+                        </div>
+                    </nav>
+                    <SignBtn isSignedIn={isSignedIn} />
+                </div>
             </div>
         </>
     );

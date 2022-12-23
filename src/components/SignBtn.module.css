@@ -1,0 +1,10 @@
+.mobileSignBtn {
+    width: 3rem;
+    background-color: inherit;
+    border: none;
+}
+
+.mobileSignSvg {
+    width: 1.5rem;
+    height: 1.5rem;
+}

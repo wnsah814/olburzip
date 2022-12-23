@@ -1,10 +1,10 @@
 import { auth } from "fbase";
 import {
-    GithubAuthProvider,
+    // GithubAuthProvider,
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from "./Sign.module.css";
 const Sign = () => {
     const onSocialClick = async (event) => {
@@ -14,9 +14,10 @@ const Sign = () => {
         let provider;
         if (name === "google") {
             provider = new GoogleAuthProvider();
-        } else if (name === "gh") {
-            provider = new GithubAuthProvider();
         }
+        // else if (name === "gh") {
+        //     provider = new GithubAuthProvider();
+        // }
         await signInWithPopup(auth, provider);
     };
 

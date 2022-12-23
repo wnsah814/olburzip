@@ -15,7 +15,7 @@ const Header = ({ userObj, isSignedIn }) => {
                 </Link>
             </div>
             <div className={styles.navi}>
-                <Navigator userObj={userObj} isSignedIn={isSignedIn} />
+                <Navigator isSignedIn={isSignedIn} />
             </div>
         </div>
     );

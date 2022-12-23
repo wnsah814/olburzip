@@ -7,3 +7,8 @@
 성준모 <sjmskm@gmail.com>
 
 ## ChangeLog
+
+### 22/12/24 ([Link](https://github.com/wnsah814/urburzip/wiki/221224))
+
+-   구글 계정 연동
+-   동아리 지원하기
