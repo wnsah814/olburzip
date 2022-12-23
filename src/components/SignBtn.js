@@ -7,21 +7,10 @@ const SignBtn = ({ isSignedIn }) => {
     const navigate = useNavigate();
 
     const onSocialClick = async (event) => {
-        // const {
-        //     target: { name },
-        // } = event;
-        // let provider;
-        // if (name === "google") {
-        //     provider = new GoogleAuthProvider();
-        // }
-        // else if (name === "gh") {
-        //     provider = new GithubAuthProvider();
-        // }
         await signInWithPopup(auth, new GoogleAuthProvider());
     };
 
     const onSignOut = () => {
-        // console.log("log out");
         auth.signOut();
         alert("로그아웃 하셨습니다");
         navigate("/");
