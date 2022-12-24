@@ -6,28 +6,42 @@ import { dbService } from "fbase";
 const Apply = () => {
     const nameRef = useRef();
     const idRef = useRef();
+    const phoneRef = useRef();
     const introRef = useRef();
     const apply = async (e) => {
-        console.log("applying");
+        e.preventDefault();
         const nameData = nameRef.current.value;
         const idData = idRef.current.value;
+        const phoneData = phoneRef.current.value;
         const introData = introRef.current.value;
 
-        console.log("log", nameData, idData, introData);
-        e.preventDefault();
+        if (
+            nameData === "" ||
+            idData === "" ||
+            phoneData === "" ||
+            introData === ""
+        ) {
+            alert("모든 칸을 채워주세요");
+            console.log(nameData, idData, phoneData, introData);
+            return;
+        }
 
         const applyObj = {
             name: nameData,
             studentId: idData,
+            phoneNumber: phoneData,
             introduce: introData,
             createdAt: serverTimestamp(),
         };
-        console.log(applyObj);
+        // console.log(applyObj);
         const docRef = await addDoc(
-            collection(dbService, "2022applied"),
+            collection(dbService, "2023applied"),
             applyObj
         );
-        console.log(docRef.id);
+        nameRef.current.value = "";
+        idRef.current.value = "";
+        phoneRef.current.value = "";
+        introRef.current.value = "";
     };
     return (
         <div className={styles.wrapper}>
@@ -47,6 +61,12 @@ const Apply = () => {
                             className={styles.input}
                             type="number"
                             placeholder="학번"
+                        />
+                        <input
+                            ref={phoneRef}
+                            className={styles.input}
+                            type="number"
+                            placeholder="전화번호(-없이 번호만 입력해주세요)"
                         />
                         <textarea
                             ref={introRef}

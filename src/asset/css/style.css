@@ -29,3 +29,16 @@ body {
 .box::-webkit-scrollbar {
     display: none;
 }
+
+/* input nubmer arrow 없애기 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

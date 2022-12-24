@@ -20,7 +20,7 @@ function App() {
                 //     displayName: userName,
                 // });
                 // }
-                console.log(user);
+                // console.log(user);
             } else {
                 setUserObj(null);
             }

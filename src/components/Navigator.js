@@ -16,7 +16,9 @@ const Navigator = ({ isSignedIn }) => {
             {/* 모바일 전체화면 메뉴 */}
             {opened === true ? (
                 <div className={styles.mobileFullNav}>
-                    <div onClick={toggleMenu}>X</div>
+                    <div className={styles.cancleBtn} onClick={toggleMenu}>
+                        X
+                    </div>
 
                     <div className={styles.mobileNavs}>
                         <div onClick={toggleMenu} className={styles.mobileNav}>

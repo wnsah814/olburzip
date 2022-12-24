@@ -54,7 +54,7 @@ const MusicList = ({ setCurSong }) => {
     // });
     return (
         <div className={styles.wrapper}>
-            <h2 className={styles.category}>율동곡</h2>
+            <h2 className={styles.category}>율동 노래</h2>
             <div className={styles.songs}>
                 <Song
                     setCurSong={setCurSong}

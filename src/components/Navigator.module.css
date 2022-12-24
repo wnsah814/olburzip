@@ -1,14 +1,21 @@
 .mobileFullNav {
     z-index: 999;
+    display: flex;
+    flex-direction: column;
     position: fixed;
+    justify-content: center;
     left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
 }
-
+.cancleBtn {
+    color: white;
+}
 .mobileNavs {
+    flex: 1;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
