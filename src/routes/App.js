@@ -13,7 +13,7 @@ function App() {
 
     const setUser = async (user) => {
         const docSnap = await getDoc(doc(dbService, "users", user.uid));
-        const level = docSnap.data().userLevel;
+        const level = docSnap?.data()?.userLevel;
         if (level !== "일반") {
             setUserObj({ isAd: true, ...user });
         } else {

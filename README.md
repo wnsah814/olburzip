@@ -8,6 +8,10 @@
 
 ## ChangeLog
 
+### 22/12/31 ([Link](https://github.com/wnsah814/urburzip/wiki/221231))
+
+-   유저 데이터 관리
+
 ### 22/12/28 ([Link](https://github.com/wnsah814/urburzip/wiki/221228))
 
 -   블로그 기능 추가
