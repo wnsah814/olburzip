@@ -1,0 +1,27 @@
+.button {
+    width: 5rem;
+    background-color: #562b08;
+    border-radius: 0.5rem;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.blogs {
+}
+
+.blog {
+    border-bottom: 1px solid #7c8fc7;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.video {
+    margin-bottom: 1rem;
+}
+
+@media screen and (width < 480px) {
+    .button {
+        width: 100%;
+    }
+}

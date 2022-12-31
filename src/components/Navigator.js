@@ -22,7 +22,13 @@ const Navigator = ({ isSignedIn }) => {
 
                     <div className={styles.mobileNavs}>
                         <div onClick={toggleMenu} className={styles.mobileNav}>
+                            <Link to="/about">About</Link>
+                        </div>
+                        <div onClick={toggleMenu} className={styles.mobileNav}>
                             <Link to="/member">Member</Link>
+                        </div>
+                        <div onClick={toggleMenu} className={styles.mobileNav}>
+                            <Link to="/blog">Blog</Link>
                         </div>
                         <div onClick={toggleMenu} className={styles.mobileNav}>
                             <Link to="/music">Music</Link>
@@ -31,10 +37,7 @@ const Navigator = ({ isSignedIn }) => {
                             <Link to="/dance">Dance</Link>
                         </div>
                         <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link to="/blog">Blog</Link>
-                        </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link to="/about">About</Link>
+                            <Link to="/admin">Manage</Link>
                         </div>
                     </div>
                 </div>
@@ -82,6 +85,9 @@ const Navigator = ({ isSignedIn }) => {
                         </div>
                         <div className={styles.desktopNav}>
                             <Link to="/dance">Dance</Link>
+                        </div>
+                        <div className={styles.desktopNav}>
+                            <Link to="/admin">Manage</Link>
                         </div>
                     </nav>
                     <SignBtn isSignedIn={isSignedIn} />

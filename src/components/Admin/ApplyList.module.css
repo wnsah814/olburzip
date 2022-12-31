@@ -1,0 +1,26 @@
+.wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.content {
+}
+
+.container {
+    display: flex;
+    width: calc(100vw - 1rem);
+    height: 2rem;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.col {
+    flex: 1;
+}
+
+.introduce {
+    flex: 3;
+}

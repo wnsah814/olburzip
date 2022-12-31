@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+}
+
+.title {
+    border: 1px solid #7c8fc7;
+    flex: 1;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.button {
+    background-color: #562b08;
+    border: none;
+    color: white;
+    margin-left: 0.5rem;
+    width: 10rem;
+    height: 3rem;
+    padding: 1rem;
+}

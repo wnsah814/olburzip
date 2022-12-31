@@ -48,12 +48,9 @@ const MusicList = ({ setCurSong }) => {
             );
     }, []);
     console.log(storageMusics);
-    // getDream();
-    // storageMusics.forEach((e) => {
-    //     console.log(e.getDownloadsongName());
-    // });
+
     return (
-        <div className={styles.wrapper}>
+        <>
             <h2 className={styles.category}>율동 노래</h2>
             <div className={styles.songs}>
                 <Song
@@ -86,8 +83,13 @@ const MusicList = ({ setCurSong }) => {
                     songTitle={"날자2"}
                     songName="fly2"
                 />
+                <Song
+                    setCurSong={setCurSong}
+                    songTitle={"바로 지금이에요"}
+                    songName="rightnow"
+                />
             </div>
-        </div>
+        </>
     );
 };
 export default MusicList;

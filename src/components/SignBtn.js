@@ -1,13 +1,32 @@
-import { auth } from "fbase";
+import { auth, dbService } from "fbase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignBtn.module.css";
 
 const SignBtn = ({ isSignedIn }) => {
     const navigate = useNavigate();
 
+    const insertUser = async (userId, userName) => {
+        const newUserObj = {
+            userName,
+            userId,
+            userLevel: "일반",
+            createdAt: serverTimestamp(),
+        };
+        await setDoc(doc(dbService, "users", userId), newUserObj);
+    };
+
     const onSocialClick = async (event) => {
-        await signInWithPopup(auth, new GoogleAuthProvider());
+        const data = await signInWithPopup(auth, new GoogleAuthProvider());
+        const user = data.user;
+        console.log(user.metadata.createdAt * 1 + 5);
+        if (user.metadata.createdAt * 1 + 5 > user.metadata.lastLoginAt * 1) {
+            console.log("first time");
+            insertUser(user.uid, user.displayName);
+        } else {
+            console.log("nono~");
+        }
     };
 
     const onSignOut = () => {

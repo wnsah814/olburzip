@@ -1,7 +1,3 @@
-.wrapper {
-    height: calc(100vh - 4rem);
-}
-
 .container {
     display: flex;
     height: 100%;
@@ -16,10 +12,6 @@
 .title {
     margin-bottom: 1.5rem;
 }
-
-/* .form {
-    flex: 1;
-} */
 
 .input {
     width: 100%;

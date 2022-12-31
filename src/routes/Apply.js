@@ -9,7 +9,6 @@ const Apply = () => {
     const phoneRef = useRef();
     const introRef = useRef();
     const apply = async (e) => {
-        e.preventDefault();
         const nameData = nameRef.current.value;
         const idData = idRef.current.value;
         const phoneData = phoneRef.current.value;
@@ -22,7 +21,6 @@ const Apply = () => {
             introData === ""
         ) {
             alert("모든 칸을 채워주세요");
-            console.log(nameData, idData, phoneData, introData);
             return;
         }
 
@@ -33,18 +31,15 @@ const Apply = () => {
             introduce: introData,
             createdAt: serverTimestamp(),
         };
-        // console.log(applyObj);
-        const docRef = await addDoc(
-            collection(dbService, "2023applied"),
-            applyObj
-        );
+
+        await addDoc(collection(dbService, "2023applied"), applyObj);
         nameRef.current.value = "";
         idRef.current.value = "";
         phoneRef.current.value = "";
         introRef.current.value = "";
     };
     return (
-        <div className={styles.wrapper}>
+        <>
             <div className={styles.container}>
                 <div className={styles.formWrapper}>
                     <h2 className={styles.title}>얼벌 지원하기</h2>
@@ -83,7 +78,7 @@ const Apply = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 export default Apply;

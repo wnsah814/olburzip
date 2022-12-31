@@ -1,5 +1,11 @@
 .container {
     width: 100vw;
     min-height: calc(100vh - 4rem);
-    /* padding: 2rem; */
+    padding: 2rem;
+}
+
+@media screen and (width < 480px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
 }

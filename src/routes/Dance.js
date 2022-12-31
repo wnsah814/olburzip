@@ -1,10 +1,10 @@
-import YouTubePlayer from "components/YoutubePlyer";
+import YouTubePlayer from "components/YoutubePlayer";
 import styles from "./Dance.module.css";
 // import ReactPlayer from "react-player";
 
 const Dance = () => {
     return (
-        <div className={styles.wrapper}>
+        <>
             <div className={styles.container}>
                 <div>
                     <h2>율동 안무</h2>
@@ -26,7 +26,7 @@ const Dance = () => {
                     />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
