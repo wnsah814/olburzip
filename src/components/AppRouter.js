@@ -25,7 +25,10 @@ const AppRouter = ({ userObj }) => {
 
             <Route path="/blog" element={<Blog userObj={userObj} />}></Route>
             <Route path="/blog/new" element={<NewBlog />}></Route>
-            <Route path="/blog/:id" element={<ContentsViewer />}></Route>
+            <Route
+                path="/blog/:id"
+                element={<ContentsViewer userObj={userObj} />}
+            ></Route>
 
             <Route path="/music" element={<Music />}></Route>
             <Route path="/dance" element={<Dance />}></Route>

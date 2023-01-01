@@ -1,4 +1,5 @@
-import { dbService } from "fbase";
+import { auth, dbService } from "fbase";
+import { getAuth } from "firebase/auth";
 import {
     addDoc,
     collection,
@@ -13,7 +14,6 @@ const AdminList = ({ adList }) => {
     const emailRef = useRef();
     const yearRef = useRef();
     const levelRef = useRef();
-
     const onSubmit = async () => {
         const nameData = nameRef.current.value;
         const emailData = emailRef.current.value;

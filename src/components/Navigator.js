@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import SignBtn from "./SignBtn";
 
-const Navigator = ({ isSignedIn }) => {
+const Navigator = ({ userObj, isSignedIn }) => {
     const [opened, setOpened] = useState(false);
     const toggleMenu = (e) => {
         setOpened((prev) => !prev);
@@ -36,9 +36,14 @@ const Navigator = ({ isSignedIn }) => {
                         <div onClick={toggleMenu} className={styles.mobileNav}>
                             <Link to="/dance">Dance</Link>
                         </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link to="/admin">Manage</Link>
-                        </div>
+                        {userObj?.isAd && (
+                            <div
+                                onClick={toggleMenu}
+                                className={styles.mobileNav}
+                            >
+                                <Link to="/admin">Manage</Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             ) : null}
@@ -86,9 +91,11 @@ const Navigator = ({ isSignedIn }) => {
                         <div className={styles.desktopNav}>
                             <Link to="/dance">Dance</Link>
                         </div>
-                        <div className={styles.desktopNav}>
-                            <Link to="/admin">Manage</Link>
-                        </div>
+                        {userObj?.isAd && (
+                            <div className={styles.desktopNav}>
+                                <Link to="/admin">Manage</Link>
+                            </div>
+                        )}
                     </nav>
                     <SignBtn isSignedIn={isSignedIn} />
                 </div>

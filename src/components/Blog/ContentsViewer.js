@@ -7,7 +7,7 @@ import { dbService } from "fbase";
 import Updator from "./Updator";
 
 import styles from "./ContentsViewer.module.css";
-const ContentsViewer = () => {
+const ContentsViewer = ({ userObj }) => {
     const param = useParams();
     const navigator = useNavigate();
 
@@ -48,26 +48,28 @@ const ContentsViewer = () => {
                         <div className={styles.title}>
                             <h2>{title}</h2>
                         </div>
-                        <div>
-                            <button
-                                className={styles.button}
-                                onClick={() => navigator("/blog")}
-                            >
-                                목록
-                            </button>
-                            <button
-                                className={styles.button}
-                                onClick={deleteThis}
-                            >
-                                삭제
-                            </button>
-                            <button
-                                className={styles.button}
-                                onClick={updateThis}
-                            >
-                                수정
-                            </button>
-                        </div>
+                        {userObj?.isAd && (
+                            <div>
+                                <button
+                                    className={styles.button}
+                                    onClick={() => navigator("/blog")}
+                                >
+                                    목록
+                                </button>
+                                <button
+                                    className={styles.button}
+                                    onClick={deleteThis}
+                                >
+                                    삭제
+                                </button>
+                                <button
+                                    className={styles.button}
+                                    onClick={updateThis}
+                                >
+                                    수정
+                                </button>
+                            </div>
+                        )}
                     </div>
                     <div className={styles.content}>
                         {content && <Viewer initialValue={content} />}
