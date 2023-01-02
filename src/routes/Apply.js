@@ -65,6 +65,7 @@ const Apply = () => {
                         />
                         <textarea
                             ref={introRef}
+                            id={styles.introInput}
                             className={styles.input}
                             placeholder="간략한 자기소개"
                         />

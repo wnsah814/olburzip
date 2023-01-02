@@ -8,20 +8,24 @@
 
 ## ChangeLog
 
+### 23/01/02
+
+- 건들
+
 ### 22/12/31 ([Link](https://github.com/wnsah814/urburzip/wiki/221231))
 
--   유저 데이터 관리
+- 유저 데이터 관리
 
 ### 22/12/28 ([Link](https://github.com/wnsah814/urburzip/wiki/221228))
 
--   블로그 기능 추가
+- 블로그 기능 추가
 
 ### 22/12/26 ([Link](https://github.com/wnsah814/urburzip/wiki/221226))
 
--   관리자 페이지
+- 관리자 페이지
 
 ### 22/12/24 ([Link](https://github.com/wnsah814/urburzip/wiki/221224))
 
--   구글 계정 연동
--   동아리 가입 기능
--   유튜브 플레이어
+- 구글 계정 연동
+- 동아리 가입 기능
+- 유튜브 플레이어

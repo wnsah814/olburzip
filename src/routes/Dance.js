@@ -7,7 +7,7 @@ const Dance = () => {
         <>
             <div className={styles.container}>
                 <div>
-                    <h2>율동 안무</h2>
+                    <h2 id={styles.danceHeader}>율동 안무</h2>
                 </div>
                 {/* <ReactPlayer url="https://www.youtube.com/watch?v=9ew4ZVys4X4 " /> */}
                 <div className={styles.video}>

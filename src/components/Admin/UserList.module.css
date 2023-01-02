@@ -1,7 +1,29 @@
 .user {
     display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+.user:nth-child(odd) {
+    background-color: #f4f4f4;
 }
 
-.user > * {
-    margin-right: 0.5rem;
+.user span {
+    display: inline-block;
+}
+.user span:nth-child(1) {
+    width: 2rem;
+}
+.user span:nth-child(2) {
+    width: 4rem;
+}
+.user span:nth-child(3) {
+    width: 20rem;
+}
+.user select {
+    outline: none;
+    border: none;
+    background-color: #dedede;
+    padding: 0.2rem;
+    width: 4rem;
+    border-right: 10px solid transparent;
 }

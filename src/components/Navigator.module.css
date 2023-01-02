@@ -79,7 +79,7 @@
     background-color: white;
 }
 
-@media screen and (width <= 480px) {
+@media screen and (width <= 700px) {
     .mobileNavigation {
         display: flex;
     }
@@ -88,7 +88,7 @@
     }
 }
 
-@media screen and (width > 480px) {
+@media screen and (width > 700px) {
     .mobileNavigation {
         display: none;
     }

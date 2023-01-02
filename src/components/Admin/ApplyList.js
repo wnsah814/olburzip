@@ -25,22 +25,38 @@ const ApplyList = () => {
                 <h2>2023 지원 현황</h2>
             </div>
             <div className={styles.content}>
-                <div className={styles.container}>
-                    <p className={styles.col}>이름</p>
-                    <p className={styles.col}>학번</p>
-                    <p className={styles.col}>연락처</p>
-                    <p className={styles.introduce}>자기소개</p>
-                </div>
-                <div>
-                    {members.map((v, i) => (
-                        <div key={i} className={styles.container}>
-                            <p className={styles.col}>{v?.name}</p>
-                            <p className={styles.col}>{v?.studentId}</p>
-                            <p className={styles.col}>{v?.phoneNumber}</p>
-                            <p className={styles.introduce}>{v?.introduce}</p>
+                {members.map((v, i) => (
+                    <div key={i} className={styles.card}>
+                        <div className={styles.card_item}>
+                            <div className={styles.card_column}>
+                                <span className={styles.card_label}>이름</span>
+                                <span className={styles.card_content}>
+                                    {v?.name}
+                                </span>
+                            </div>
+                            <div className={styles.card_column}>
+                                <span className={styles.card_label}>학번</span>
+                                <span className={styles.card_content}>
+                                    {v?.studentId}
+                                </span>
+                            </div>
                         </div>
-                    ))}
-                </div>
+                        <div className={styles.card_item}>
+                            <span className={styles.card_label}>연락처</span>
+                            <span className={styles.card_content}>
+                                {v?.phoneNumber}
+                            </span>
+                        </div>
+                        <div className={styles.card_item}>
+                            <span className={styles.card_label}>자기소개</span>
+                            <span
+                                className={`${styles.introduce} ${styles.card_content}`}
+                            >
+                                {v?.introduce}
+                            </span>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

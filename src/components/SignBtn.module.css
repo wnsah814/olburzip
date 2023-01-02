@@ -2,6 +2,13 @@
     width: 3rem;
     background-color: inherit;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileSignBtn:hover {
+    cursor: pointer;
 }
 
 .mobileSignSvg {

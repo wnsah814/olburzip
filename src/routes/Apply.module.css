@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    height: 100%;
+    height: calc(100vh - 8rem);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@
 }
 
 .input:focus {
-    background-color: #ffe15d;
+    background-color: #ffe15db2;
     color: #562b08;
 }
 
@@ -34,4 +34,15 @@
     margin-top: 1rem;
     background-color: #562b08;
     color: white;
+}
+.button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+#introInput {
+    /* background-color: #f4f4f4; */
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 5rem;
 }

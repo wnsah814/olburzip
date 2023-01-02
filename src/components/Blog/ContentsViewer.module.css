@@ -14,14 +14,17 @@
 }
 
 .button {
-    background-color: #562b08;
+    background-color: var(--color-brown);
     border-radius: 0.5rem;
     border: none;
     margin-right: 0.5rem;
     color: white;
     width: 5rem;
-    height: 3rem;
-    padding: 1rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+.button:hover {
+    cursor: pointer;
 }
 
 .content {

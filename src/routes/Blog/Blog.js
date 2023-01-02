@@ -24,18 +24,26 @@ const Blog = ({ userObj }) => {
         });
     }, []);
     return (
-        <>
-            {userObj?.isAd && (
-                <div className={styles.button}>
-                    <Link to="/blog/new">글쓰기</Link>
-                </div>
-            )}
+        <div className={styles.wrapper}>
+            <div className={styles.header_wrapper}>
+                <h2 className={styles.header}>URB_log</h2>
+                {userObj?.isAd && (
+                    <Link to="/blog/new">
+                        <div className={styles.button}>글쓰기</div>
+                    </Link>
+                )}
+            </div>
 
             <div className={styles.blogs}>
                 {blogs.map((v, i) => (
-                    <div key={i} className={styles.blog}>
-                        <Link to={`/blog/${v.id}`}>{v.title}</Link>
-                    </div>
+                    <Link to={`/blog/${v.id}`}>
+                        <div key={i} className={styles.blog}>
+                            <span className={styles.blog_id}>
+                                {blogs.length - i - 1}
+                            </span>
+                            <span className={styles.blog_title}>{v.title}</span>
+                        </div>
+                    </Link>
                 ))}
 
                 {/* <h2>22' 공학인의 밤</h2>
@@ -61,7 +69,7 @@ const Blog = ({ userObj }) => {
                     ></YouTubePlayer>
                 </div> */}
             </div>
-        </>
+        </div>
     );
 };
 

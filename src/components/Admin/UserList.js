@@ -33,9 +33,11 @@ const UserList = () => {
     };
     return (
         <>
+            <br />
             <div>
                 <h2>유저 목록</h2>
             </div>
+            <br />
             {/* <div>
                 <input type={"text"} />
                 <button>검색</button>
@@ -43,18 +45,30 @@ const UserList = () => {
             <div>
                 {users.map((v, i) => (
                     <div key={i} className={styles.user}>
-                        <p>{i}</p>
+                        <span>{i}</span>
                         {/* <p>{v.id}</p> */}
-                        <p>{v.userName}</p>
-                        <p>{v.userEmail}</p>
+                        <span>{v.userName}</span>
+                        <span>{v.userEmail}</span>
                         <select onChange={onLevelChange} data-uid={v.id}>
-                            <option>{v.userLevel}</option>
-                            <option>회장</option>
-                            <option>부회장</option>
-                            <option>총무</option>
-                            <option>와꾸대장</option>
-                            <option>홍보실장</option>
-                            <option>일반</option>
+                            {/* <option>{v.userLevel}</option> */}
+                            <option selected={v.userLevel === "회장"}>
+                                회장
+                            </option>
+                            <option selected={v.userLevel === "부회장"}>
+                                부회장
+                            </option>
+                            <option selected={v.userLevel === "총무"}>
+                                총무
+                            </option>
+                            <option selected={v.userLevel === "와꾸대장"}>
+                                와꾸대장
+                            </option>
+                            <option selected={v.userLevel === "홍보실장"}>
+                                홍보실장
+                            </option>
+                            <option selected={v.userLevel === "일반"}>
+                                일반
+                            </option>
                         </select>
                     </div>
                 ))}
