@@ -11,7 +11,7 @@
     box-shadow: 10px 10px 0px #ffe15d;
 }
 
-@media screen and (width <= 480px) {
+@media screen and (width <= 700px) {
     .player {
         width: 100%;
     }

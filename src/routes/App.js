@@ -10,10 +10,16 @@ import { doc, getDoc } from "firebase/firestore";
 
 function App() {
     const [userObj, setUserObj] = useState(null);
+    const [redo, setRedo] = useState(false);
 
     const setUser = async (user) => {
         const docSnap = await getDoc(doc(dbService, "users", user.uid));
         const level = docSnap?.data()?.userLevel;
+        console.log(level);
+        if (level === undefined) {
+            setRedo((prev) => !prev);
+            return;
+        }
         if (level !== "일반") {
             setUserObj({ isAd: true, ...user });
         } else {
@@ -37,7 +43,7 @@ function App() {
                 setUserObj(null);
             }
         });
-    }, []);
+    }, [redo]);
     return (
         <Router>
             <Header userObj={userObj} isSignedIn={Boolean(userObj)} />

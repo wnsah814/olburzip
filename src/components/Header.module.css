@@ -5,13 +5,13 @@
     background-color: #ffe15d;
 }
 
-/* .container * {
-    color: #562b08;
-} */
-
 .logo {
     margin-left: 2rem;
     font-weight: 800;
+}
+
+.logo a {
+    outline: none;
 }
 
 #headerImg {

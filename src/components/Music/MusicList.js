@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { storage } from "fbase";
 
 import Song from "./Song";
+import PageTitle from "components/Common/PageTitle";
 const MusicList = ({ setCurSong }) => {
     const [storageMusics, setStorageMusics] = useState([]);
     // const getDream = () => {
@@ -51,7 +52,7 @@ const MusicList = ({ setCurSong }) => {
 
     return (
         <>
-            <h2 className={styles.category}>율동 노래</h2>
+            <PageTitle title="율동노래" />
             <div className={styles.songs}>
                 <Song
                     setCurSong={setCurSong}

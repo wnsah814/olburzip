@@ -1,15 +1,32 @@
+.videos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .video {
+    width: 45%;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
+
 .video h3 {
-    margin-bottom: 1rem;
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
 }
 
 #danceHeader {
     padding-bottom: 0.2rem;
     border-bottom: 5px solid var(--color-yellow);
     display: inline-block;
+}
+
+@media screen and (width <= 700px) {
+    .videos {
+        flex-direction: column;
+    }
+    .video {
+        width: 100%;
+    }
 }

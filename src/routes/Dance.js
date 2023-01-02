@@ -1,3 +1,4 @@
+import PageTitle from "components/Common/PageTitle";
 import YouTubePlayer from "components/YoutubePlayer";
 import styles from "./Dance.module.css";
 // import ReactPlayer from "react-player";
@@ -7,23 +8,24 @@ const Dance = () => {
         <>
             <div className={styles.container}>
                 <div>
-                    <h2 id={styles.danceHeader}>율동 안무</h2>
+                    <PageTitle title={"율동 안무"} />
                 </div>
-                {/* <ReactPlayer url="https://www.youtube.com/watch?v=9ew4ZVys4X4 " /> */}
-                <div className={styles.video}>
-                    <h3>새물</h3>
-                    <YouTubePlayer
-                        src="https://www.youtube.com/embed/9ew4ZVys4X4?rel=0"
-                        title="YouTube video player"
-                    />
-                </div>
+                <div className={styles.videos}>
+                    <div className={styles.video}>
+                        <h3>새물</h3>
+                        <YouTubePlayer
+                            src="https://www.youtube.com/embed/9ew4ZVys4X4?rel=0"
+                            title="YouTube video player"
+                        />
+                    </div>
 
-                <div className={styles.video}>
-                    <h3>꿈찾기</h3>
-                    <YouTubePlayer
-                        src="https://www.youtube.com/embed/omDdD4lvGcU"
-                        title="YouTube video player"
-                    />
+                    <div className={styles.video}>
+                        <h3>꿈찾기</h3>
+                        <YouTubePlayer
+                            src="https://www.youtube.com/embed/omDdD4lvGcU"
+                            title="YouTube video player"
+                        />
+                    </div>
                 </div>
             </div>
         </>

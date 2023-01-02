@@ -1,9 +1,10 @@
+import PageTitle from "components/Common/PageTitle";
 import styles from "./Member.module.css";
 const Member = ({ userObj }) => {
     return (
         <>
             <div className={styles.container}>
-                <h2>운영진</h2>
+                <PageTitle title={"운영진"} />
             </div>
         </>
     );
