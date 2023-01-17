@@ -1,0 +1,27 @@
+.container {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    background-color: #ffe15d;
+}
+
+.logo {
+    margin-left: 2rem;
+    font-weight: 800;
+}
+
+.logo a {
+    outline: none;
+}
+
+#headerImg {
+    margin: 0.25rem;
+    height: 3.5rem;
+}
+
+.navi {
+    height: 100%;
+    flex: 1 0 auto;
+    font-weight: bold;
+    text-align: center;
+}
