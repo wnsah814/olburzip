@@ -8,24 +8,30 @@
 # testing
 /coverage
 
+# next.js
+/.next/
+/out/
+
 # production
 /build
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.pem
 
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-.env
-firestore.*
-firebase.*
+# local env files
+.env*.local
 
-test/
-.next/
+# vercel
+.vercel
+
+
+# typescript
+*.tsbuildinfo
 next-env.d.ts
