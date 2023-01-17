@@ -27,3 +27,5 @@ firestore.*
 firebase.*
 
 test/
+.next/
+next-env.d.ts
