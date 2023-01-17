@@ -5,7 +5,7 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { dbService } from "fbase";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,9 @@ const ContentEditor = () => {
     const titleRef = useRef();
     const editorRef = useRef();
     const navigator = useNavigate();
-
+    useEffect(() => {
+        // editorRef.current?.getInstance()
+    }, []);
     const submitUpdate = async () => {
         if (
             titleRef.current.value === "" ||
@@ -47,7 +49,7 @@ const ContentEditor = () => {
                     저장
                 </button>
             </div>
-            <Editor
+            {/* <Editor
                 ref={editorRef}
                 initialValue="hello react editor world"
                 previewStyle="vertical"
@@ -57,7 +59,41 @@ const ContentEditor = () => {
                 useCommandShortcut={false}
                 plugins={[colorSyntax]}
                 language="ko-KR"
-            />
+            /> */}
+            <Editor
+                ref={editorRef}
+                // previewStyle="tab"
+                previewStyle="vertical"
+                initialEditType="markdown"
+                hideModeSwitch={true}
+                useCommandShortcut={false}
+                plugins={[colorSyntax]}
+                language="ko-KR"
+                height="50rem"
+                // toolbarItems={[["bold", "italic", "strike"]]}
+
+                // 유튜브 삽입 및 미리보기 를 위한 설정(iframe)
+                customHTMLRenderer={{
+                    htmlBlock: {
+                        iframe(node) {
+                            return [
+                                {
+                                    type: "openTag",
+                                    tagName: "iframe",
+                                    outerNewLine: true,
+                                    attributes: node.attrs,
+                                },
+                                { type: "html", content: node.childrenHTML },
+                                {
+                                    type: "closeTag",
+                                    tagName: "iframe",
+                                    outerNewLine: true,
+                                },
+                            ];
+                        },
+                    },
+                }}
+            ></Editor>
         </>
     );
 };
