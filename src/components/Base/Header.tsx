@@ -2,10 +2,9 @@ import styles from "@/styles/Header.module.css";
 import Image from "next/image";
 
 import Link from "next/link";
-import { CommonProp } from "../Layout";
 import Navigator from "../Navigator";
 
-export default function Header({ userObj }: CommonProp) {
+export default function Header() {
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
@@ -20,7 +19,7 @@ export default function Header({ userObj }: CommonProp) {
                 </Link>
             </div>
             <div className={styles.navi}>
-                <Navigator userObj={userObj} />
+                <Navigator />
             </div>
         </div>
     );

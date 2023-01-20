@@ -1,3 +1,13 @@
+import MusicList from "@/components/Music/MusicList";
+import MusicPlayer from "@/components/Music/MusicPlayer";
+import { useState } from "react";
+
 export default function Music() {
-    return <div>Music</div>;
+    const [curSong, setCurSong] = useState<string>("");
+    return (
+        <>
+            <MusicList setCurSong={setCurSong} />
+            <MusicPlayer curSong={curSong} />
+        </>
+    );
 }

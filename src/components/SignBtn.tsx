@@ -5,9 +5,10 @@ import styles from "@/styles/SignBtn.module.css";
 import { useRouter } from "next/router";
 import { CommonProp } from "./Layout";
 import { ClickEvent } from "@/types";
+import { useUser } from "@/store/useUser";
 
-const SignBtn = ({ isSignedIn }: CommonProp) => {
-    // console.log(isSignedIn);
+const SignBtn = () => {
+    const { data } = useUser();
     const router = useRouter();
 
     const insertUser = async (
@@ -48,7 +49,7 @@ const SignBtn = ({ isSignedIn }: CommonProp) => {
 
     return (
         <>
-            {!isSignedIn ? (
+            {!data?.isSignedIn ? (
                 <button
                     className={styles.mobileSignBtn}
                     onClick={onSocialClick}

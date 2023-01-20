@@ -6,24 +6,27 @@ import Header from "./Base/Header";
 
 import { FC } from "react";
 import { User } from "firebase/auth";
+import { useUser } from "@/store/useUser";
 
 type LayoutProps = {
     children: React.ReactNode;
 };
 
 interface UserObj {
+    isSignedIn: boolean;
     isAd?: boolean;
-    user?: User | "unsigned";
+    user?: User;
 }
 
 export interface CommonProp {
-    userObj?: UserObj;
+    userObj: UserObj;
     isSignedIn?: boolean;
 }
 
 export default function Layout({ children }: LayoutProps) {
-    const [userObj, setUserObj] = useState<UserObj>({ user: "unsigned" });
+    // const [userObj, setUserObj] = useState<UserObj>({ isSignedIn: false });
     const [redo, setRedo] = useState<boolean>(false);
+    const { data, mutate } = useUser();
 
     const setUser = async (user: User) => {
         const docSnap = await getDoc(doc(dbService, "users", user.uid));
@@ -33,9 +36,9 @@ export default function Layout({ children }: LayoutProps) {
             return;
         }
         if (level !== "일반") {
-            setUserObj({ isAd: true, ...user });
+            mutate({ isSignedIn: true, isAd: true, ...user });
         } else {
-            setUserObj({ isAd: false, ...user });
+            mutate({ isSignedIn: true, isAd: false, ...user });
         }
     };
 
@@ -44,13 +47,13 @@ export default function Layout({ children }: LayoutProps) {
             if (user) {
                 setUser(user);
             } else {
-                setUserObj({ user: "unsigned" });
+                mutate({ isSignedIn: false });
             }
         });
     }, [redo]);
     return (
         <>
-            <Header userObj={userObj} />
+            <Header />
             <div>{children}</div>
             <Footer />
             <style jsx>
