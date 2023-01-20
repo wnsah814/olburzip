@@ -2,11 +2,12 @@ import { useState } from "react";
 import styles from "@/styles/Navigator.module.css";
 import Link from "next/link";
 import SignBtn from "./SignBtn";
-import { CommonProp } from "./Layout";
 import { ClickEvent } from "@/types";
+import { useUser } from "@/store/useUser";
 
-export default function Navigator({ userObj }: CommonProp) {
-    console.log(userObj);
+export default function Navigator() {
+    const { data } = useUser();
+
     const [opened, setOpened] = useState<boolean>(false);
     const toggleMenu = (e: ClickEvent) => {
         console.log(e);
@@ -36,7 +37,7 @@ export default function Navigator({ userObj }: CommonProp) {
                         <div onClick={toggleMenu} className={styles.mobileNav}>
                             <Link href="/dance">Dance</Link>
                         </div>
-                        {userObj?.isAd && (
+                        {data?.isAd && (
                             <div
                                 onClick={toggleMenu}
                                 className={styles.mobileNav}
@@ -51,9 +52,7 @@ export default function Navigator({ userObj }: CommonProp) {
             {/* 모바일 메뉴 */}
             <div className={styles.mobileNavigation}>
                 <div>
-                    <SignBtn
-                        isSignedIn={Boolean(userObj?.user !== "unsigned")}
-                    />
+                    <SignBtn />
 
                     <button
                         onClick={toggleMenu}
@@ -93,15 +92,13 @@ export default function Navigator({ userObj }: CommonProp) {
                         <div className={styles.desktopNav}>
                             <Link href="/dance">Dance</Link>
                         </div>
-                        {userObj?.isAd && (
+                        {data?.isAd && (
                             <div className={styles.desktopNav}>
                                 <Link href="/manage">Manage</Link>
                             </div>
                         )}
                     </nav>
-                    <SignBtn
-                        isSignedIn={Boolean(userObj?.user !== "unsigned")}
-                    />
+                    <SignBtn />
                 </div>
             </div>
         </>
