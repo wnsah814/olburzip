@@ -23,7 +23,7 @@ const UserList = () => {
         });
     }, []);
 
-    const onLevelChange = async (e) => {
+    const onLevelChange = async (e: any) => {
         const userId = e.target.attributes[0].nodeValue;
         const newLevel = e.target.value;
         if (newLevel === 0) return;
@@ -43,7 +43,7 @@ const UserList = () => {
                 <button>검색</button>
             </div> */}
             <div>
-                {users.map((v, i) => (
+                {users.map((v: any, i: number) => (
                     <div key={i} className={styles.user}>
                         <span>{i}</span>
                         {/* <p>{v.id}</p> */}

@@ -25,7 +25,7 @@ const ApplyList = () => {
                 <h2>2023 지원 현황</h2>
             </div>
             <div className={styles.content}>
-                {members.map((v, i) => (
+                {members.map((v: any, i: number) => (
                     <div key={i} className={styles.card}>
                         <div className={styles.card_item}>
                             <div className={styles.card_column}>
