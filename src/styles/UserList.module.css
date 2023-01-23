@@ -3,6 +3,7 @@
     align-items: center;
     padding: 0.5rem;
 }
+
 .user:nth-child(odd) {
     background-color: #f4f4f4;
 }
@@ -10,12 +11,13 @@
 .user span {
     display: inline-block;
 }
+
 .user span:nth-child(1) {
     width: 2rem;
 }
 
 .user span:nth-child(2) {
-    width: 5rem;
+    width: 6.5rem;
 }
 
 .user span:nth-child(3) {
