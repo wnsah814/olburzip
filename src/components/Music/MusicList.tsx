@@ -53,7 +53,7 @@ const MusicList = ({ setCurSong }: any) => {
                         flex-wrap: wrap;
                     }
 
-                    @media screen and (width <= 480px) {
+                    @media screen and (max-width: 480px) {
                         .wrapper {
                             padding: 2rem;
                         }

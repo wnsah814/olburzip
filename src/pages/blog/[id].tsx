@@ -95,16 +95,6 @@ const BlogViewer = () => {
                         flex-direction: column;
                     }
 
-                    /* youtube player */
-                    .wrapper iframe {
-                        /* width: 35rem; */
-                        aspect-ratio: 16 / 9;
-                        border: none;
-                        border-radius: 0.25rem;
-                        /* box-shadow: 5px 5px 0px #ffe15d; */
-                    }
-                    /*  */
-
                     .header {
                         display: flex;
                         height: 3rem;
@@ -132,7 +122,7 @@ const BlogViewer = () => {
                     .content {
                     }
 
-                    @media screen and (width <= 480px) {
+                    @media screen and (max-width: 480px) {
                         .header {
                             flex-direction: column;
                             height: 100%;
@@ -140,13 +130,6 @@ const BlogViewer = () => {
 
                         .title {
                             width: 100%;
-                        }
-                    }
-
-                    @media screen and (width <= 700px) {
-                        .wrapper iframe {
-                            width: 100%;
-                            aspect-ratio: 16 / 9;
                         }
                     }
                 `}

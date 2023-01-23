@@ -1,14 +1,6 @@
-import Button from "@/components/Common/Button";
-import { CommonProp } from "@/components/Layout";
 import { useUser } from "@/store/useUser";
-import { useEffect, useState } from "react";
 import ApplyList from "./applyList";
 import UserList from "./userList";
-
-interface Check {
-    signed: boolean;
-    admin: boolean;
-}
 
 export default function Manage() {
     const { data } = useUser();

@@ -16,7 +16,7 @@ const YouTubePlayer = ({ src, title }: prop) => {
             <style jsx>
                 {`
                     iframe {
-                        width: 35rem;
+                        width: 40rem;
                         aspect-ratio: 16 / 9;
                         border-radius: 4px;
                         box-shadow: 5px 5px 0px #ffe15d;
@@ -28,7 +28,25 @@ const YouTubePlayer = ({ src, title }: prop) => {
                         box-shadow: 10px 10px 0px #ffe15d;
                     }
 
-                    @media screen and (width <= 700px) {
+                    @media screen and (max-width: 1700px) {
+                        iframe {
+                            width: 35rem;
+                        }
+                    }
+
+                    @media screen and (max-width: 1200px) {
+                        iframe {
+                            width: 30rem;
+                        }
+                    }
+
+                    @media screen and (max-width: 1000px) {
+                        iframe {
+                            width: 25rem;
+                        }
+                    }
+
+                    @media screen and (max-width: 700px) {
                         iframe {
                             width: 100%;
                         }

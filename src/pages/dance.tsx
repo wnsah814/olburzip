@@ -24,6 +24,14 @@ export default function Dance() {
                             title="YouTube video player"
                         />
                     </div>
+
+                    <div className={"video"}>
+                        <h3>우린 하나요</h3>
+                        <YouTubePlayer
+                            src="https://www.youtube.com/embed/72Rr-WeV8O4"
+                            title="YouTube video player"
+                        />
+                    </div>
                 </div>
             </div>
             <style jsx>
@@ -31,6 +39,7 @@ export default function Dance() {
                     .videos {
                         display: flex;
                         flex-direction: row;
+                        flex-wrap: wrap;
                         justify-content: space-between;
                     }
 
@@ -52,7 +61,7 @@ export default function Dance() {
                         display: inline-block;
                     }
 
-                    @media screen and (width <= 700px) {
+                    @media screen and (max-width: 900px) {
                         .videos {
                             flex-direction: column;
                         }
