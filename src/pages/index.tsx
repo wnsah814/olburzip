@@ -67,7 +67,7 @@ export default function Home() {
                         }
                     }
 
-                    @media screen and (width <= 700px) {
+                    @media screen and (max-width: 700px) {
                         .logoImg {
                             width: 100%;
                         }

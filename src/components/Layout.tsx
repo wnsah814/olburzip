@@ -64,9 +64,9 @@ export default function Layout({ children }: LayoutProps) {
                         padding: 2rem;
                     }
 
-                    @media screen and (width < 480px) {
-                        .container {
-                            padding: 1rem 0.5rem;
+                    @media screen and (max-width: 480px) {
+                        div {
+                            padding: 1rem;
                         }
                     }
                 `}

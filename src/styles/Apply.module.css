@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 1rem);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@
     padding: 1rem;
     margin-bottom: 0.5rem;
     border: none;
-    box-shadow: 1px 1px 5px #c8c8c8;
+    box-shadow: 1px 1px 5px var(--bright-gray);
     border-radius: 0.5rem;
     outline: none;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -27,13 +27,13 @@
 
 .input:focus {
     background-color: #ffe15db2;
-    color: #562b08;
+    color: var(--color-brown);
 }
 
 .button {
     margin-top: 1rem;
-    background-color: #562b08;
-    color: white;
+    background-color: var(--color-brown);
+    color: var(--color-white);
 }
 .button:hover {
     cursor: pointer;
