@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+}
+
+.menus {
+    background-color: var(--color-yellow);
+    width: 6rem;
+    margin-right: 2rem;
+}
+
+.menu {
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 2000px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .menus {
+        background-color: inherit;
+        width: 100%;
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    .menu {
+        margin-right: 0.2rem;
+        border-bottom: 2px solid var(--color-bright-gray);
+    }
+
+    .active {
+        border-bottom: 2px solid var(--color-brown);
+    }
+}

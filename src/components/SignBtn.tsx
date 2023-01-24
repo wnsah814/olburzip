@@ -19,7 +19,7 @@ const SignBtn = () => {
         const newUserObj = {
             userEmail,
             userName,
-            userLevel: "일반",
+            userLevel: 0,
             createdAt: serverTimestamp(),
         };
         await setDoc(doc(dbService, "users", userId), newUserObj);
