@@ -8,9 +8,12 @@ const Apply: NextPage = () => {
     const nameRef = useRef<any>();
     const idRef = useRef<any>();
     const phoneRef = useRef<any>();
+    const mbtiRef = useRef<any>();
     const introRef = useRef<any>();
     const apply = async (e: any) => {
         e.preventDefault();
+        alert("신청 기간이 아닙니다!");
+        return;
         const nameData = nameRef.current.value;
         const idData = idRef.current.value;
         const origianlPhoneData = phoneRef.current.value;
@@ -47,7 +50,9 @@ const Apply: NextPage = () => {
             <div className={styles.container}>
                 <div className={styles.formWrapper}>
                     <h2 className={styles.title}>🏵️얼벌 지원하기🏵️</h2>
-
+                    <div className="warning">
+                        <span>아쉽지만 지금은 신청 기간이 아닙니다 !</span>
+                    </div>
                     <form className={styles.form}>
                         <div className="part">
                             <label htmlFor="name">이름</label>
@@ -81,12 +86,25 @@ const Apply: NextPage = () => {
                             />
                         </div>
                         <div className="part">
-                            <label htmlFor={styles.introInput}>자기소개</label>
+                            <label htmlFor="mbti">MBTI</label>
+                            <input
+                                id="mbti"
+                                ref={mbtiRef}
+                                className={styles.input}
+                                type="text"
+                                placeholder="MBTI가 뭐예요~?"
+                            />
+                        </div>
+
+                        <div className="part">
+                            <label htmlFor={styles.introInput}>
+                                자기소개 / 각오
+                            </label>
                             <textarea
                                 ref={introRef}
                                 id={styles.introInput}
                                 className={styles.input}
-                                placeholder="나를 표현하는 간략한 자기소개를 해주세요!"
+                                placeholder="간략한 자기소개 또는 각오를 보여주세요!"
                             />
                         </div>
 
@@ -101,6 +119,11 @@ const Apply: NextPage = () => {
             </div>
             <style jsx>
                 {`
+                    .warning {
+                        text-align: center;
+                        color: var(--color-red);
+                        margin-bottom: 1rem;
+                    }
                     .part {
                         margin-bottom: 1rem;
                     }
