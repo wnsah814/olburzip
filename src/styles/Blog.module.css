@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 0 var(--container-padding);
+    /* padding: var(--container-padding); */
 }
 .header_wrapper {
     display: flex;
