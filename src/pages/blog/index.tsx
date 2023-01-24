@@ -4,8 +4,11 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CommonProp } from "@/components/Layout";
+import { useUser } from "@/store/useUser";
 
 export default function Blog({ userObj }: CommonProp) {
+    const { data } = useUser();
+
     const [blogs, setBlogs] = useState<any>([]);
 
     useEffect(() => {
@@ -25,7 +28,7 @@ export default function Blog({ userObj }: CommonProp) {
         <div className={styles.wrapper}>
             <div className={styles.header_wrapper}>
                 <h2 className={styles.header}>URB_log</h2>
-                {!userObj?.isAd && (
+                {data?.isAd && (
                     <Link href={"/blog/new"}>
                         <div className={styles.button}>글쓰기</div>
                     </Link>

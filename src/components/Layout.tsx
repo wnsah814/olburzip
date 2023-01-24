@@ -61,7 +61,7 @@ export default function Layout({ children }: LayoutProps) {
                     div {
                         width: 100vw;
                         min-height: calc(100vh - 4rem);
-                        padding: 2rem;
+                        padding: var(--container-padding);
                     }
 
                     @media screen and (max-width: 480px) {

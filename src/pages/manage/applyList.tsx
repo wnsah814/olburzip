@@ -2,6 +2,7 @@ import { dbService } from "@/api/fbase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import styles from "@/styles/ApplyList.module.css";
+import applyToXlsx from "@/api/applyToXls";
 
 const ApplyList = () => {
     const [members, setMembers] = useState<any>([]);
@@ -23,6 +24,21 @@ const ApplyList = () => {
         <div className={styles.wrapper}>
             <div className={styles.title}>
                 <h2>2023 지원 현황</h2>
+            </div>
+            <div>
+                <button className="xlsxBtn" onClick={applyToXlsx}>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                    >
+                        <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                    </svg>
+                    <span>Download to xlsx</span>
+                </button>
             </div>
             <div className={styles.content}>
                 {members.map((v: any, i: number) => (
@@ -58,6 +74,27 @@ const ApplyList = () => {
                     </div>
                 ))}
             </div>
+            <style jsx>
+                {`
+                    .xlsxBtn {
+                        display: flex;
+                        padding: 0.7rem;
+                        border-radius: 0.3rem;
+                        border: none;
+                        background-color: var(--color-brown);
+                        color: var(--color-white);
+                        margin-bottom: 1rem;
+                    }
+
+                    .xlsxBtn:hover {
+                        cursor: pointer;
+                    }
+
+                    .xlsxBtn > span {
+                        margin-left: 0.1rem;
+                    }
+                `}
+            </style>
         </div>
     );
 };
