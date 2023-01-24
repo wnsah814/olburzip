@@ -26,7 +26,7 @@ export interface CommonProp {
 export default function Layout({ children }: LayoutProps) {
     // const [userObj, setUserObj] = useState<UserObj>({ isSignedIn: false });
     const [redo, setRedo] = useState<boolean>(false);
-    const { data, mutate } = useUser();
+    const { mutate } = useUser();
 
     const setUser = async (user: User) => {
         const docSnap = await getDoc(doc(dbService, "users", user.uid));
@@ -35,7 +35,7 @@ export default function Layout({ children }: LayoutProps) {
             setRedo((prev) => !prev);
             return;
         }
-        if (level !== "일반") {
+        if (level > 1) {
             mutate({ isSignedIn: true, isAd: true, ...user });
         } else {
             mutate({ isSignedIn: true, isAd: false, ...user });

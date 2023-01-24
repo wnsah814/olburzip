@@ -5,14 +5,24 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = (props: ButtonProps) => {
-    const { rest } = props;
+    const { children, onClick } = props;
     return (
         <>
-            <button {...rest}>My Button</button>
+            <button onClick={onClick}>{children}</button>
             <style jsx>
                 {`
                     button {
-                        padding: 1rem;
+                        display: flex;
+                        padding: 0.7rem;
+                        border-radius: 0.3rem;
+                        border: none;
+                        background-color: var(--color-brown);
+                        color: var(--color-white);
+                        margin-bottom: 1rem;
+                    }
+
+                    button:hover {
+                        cursor: pointer;
                     }
                 `}
             </style>

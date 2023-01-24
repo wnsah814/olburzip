@@ -6,10 +6,11 @@ import applyToXlsx from "@/api/applyToXls";
 
 const ApplyList = () => {
     const [members, setMembers] = useState<any>([]);
+    const [year, setYear] = useState<number>(new Date().getFullYear());
 
     useEffect(() => {
         const q = query(
-            collection(dbService, "2023applied"),
+            collection(dbService, `${year}applied`),
             orderBy("createdAt", "asc")
         );
         onSnapshot(q, (snapshot) => {
@@ -23,7 +24,11 @@ const ApplyList = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>
-                <h2>2023 지원 현황</h2>
+                <h2>{year} 지원 현황</h2>
+                {/* <select>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select> */}
             </div>
             <div>
                 <button className="xlsxBtn" onClick={applyToXlsx}>
@@ -58,10 +63,20 @@ const ApplyList = () => {
                             </div>
                         </div>
                         <div className={styles.card_item}>
-                            <span className={styles.card_label}>연락처</span>
-                            <span className={styles.card_content}>
-                                {v?.phoneNumber}
-                            </span>
+                            <div className={styles.card_column}>
+                                <span className={styles.card_label}>
+                                    연락처
+                                </span>
+                                <span className={styles.card_content}>
+                                    {v?.phoneNumber}
+                                </span>
+                            </div>
+                            <div className={styles.card_column}>
+                                <span className={styles.card_label}>MBTI</span>
+                                <span className={styles.card_content}>
+                                    {v?.mbti}
+                                </span>
+                            </div>
                         </div>
                         <div className={styles.card_item}>
                             <span className={styles.card_label}>자기소개</span>

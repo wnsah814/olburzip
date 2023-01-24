@@ -76,7 +76,12 @@
         flex: 1;
         width: 100%;
     }
-    .card_item:first-child {
+
+    .card_item:nth-child(1) {
+        display: flex;
+    }
+
+    .card_item:nth-child(2) {
         display: flex;
     }
 
