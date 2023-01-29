@@ -3,7 +3,6 @@ import { useUser } from "@/store/useUser";
 
 export default function Manage() {
     const { data } = useUser();
-
     return (
         <>
             {data?.isSignedIn ? (

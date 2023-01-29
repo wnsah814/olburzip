@@ -3,6 +3,7 @@ import styles from "@/styles/ManagePage.module.css";
 import UserList from "./userList";
 import ApplyList from "./applyList";
 import DB from "./db";
+import LevelUp from "./levelUp";
 
 const ManagePage = () => {
     const [menu, setMenu] = useState<number>(0);
@@ -11,6 +12,7 @@ const ManagePage = () => {
         0: <UserList />,
         1: <ApplyList />,
         2: <DB />,
+        3: <LevelUp />,
     };
 
     const chgMenu = (e: any) => {
@@ -35,6 +37,9 @@ const ManagePage = () => {
                     </div>
                     <div className={styles.menu} data-n={2} onClick={chgMenu}>
                         DB 관리
+                    </div>
+                    <div className={styles.menu} data-n={3} onClick={chgMenu}>
+                        등업 신청
                     </div>
                 </div>
             </div>

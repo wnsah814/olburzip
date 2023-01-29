@@ -47,19 +47,19 @@ const UserList = () => {
                         <span>{i}</span>
                         <span>{v.userName}</span>
                         <span>{v.userEmail}</span>
-                        <select onChange={onLevelChange} data-uid={v.id}>
-                            <option selected={v.userLevel === 7}>회장</option>
-                            <option selected={v.userLevel === 6}>부회장</option>
-                            <option selected={v.userLevel === 5}>총무</option>
-                            <option selected={v.userLevel === 4}>
-                                와꾸대장
-                            </option>
-                            <option selected={v.userLevel === 3}>
-                                홍보실장
-                            </option>
-                            <option selected={v.userLevel === 2}>관리자</option>
-                            <option selected={v.userLevel === 1}>얼벌</option>
-                            <option selected={v.userLevel === 0}>일반</option>
+                        <select
+                            defaultValue={v.userLevel}
+                            onChange={onLevelChange}
+                            data-uid={v.id}
+                        >
+                            <option value={7}>회장</option>
+                            <option value={6}>부회장</option>
+                            <option value={5}>총무</option>
+                            <option value={4}>와꾸대장</option>
+                            <option value={3}>홍보실장</option>
+                            <option value={2}>관리자</option>
+                            <option value={1}>얼벌</option>
+                            <option value={0}>일반</option>
                         </select>
                     </div>
                 ))}

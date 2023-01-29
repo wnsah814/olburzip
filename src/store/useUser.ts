@@ -3,6 +3,10 @@ import useSWR from "swr";
 interface UserObj {
     isSignedIn: boolean;
     isAd?: boolean;
+    level?: number;
+    uid?: string;
+    displayName?: string;
+    photoURL?: string;
 }
 
 let userObj: UserObj = {

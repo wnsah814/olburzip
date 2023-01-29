@@ -3,7 +3,6 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import styles from "@/styles/SignBtn.module.css";
 import { useRouter } from "next/router";
-import { CommonProp } from "./Layout";
 import { ClickEvent } from "@/types";
 import { useUser } from "@/store/useUser";
 

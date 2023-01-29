@@ -13,6 +13,8 @@ const Button = (props: ButtonProps) => {
                 {`
                     button {
                         display: flex;
+                        align-content: center;
+                        justify-content: center;
                         padding: 0.7rem;
                         border-radius: 0.3rem;
                         border: none;
