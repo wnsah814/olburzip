@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Footer from "./Base/Footer";
 import Header from "./Base/Header";
 
-import { FC } from "react";
 import { User } from "firebase/auth";
 import { useUser } from "@/store/useUser";
 
@@ -15,7 +14,6 @@ type LayoutProps = {
 interface UserObj {
     isSignedIn: boolean;
     isAd?: boolean;
-    user?: User;
 }
 
 export interface CommonProp {
