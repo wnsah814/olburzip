@@ -1,9 +1,7 @@
 import { dbService } from "@/api/fbase";
-import Button from "@/components/Common/Button";
 import { useUser } from "@/store/useUser";
 import styles from "@/styles/Profile.module.css";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -26,7 +24,7 @@ const Profile = () => {
         if (typeof data?.uid !== "undefined") {
             const reqObj = {
                 createdAt: serverTimestamp(),
-                name: data.displayName,
+                name: data.name,
             };
             await setDoc(doc(dbService, "levelRequests", data?.uid), reqObj);
             alert("얼벌인을 신청했습니다. 관리자의 승인을 기다려주세요.");
@@ -55,7 +53,7 @@ const Profile = () => {
                 <div className={styles.imgContainer}>
                     <img
                         className={styles.profileImg}
-                        src={data?.photoURL}
+                        src={data?.photoUrl}
                         alt="profile_img"
                     />
                 </div>
@@ -65,7 +63,7 @@ const Profile = () => {
                 </div>
                 <div className={styles.desc}>
                     <span className={styles.title}>이름</span>
-                    <span>{data?.displayName}</span>
+                    <span>{data?.name}</span>
                 </div>
                 <div className={styles.desc}>
                     <span className={styles.title}>등급</span>

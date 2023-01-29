@@ -5,8 +5,8 @@ interface UserObj {
     isAd?: boolean;
     level?: number;
     uid?: string;
-    displayName?: string;
-    photoURL?: string;
+    name?: string;
+    photoUrl?: string;
 }
 
 let userObj: UserObj = {
