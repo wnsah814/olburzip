@@ -1,5 +1,12 @@
 import { dbService } from "@/api/fbase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDoc,
+    onSnapshot,
+    orderBy,
+    query,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import styles from "@/styles/ApplyList.module.css";
 import applyToXlsx from "@/api/applyToXls";
@@ -20,15 +27,19 @@ const ApplyList = () => {
             }));
             setMembers(memArr);
         });
+    }, [year]);
+
+    useEffect(() => {
+        (async () => {
+            const docRef = await getDoc(doc(dbService, "settings", "apply"));
+            if (!docRef.exists()) return;
+            setYear(docRef.data().applyYear);
+        })();
     }, []);
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>
                 <h2>{year} 지원 현황</h2>
-                {/* <select>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                </select> */}
             </div>
             <div>
                 <button className="xlsxBtn" onClick={applyToXlsx}>

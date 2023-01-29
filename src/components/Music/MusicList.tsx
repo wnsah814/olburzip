@@ -4,7 +4,7 @@ import Song from "./Song";
 const MusicList = ({ setCurSong }: any) => {
     return (
         <>
-            <PageTitle title="율동노래" />
+            <PageTitle title="율동 노래" />
             <div className={"songs"}>
                 <Song
                     setCurSong={setCurSong}

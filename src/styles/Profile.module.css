@@ -1,0 +1,38 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.header {
+    margin-bottom: 1rem;
+}
+
+.imgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.profileImg {
+    border-radius: 2rem;
+}
+
+.applyBtn {
+    color: var(--color-brown);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--color-brown);
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
