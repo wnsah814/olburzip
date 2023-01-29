@@ -17,7 +17,7 @@ const Apply: NextPage = () => {
     const mbtiRef = useRef<any>();
     const introRef = useRef<any>();
 
-    const [allow, setAllow] = useState<boolean>(false);
+    const [allow, setAllow] = useState<boolean>(true);
 
     useEffect(() => {
         const getAllow = async () => {
@@ -33,7 +33,8 @@ const Apply: NextPage = () => {
         const nameData = nameRef.current.value;
         const idData = idRef.current.value;
         const origianlPhoneData = phoneRef.current.value;
-        const phoneData = origianlPhoneData.replace("-", "");
+        const phoneData = origianlPhoneData.replace(/-/gi, "");
+        // console.log(origianlPhoneData, phoneData);
         const introData = introRef.current.value;
         const mbtiData = mbtiRef.current.value;
 
@@ -56,8 +57,13 @@ const Apply: NextPage = () => {
             introduce: introData,
             createdAt: serverTimestamp(),
         };
-
-        await addDoc(collection(dbService, "2023applied"), applyObj);
+        const docRef = await getDoc(doc(dbService, "settings", "apply"));
+        if (!docRef.exists()) return;
+        const settings = docRef.data();
+        await addDoc(
+            collection(dbService, `${settings.applyYear}applied`),
+            applyObj
+        );
         nameRef.current.value = "";
         idRef.current.value = "";
         phoneRef.current.value = "";
@@ -92,7 +98,9 @@ const Apply: NextPage = () => {
                                 />
                             </div>
                             <div className="part">
-                                <label htmlFor="phone">전화번호</label>
+                                <label htmlFor="phone">
+                                    전화번호 (010-xxxx-xxxx)
+                                </label>
                                 <input
                                     id="phone"
                                     ref={phoneRef}

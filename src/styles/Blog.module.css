@@ -9,17 +9,6 @@
 .header {
     flex: 1;
     color: var(--color-brown);
-    font-weight: bold;
-}
-
-.button {
-    width: 5rem;
-    background-color: var(--color-brown);
-    border-radius: 0.5rem;
-    color: var(--color-white);
-    padding: 0.8rem;
-    text-align: center;
-    display: inline-block;
 }
 
 .blog {
@@ -27,17 +16,21 @@
     border-radius: 4px;
     display: flex;
 }
+
 .blogs a:nth-child(odd) div {
     background-color: #f4f4f4;
 }
+
 .blogs a:hover div {
     background-color: #dedede;
     border-radius: 0px;
 }
+
 .blog_id {
     min-width: 2.7rem;
     display: inline-block;
 }
+
 .blog_title {
     flex: 1;
 }
@@ -45,11 +38,13 @@
 .video {
     margin-bottom: 1rem;
 }
+
 @media screen and (max-width: 700px) {
     .wrapper {
         padding: 0;
     }
 }
+
 @media screen and (max-width: 480px) {
     .button {
         width: 100%;

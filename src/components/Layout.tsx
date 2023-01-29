@@ -24,7 +24,6 @@ export interface CommonProp {
 }
 
 export default function Layout({ children }: LayoutProps) {
-    // const [userObj, setUserObj] = useState<UserObj>({ isSignedIn: false });
     const [redo, setRedo] = useState<boolean>(false);
     const { mutate } = useUser();
 

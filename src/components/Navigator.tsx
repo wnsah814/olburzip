@@ -45,6 +45,14 @@ export default function Navigator() {
                                 <Link href="/manage">Manage</Link>
                             </div>
                         )}
+                        {data?.isSignedIn && (
+                            <div
+                                onClick={toggleMenu}
+                                className={styles.mobileNav}
+                            >
+                                <Link href="/profile">Profile</Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             ) : null}
@@ -95,6 +103,11 @@ export default function Navigator() {
                         {data?.isAd && (
                             <div className={styles.desktopNav}>
                                 <Link href="/manage">Manage</Link>
+                            </div>
+                        )}
+                        {data?.isSignedIn && (
+                            <div className={styles.desktopNav}>
+                                <Link href="/profile">Profile</Link>
                             </div>
                         )}
                     </nav>
