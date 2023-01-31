@@ -53,7 +53,9 @@ input[type="number"] {
     --container-padding: 2rem;
 
     --color-white: #fff;
-    --color-bright-gray: #c8c8c8;
+    --color-background: #fafbfc;
+    --color-gray-bright: #e9e8e8;
+    --color-gray: #c8c8c8;
     --color-yellow: #ffe15d;
     --color-orange: #f49d1a;
     --color-red: #dc3535;

@@ -15,45 +15,37 @@ export default function Navigator() {
     };
     return (
         <>
-            {opened === true ? (
+            {opened ? (
                 <div className={styles.mobileFullNav}>
                     <div className={styles.cancleBtn} onClick={toggleMenu}>
-                        X
+                        ×
                     </div>
-
-                    <div className={styles.mobileNavs}>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link href="/about">About</Link>
-                        </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link href="/member">Member</Link>
-                        </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link href="/blog">Blog</Link>
-                        </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link href="/music">Music</Link>
-                        </div>
-                        <div onClick={toggleMenu} className={styles.mobileNav}>
-                            <Link href="/dance">Dance</Link>
-                        </div>
-                        {data?.isAd && (
-                            <div
-                                onClick={toggleMenu}
-                                className={styles.mobileNav}
-                            >
-                                <Link href="/manage">Manage</Link>
-                            </div>
-                        )}
-                        {data?.isSignedIn && (
-                            <div
-                                onClick={toggleMenu}
-                                className={styles.mobileNav}
-                            >
-                                <Link href="/profile">Profile</Link>
-                            </div>
-                        )}
+                    <div onClick={toggleMenu} className={styles.mobileNav}>
+                        <Link href="/about">About</Link>
                     </div>
+                    <div onClick={toggleMenu} className={styles.mobileNav}>
+                        <Link href="/member">Member</Link>
+                    </div>
+                    <div onClick={toggleMenu} className={styles.mobileNav}>
+                        <Link href="/blog">Blog</Link>
+                    </div>
+                    <div onClick={toggleMenu} className={styles.mobileNav}>
+                        <Link href="/music">Music</Link>
+                    </div>
+                    <div onClick={toggleMenu} className={styles.mobileNav}>
+                        <Link href="/dance">Dance</Link>
+                    </div>
+                    {data?.isAd && (
+                        <div onClick={toggleMenu} className={styles.mobileNav}>
+                            <Link href="/manage">Manage</Link>
+                        </div>
+                    )}
+                    {data?.isSignedIn && (
+                        <div onClick={toggleMenu} className={styles.mobileNav}>
+                            <Link href="/profile">Profile</Link>
+                        </div>
+                    )}
+                    <div className={styles.cancleBtn}></div>
                 </div>
             ) : null}
 
