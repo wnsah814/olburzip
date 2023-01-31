@@ -24,7 +24,7 @@ const Profile = () => {
         if (typeof data?.uid !== "undefined") {
             const reqObj = {
                 createdAt: serverTimestamp(),
-                name: data.name,
+                name: data.displayName,
             };
             await setDoc(doc(dbService, "levelRequests", data?.uid), reqObj);
             alert("얼벌인을 신청했습니다. 관리자의 승인을 기다려주세요.");
