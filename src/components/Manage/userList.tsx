@@ -41,7 +41,7 @@ const UserList = () => {
                 <input type={"text"} />
                 <button>검색</button>
             </div> */}
-            <div>
+            <div id={styles.users}>
                 {users.map((v: any, i: number) => (
                     <div key={i} className={styles.user}>
                         <span>{i}</span>

@@ -28,19 +28,21 @@ const Song = ({ setCurSong, songTitle, songName }: prop) => {
             <style jsx>
                 {`
                     .container {
+                        box-shadow: 2px 2px 4px #aaa;
                         display: flex;
                         flex-direction: column;
-                        width: 10rem;
-                        height: 10rem;
-                        margin-right: 0.5rem;
-                        margin-bottom: 0.5rem;
+                        width: 12rem;
+                        height: 12rem;
+                        margin: 0 1rem 1rem 0;
                         border-radius: 0.5rem;
-                        background-color: #fff6bf;
+                        background-color: var(--color-yellow);
                         padding: 1rem;
                     }
 
                     .title {
-                        font-size: 1.1rem;
+                        color: var(--color-brown);
+                        font-weight: bold;
+                        font-size: 1.2rem;
                         text-align: center;
                     }
 
@@ -53,14 +55,15 @@ const Song = ({ setCurSong, songTitle, songName }: prop) => {
 
                     .playBtn {
                         border: none;
-                        background-color: #fff6bf;
+                        background-color: inherit;
                     }
 
                     .playIcon {
+                        filter: drop-shadow(0 0 5px #aaa);
                         cursor: pointer;
-                        fill: #f49d1a;
-                        width: 3rem;
-                        height: 3rem;
+                        fill: var(--color-white);
+                        width: 5rem;
+                        height: 5rem;
                     }
 
                     @media screen and (max-width: 480px) {
@@ -84,8 +87,9 @@ const Song = ({ setCurSong, songTitle, songName }: prop) => {
                         }
 
                         .playIcon {
-                            width: 1rem;
-                            height: 1rem;
+                            filter: none;
+                            width: 1.8rem;
+                            height: 1.8rem;
                         }
                     }
                 `}

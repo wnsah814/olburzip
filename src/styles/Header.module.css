@@ -2,7 +2,7 @@
     height: 4rem;
     line-height: 4rem;
     display: flex;
-    background-color: #ffe15d;
+    background-color: var(--color-yellow);
 }
 
 .logo {

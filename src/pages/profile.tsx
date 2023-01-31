@@ -49,33 +49,38 @@ const Profile = () => {
             <div className={styles.header}>
                 <h2>내 프로필</h2>
             </div>
-            <div>
+            <div className={styles.card}>
+                <div className={styles.dot}></div>
                 <div className={styles.imgContainer}>
                     <img
                         className={styles.profileImg}
-                        src={data?.photoUrl}
+                        src={data?.photoURL}
                         alt="profile_img"
                     />
                 </div>
-                <div className={styles.desc}>
-                    <span className={styles.title}>UID</span>
-                    <span>{data?.uid}</span>
-                </div>
-                <div className={styles.desc}>
-                    <span className={styles.title}>이름</span>
-                    <span>{data?.name}</span>
-                </div>
-                <div className={styles.desc}>
-                    <span className={styles.title}>등급</span>
-                    {levelArr[level]}
-                    {level === 0 && (
-                        <span
-                            className={styles.applyBtn}
-                            onClick={requestLevelUp}
-                        >
-                            (얼벌인 신청)
+                <div>
+                    <div className={styles.desc}>
+                        <span className={styles.title}>UID</span>
+                        <span>{data?.uid}</span>
+                    </div>
+                    <div className={styles.desc}>
+                        <span className={styles.title}>이름</span>
+                        <span>{data?.displayName}</span>
+                    </div>
+                    <div className={styles.desc}>
+                        <span className={styles.title}>등급</span>
+                        <span>
+                            {levelArr[level]}
+                            {level === 0 && (
+                                <span
+                                    className={styles.applyBtn}
+                                    onClick={requestLevelUp}
+                                >
+                                    얼벌인 신청
+                                </span>
+                            )}
                         </span>
-                    )}
+                    </div>
                 </div>
             </div>
         </div>
