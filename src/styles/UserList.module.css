@@ -1,3 +1,8 @@
+#users {
+    width: 100%;
+    overflow-x: scroll;
+}
+
 .user {
     display: flex;
     align-items: center;
@@ -21,7 +26,8 @@
 }
 
 .user span:nth-child(3) {
-    width: 20rem;
+    /* width: 20rem; */
+    flex: 1;
 }
 
 .user select {
@@ -31,4 +37,10 @@
     padding: 0.2rem;
     width: 5rem;
     border-right: 10px solid transparent;
+}
+
+@media screen and (max-width: 700px) {
+    .user {
+        width: 130vw;
+    }
 }
