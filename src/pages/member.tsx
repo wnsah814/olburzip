@@ -7,9 +7,9 @@ export default function Member() {
             name: "이규근",
             image: "/assets/img/1.png",
             level: "회장",
-            desc: "어리버리 화이팅",
+            desc: "안녕하세요, 파인애플 피자를 좋아하는 이규근입니다. 세상 모두가 파인애플 피자를 즐기는 그 날까지 잘 부탁드립니다.",
             phone: "010-2259-8146",
-            email: "example@gmail.com",
+            email: "kyukun333@gmail.com",
         },
         {
             name: "신채영",

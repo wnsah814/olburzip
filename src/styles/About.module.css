@@ -1,0 +1,125 @@
+/* .letter {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 3rem;
+    background-color: #f4f4f4;
+    border-radius: 1rem;
+    box-shadow: 0 0 3px #aaa;
+}
+
+.letter p {
+    margin-bottom: 1rem;
+} */
+
+.container {
+    font-size: 1.2rem;
+    word-wrap: break-word;
+    padding: 2rem 0;
+    width: 100%;
+    min-height: 30rem;
+}
+
+.container > * {
+    margin-bottom: 0.5rem;
+}
+
+.ul li {
+    margin-bottom: 0.3rem;
+}
+
+.container:first-child {
+    padding-top: 0;
+}
+
+.container:nth-child(even) {
+    box-shadow: 0 0 1px #aaa;
+    width: 100vw;
+    background-color: #f4f4f4;
+    margin-left: -2rem;
+    padding-left: 2rem;
+}
+
+.container:nth-child(odd) {
+    background-color: white;
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    margin-top: 2rem;
+    width: 30rem;
+    filter: drop-shadow(0 1px 2px #aaa);
+}
+
+.imgs {
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+.imgs::before {
+    font-size: 0.8rem;
+    border-top-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    position: absolute;
+    background-color: #aaa;
+    color: white;
+    content: "👉좌우로 스크롤해보세요 👉";
+}
+
+.img {
+    margin: 0 1rem 1rem 0;
+    border-radius: 0.3rem;
+    max-height: 20rem;
+}
+
+.img11 {
+    aspect-ratio: 1/1;
+}
+
+.img34 {
+    aspect-ratio: 3/4;
+}
+
+.img169 {
+    aspect-ratio: 16/9;
+}
+
+.img43 {
+    aspect-ratio: 4/3;
+}
+
+.videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.video {
+    border-radius: 0.5rem;
+    margin: 0 1rem 1rem 0;
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        font-size: 1rem;
+    }
+
+    .container:nth-child(even) {
+        margin-left: -1rem;
+        padding-left: 1rem;
+    }
+
+    .logo {
+        width: 100%;
+    }
+
+    .img43 {
+        width: 100%;
+    }
+}

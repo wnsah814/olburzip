@@ -49,11 +49,15 @@
 }
 
 .level {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .desc {
-    margin-bottom: 2rem;
+    height: 4rem;
+    font-size: 0.85rem;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .contact {
