@@ -37,7 +37,11 @@ export default function Blog({ userObj }: CommonProp) {
                 </Link>
             )}
 
-            <div className={styles.blogs}>
+            <div
+                data-aos="fade-in"
+                data-aos-duration="600"
+                className={styles.blogs}
+            >
                 {blogs.map((v: any, i: number) => (
                     <Link key={i} href={`/blog/${v.id}`}>
                         <div key={i} className={styles.blog}>

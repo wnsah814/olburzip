@@ -46,11 +46,15 @@ const Profile = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.header}>
+            {/* <div className={styles.header}>
                 <h2>내 프로필</h2>
-            </div>
+            </div> */}
 
-            <div className={styles.card}>
+            <div
+                data-aos="fade-up"
+                data-aos-delay="600"
+                className={styles.card}
+            >
                 <div className={styles.dot}></div>
 
                 <div className={styles.imgContainer}>
