@@ -1,5 +1,7 @@
 .wrapper {
+    height: calc(100vh - 4rem);
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
@@ -38,9 +40,12 @@
 }
 
 .profileImg {
-    border: 6px solid #f5f5f5;
+    width: 6.5rem;
+    height: 6.5rem;
+    /* border: 6px solid #f5f5f5; */
     border-radius: 2rem;
-    box-shadow: 7px 7px 0 var(--color-yellow);
+    /* box-shadow: 7px 7px 0 var(--color-yellow); */
+    box-shadow: 0 2px 2px #aaa;
 }
 
 .applyBtn {
@@ -59,4 +64,11 @@
 .title {
     font-weight: bold;
     font-size: 0.8rem;
+}
+
+#backLogo {
+    position: absolute;
+    width: 15rem;
+    transform: translateY(-10rem) rotate(270deg);
+    filter: opacity(10%);
 }

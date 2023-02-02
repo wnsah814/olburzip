@@ -2,7 +2,7 @@
     height: 4rem;
     line-height: 4rem;
     display: flex;
-    background-color: var(--color-yellow);
+    background-color: var(--header-color);
 }
 
 .logo {

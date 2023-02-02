@@ -7,6 +7,9 @@ const YouTubePlayer = ({ src, title }: prop) => {
     return (
         <>
             <iframe
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="400"
                 src={src}
                 title={title}
                 frameBorder="0"

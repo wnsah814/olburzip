@@ -10,7 +10,11 @@ const Song = ({ setCurSong, songTitle, songName }: prop) => {
         setCurSong(songName);
     };
     return (
-        <div className={"container"}>
+        <div
+            data-aos="fade-in"
+            data-aos-duration="1200"
+            className={"container"}
+        >
             <div className={"title"}>{songTitle ? songTitle : "songTitle"}</div>
             <div className={"btns"}>
                 {songName !== "" ? (

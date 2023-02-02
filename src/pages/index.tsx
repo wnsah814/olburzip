@@ -1,17 +1,25 @@
-import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 
 export default function Home() {
     return (
         <div className={"wrapper"}>
             <img
+                data-aos="zoom-in"
+                data-aos-duration="700"
                 className={"logoImg"}
                 src={"/assets/img/logo.svg"}
                 alt="logo"
             />
-            <h1 className={"title"}>우주최강 율동패 어리버리</h1>
+            <h1 data-aos="zoom-in" data-aos-duration="700" className={"title"}>
+                우주최강 율동패 어리버리
+            </h1>
             <br />
-            <Link href="/apply">
+            <Link
+                data-aos="zoom-in"
+                data-aos-duration="700"
+                data-aos-delay="200"
+                href="/apply"
+            >
                 <button className={"applyBtn"}>지원하기</button>
             </Link>
             <style jsx>
