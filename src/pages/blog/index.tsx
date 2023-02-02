@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { CommonProp } from "@/components/Layout";
 import { useUser } from "@/store/useUser";
 import Button from "@/components/Common/Button";
+import PageTitle from "@/components/Common/PageTitle";
 
 export default function Blog({ userObj }: CommonProp) {
     const { data } = useUser();
@@ -26,15 +27,15 @@ export default function Blog({ userObj }: CommonProp) {
         });
     }, []);
     return (
-        <div className={styles.wrapper}>
+        <>
             <div className={styles.header_wrapper}>
-                <h2 className={styles.header}>URB_log</h2>
-                {data?.isAd && (
-                    <Link href={"/blog/new"}>
-                        <Button>글쓰기</Button>
-                    </Link>
-                )}
+                <PageTitle title={"URB_log"} />
             </div>
+            {data?.isAd && (
+                <Link href={"/blog/new"}>
+                    <Button>글쓰기</Button>
+                </Link>
+            )}
 
             <div className={styles.blogs}>
                 {blogs.map((v: any, i: number) => (
@@ -48,6 +49,6 @@ export default function Blog({ userObj }: CommonProp) {
                     </Link>
                 ))}
             </div>
-        </div>
+        </>
     );
 }

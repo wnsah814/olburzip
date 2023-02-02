@@ -1,11 +1,9 @@
-.wrapper {
-    /* padding: var(--container-padding); */
-}
 .header_wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
 }
+
 .header {
     flex: 1;
     color: var(--color-brown);

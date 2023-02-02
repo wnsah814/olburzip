@@ -10,7 +10,9 @@ export default function Dance() {
                 </div>
                 <div className={"videos"}>
                     <div className={"video"}>
-                        <h3>새물</h3>
+                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
+                            새물
+                        </h3>
                         <YouTubePlayer
                             src="https://www.youtube.com/embed/9ew4ZVys4X4?rel=0"
                             title="YouTube video player"
@@ -18,7 +20,9 @@ export default function Dance() {
                     </div>
 
                     <div className={"video"}>
-                        <h3>꿈찾기</h3>
+                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
+                            꿈찾기
+                        </h3>
                         <YouTubePlayer
                             src="https://www.youtube.com/embed/omDdD4lvGcU"
                             title="YouTube video player"
@@ -26,7 +30,9 @@ export default function Dance() {
                     </div>
 
                     <div className={"video"}>
-                        <h3>우린 하나요</h3>
+                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
+                            우린 하나요
+                        </h3>
                         <YouTubePlayer
                             src="https://www.youtube.com/embed/72Rr-WeV8O4"
                             title="YouTube video player"

@@ -42,8 +42,15 @@ export default function Member() {
                 <PageTitle title={"운영진"} />
             </div>
             <div className={styles.cards}>
-                {people.map((v, i) => (
-                    <div key={i} className={styles.card}>
+                {people.map((v: any, i: number) => (
+                    <div
+                        key={i}
+                        data-aos="fade-zoom-in"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay={`${i * 200}`}
+                        data-aos-offset="0"
+                        className={styles.card}
+                    >
                         <div className={styles.dot}></div>
                         <div className={styles.img}>
                             <img
