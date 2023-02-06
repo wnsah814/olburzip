@@ -30,6 +30,7 @@
     border-radius: 0.5rem;
     outline: none;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -webkit-appearance: none;
 }
 
 .input:focus {

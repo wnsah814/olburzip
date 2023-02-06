@@ -2,6 +2,7 @@ import { dbService } from "@/api/fbase";
 import { useUser } from "@/store/useUser";
 import styles from "@/styles/Profile.module.css";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -31,7 +32,12 @@ const Profile = () => {
         }
     };
 
+    const router = useRouter();
     useEffect(() => {
+        if (data?.isSignedIn === false) {
+            alert("로그인 후 사용가능합니다.");
+            router.push("/");
+        }
         const getUserData = async () => {
             if (typeof data?.uid !== "undefined") {
                 const docSnap = await getDoc(doc(dbService, "users", data.uid));
