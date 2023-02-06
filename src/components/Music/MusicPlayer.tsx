@@ -362,12 +362,12 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 <div
                     id="volum-wrapper"
                     onMouseEnter={() => {
-                        document.querySelector(
+                        document.querySelector<any>(
                             "#volume-range"
                         ).style.visibility = "visible";
                     }}
                     onMouseLeave={() => {
-                        document.querySelector(
+                        document.querySelector<any>(
                             "#volume-range"
                         ).style.visibility = "hidden";
                     }}
@@ -382,14 +382,14 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                             setVolume(e.target.value / 100);
                         }}
                         style={
-                            ({
-                                background: `linear-gradient(90deg, #fdd25f ${
-                                    volume * 100
-                                }%, #ff6b00 ${volume * 100}%)`,
-                            },
+                            // ({
+                            //     background: `linear-gradient(90deg, #fdd25f ${
+                            //         volume * 100
+                            //     }%, #ff6b00 ${volume * 100}%)`,
+                            // },
                             {
                                 visibility: "hidden",
-                            })
+                            }
                         }
                     />
                     <button
