@@ -87,17 +87,16 @@ const About: NextPage = () => {
                     </ul>
                 </div>
 
-                <Button>
-                    <Link
-                        data-aos="fade-zoom-in"
-                        data-aos-easing="ease-in-back"
-                        data-aos-delay="600"
-                        data-aos-offset="0"
-                        href={"/apply"}
-                    >
-                        지원하러 GOGO
-                    </Link>
-                </Button>
+                <div
+                    data-aos="fade-zoom-in"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="850"
+                    data-aos-offset="0"
+                >
+                    <Button>
+                        <Link href={"/apply"}>지원하러 GOGO</Link>
+                    </Button>
+                </div>
                 {/* <div className={styles.logoContainer}>
                     <img
                         className={styles.logo}
