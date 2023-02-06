@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
-import { start } from "repl";
 
 interface Track {
     url: string;
@@ -28,14 +27,14 @@ let autoPlayNextTrack = false;
 const MusicPlayer = ({ trackList, current }: Prop) => {
     const [query, updateQuery] = useState("");
 
-    let playlist = [];
+    // let playlist = [];
     let [curTrack, setCurTrack] = useState<number>(0);
     const [audio, setAudio] = useState<any>();
     const [active, setActive] = useState(false);
     const [title, setTitle] = useState("");
     const [length, setLength] = useState(0);
     const [time, setTime] = useState(0);
-    const [slider, setSlider] = useState(1);
+    const [slider, setSlider] = useState<any>(1);
     const [drag, setDrag] = useState(0);
     const [volume, setVolume] = useState(0.8);
     let [end, setEnd] = useState(0);
@@ -44,7 +43,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
 
     const [filter, setFilter] = useState([]);
 
-    const fmtMSS = (s) => new Date(1000 * s).toISOString().substr(15, 4);
+    const fmtMSS = (s: any) => new Date(1000 * s).toISOString().substr(15, 4);
 
     useEffect(() => {
         const audio = new Audio(trackList[curTrack].url);
@@ -64,27 +63,12 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
 
         const setAudioVolume = () => setVolume(audio.volume);
 
-        const setAudioEnd = () => setEnd((end += 1));
+        const setAudioEnd = () => setEnd((prev) => prev + 1);
 
-        // const toggleAudio = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        //     if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
-        //         console.log(e);
-        //         if (active) {
-        //             play();
-        //         } else {
-        //             pause();
-        //         }
-        //         //your code
-        //     }
-        //     // if (e.keyCode === )
-        // };
-        // events on audio object
         audio.addEventListener("loadeddata", setAudioData);
         audio.addEventListener("timeupdate", setAudioTime);
         audio.addEventListener("volumechange", setAudioVolume);
         audio.addEventListener("ended", setAudioEnd);
-
-        // document.body.addEventListener("keypress", toggleAudio);
 
         setAudio(audio);
         setTitle(trackList[curTrack].title);
@@ -103,10 +87,13 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     //     });
     // });
 
-    const shufflePlaylist = (arr) => {
+    const shufflePlaylist: any = (arr: any) => {
         if (arr.length === 1) return arr;
         const rand = Math.floor(Math.random() * arr.length);
-        return [arr[rand], ...shufflePlaylist(arr.filter((_, i) => i != rand))];
+        return [
+            arr[rand],
+            ...shufflePlaylist(arr.filter((_: any, i: number) => i != rand)),
+        ];
     };
 
     const isInitialMount = useRef<boolean>(false);
@@ -114,9 +101,9 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            if (shuffled) {
-                playlist = shufflePlaylist(playlist);
-            }
+            // if (shuffled) {
+            //     playlist = shufflePlaylist(playlist);
+            // }
 
             if (looped) {
                 play();
@@ -124,15 +111,6 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 setActive(false);
             }
             return;
-            if (autoPlayNextTrack) {
-                if (looped) play();
-                else {
-                    next();
-                }
-            } else {
-                setActive(false);
-            }
-            // !looped && autoPlayNextTrack ? next() : play();
         }
     }, [end]);
 
@@ -617,118 +595,6 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 `}
             </style>
         </div>
-    );
-
-    return (
-        <PageTemplate>
-            {/* {includeTags && (
-                <TagsTemplate>
-                    {tags.map((tag, index) => {
-                        return (
-                            <TagItem
-                                key={index}
-                                className={
-                                    filter.length !== 0 && filter.includes(tag)
-                                        ? "active"
-                                        : ""
-                                }
-                                tag={tag}
-                                onClick={tagClickHandler}
-                            />
-                        );
-                    })}
-                </TagsTemplate>
-            )}
-            {includeSearch && (
-                <Search
-                    value={query}
-                    onChange={(e) => updateQuery(e.target.value.toLowerCase())}
-                    placeholder={`Search ${trackList.length} tracks...`}
-                />
-            )} */}
-            <PlayerTemplate>
-                <div className={styles.title_time_wrapper}>
-                    <Title title={title} />
-                    <Time
-                        time={`${!time ? "0:00" : fmtMSS(time)}/${
-                            !length ? "0:00" : fmtMSS(length)
-                        }`}
-                    />
-                </div>
-
-                <Progress
-                    value={slider}
-                    onChange={(e) => {
-                        setSlider(e.target.value);
-                        setDrag(e.target.value);
-                    }}
-                    onMouseUp={play}
-                    onTouchEnd={play}
-                />
-                <div className={styles.buttons_volume_wrapper}>
-                    <ButtonsBox>
-                        <LoopCurrent
-                            src={looped ? loopCurrentBtn : loopNoneBtn}
-                            onClick={loop}
-                        />
-                        <Previous src={previousBtn} onClick={previous} />
-                        {active ? (
-                            <Pause src={pauseBtn} onClick={pause} />
-                        ) : (
-                            <Play src={playBtn} onClick={play} />
-                        )}
-                        <Next src={nextBtn} onClick={next} />
-                        <Shuffle
-                            src={shuffled ? shuffleAllBtn : shuffleNoneBtn}
-                            onClick={shuffle}
-                        />
-                    </ButtonsBox>
-                    <Volume
-                        value={volume}
-                        onChange={(e) => {
-                            setVolume(e.target.value / 100);
-                        }}
-                    />
-                </div>
-            </PlayerTemplate>
-
-            {showPlaylist && (
-                <PlaylistTemplate>
-                    {trackList
-                        .sort((a, b) => (a.title > b.title ? 1 : -1))
-                        .map((el, index) => {
-                            if (
-                                filter.length === 0 ||
-                                filter.some((filter) =>
-                                    el.tags.includes(filter)
-                                )
-                            ) {
-                                if (
-                                    el.title
-                                        .toLowerCase()
-                                        .includes(query.toLowerCase())
-                                ) {
-                                    playlist.push(index);
-                                    return (
-                                        <PlaylistItem
-                                            className={
-                                                curTrack === index
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                            key={index}
-                                            data_key={index}
-                                            title={el.title}
-                                            src={el.url}
-                                            onClick={playlistItemClickHandler}
-                                        />
-                                    );
-                                }
-                            }
-                        })}
-                </PlaylistTemplate>
-            )}
-        </PageTemplate>
     );
 };
 export default MusicPlayer;
