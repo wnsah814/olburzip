@@ -36,7 +36,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     const [time, setTime] = useState(0);
     const [slider, setSlider] = useState<any>(1);
     const [drag, setDrag] = useState(0);
-    const [volume, setVolume] = useState(0.8);
+    const [volume, setVolume] = useState(0.5);
     let [end, setEnd] = useState(0);
     const [shuffled, setShuffled] = useState(false);
     const [looped, setLooped] = useState(false);
@@ -131,7 +131,6 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     const play = () => {
         if (audio === undefined) return;
         setActive(true);
-        // console.log(audio);
         audio.play();
     };
 
@@ -249,26 +248,42 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </button>
 
-                <button
-                    className="shuffle-button media-button"
-                    onClick={notSupport}
-                >
-                    <i className="button-icons">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"
-                            />
-                            <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z" />
-                        </svg>
-                    </i>
-                </button>
+                {looped ? (
+                    <button
+                        className="repeat-one-button media-button"
+                        onClick={loop}
+                    >
+                        <i className="button-icons">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4h6Zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z" />
+                                <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0v-5Z" />
+                            </svg>
+                        </i>
+                    </button>
+                ) : (
+                    <button
+                        className="repeat-no-button media-button"
+                        onClick={loop}
+                    >
+                        <i className="button-icons">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z" />
+                            </svg>
+                        </i>
+                    </button>
+                )}
 
                 <button
                     className="rewind-button media-button"
@@ -344,42 +359,60 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         <i className="fas fa-step-forward button-icons"></i>
                         <span className="button-text milli">Skip</span>
                     </button> */}
-                {looped ? (
+                <div
+                    id="volum-wrapper"
+                    onMouseEnter={() => {
+                        document.querySelector(
+                            "#volume-range"
+                        ).style.visibility = "visible";
+                    }}
+                    onMouseLeave={() => {
+                        document.querySelector(
+                            "#volume-range"
+                        ).style.visibility = "hidden";
+                    }}
+                >
+                    <input
+                        id="volume-range"
+                        type="range"
+                        min="1"
+                        max="100"
+                        defaultValue="80"
+                        onChange={(e: any) => {
+                            setVolume(e.target.value / 100);
+                        }}
+                        style={
+                            ({
+                                background: `linear-gradient(90deg, #fdd25f ${
+                                    volume * 100
+                                }%, #ff6b00 ${volume * 100}%)`,
+                            },
+                            {
+                                visibility: "hidden",
+                            })
+                        }
+                    />
                     <button
-                        className="repeat-one-button media-button"
-                        onClick={loop}
+                        id="volume-button"
+                        className="shuffle-button media-button"
+                        onClick={notSupport}
                     >
                         <i className="button-icons">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
+                                width="20"
+                                height="20"
                                 fill="currentColor"
                                 viewBox="0 0 16 16"
                             >
-                                <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4h6Zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z" />
-                                <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0v-5Z" />
+                                <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+                                <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+                                <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z" />
                             </svg>
                         </i>
                     </button>
-                ) : (
-                    <button
-                        className="repeat-no-button media-button"
-                        onClick={loop}
-                    >
-                        <i className="button-icons">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z" />
-                            </svg>
-                        </i>
-                    </button>
-                )}
+                </div>
+
                 <button className="media-button" onClick={next}>
                     <FontAwesomeIcon icon={faAngleRight} />
                 </button>
@@ -475,6 +508,18 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         flex-direction: column;
                         justify-content: center;
                         text-align: center;
+                    }
+
+                    #volum-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: nowrap;
+                        justify-content: flex-end;
+                    }
+
+                    #volume-range {
+                        position: absolute;
+                        appearance: slider-vertical;
                     }
 
                     @media (min-width: 421px) {
