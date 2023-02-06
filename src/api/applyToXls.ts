@@ -45,6 +45,7 @@ const applyToXlsx = async () => {
             { header: "이름", key: "name", width: 10 },
             { header: "학번", key: "studentId", hidden: false, width: 20 },
             { header: "연락처", key: "phoneNumber", width: 20 },
+            { header: "MBTI", key: "mbti", width: 20 },
             { header: "자기소개", key: "introduce", width: 60 },
             // {
             //     header: "부서명",

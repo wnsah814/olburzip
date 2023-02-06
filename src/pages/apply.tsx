@@ -9,6 +9,7 @@ import {
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Apply.module.css";
+import { useRouter } from "next/router";
 
 const Apply: NextPage = () => {
     const nameRef = useRef<any>();
@@ -18,7 +19,7 @@ const Apply: NextPage = () => {
     const introRef = useRef<any>();
 
     const [allow, setAllow] = useState<boolean>(true);
-
+    const router = useRouter();
     useEffect(() => {
         const getAllow = async () => {
             const docSnap = await getDoc(doc(dbService, "settings", "apply"));
@@ -69,6 +70,8 @@ const Apply: NextPage = () => {
         phoneRef.current.value = "";
         mbtiRef.current.value = "";
         introRef.current.value = "";
+        alert("제출되었습니다!");
+        router.push("/");
     };
     return (
         <>
@@ -98,9 +101,7 @@ const Apply: NextPage = () => {
                                 />
                             </div>
                             <div className="part">
-                                <label htmlFor="phone">
-                                    전화번호 (010-xxxx-xxxx)
-                                </label>
+                                <label htmlFor="phone">전화번호</label>
                                 <input
                                     id="phone"
                                     ref={phoneRef}
