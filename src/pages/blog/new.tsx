@@ -1,4 +1,5 @@
 import { dbService } from "@/api/fbase";
+import Seo from "@/components/Base/Seo";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -31,6 +32,7 @@ const NewBlogEditor = () => {
 
     return (
         <>
+            <Seo title="New Blog" />
             <div className={"header"}>
                 <input
                     className={"title"}

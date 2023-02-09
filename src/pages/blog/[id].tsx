@@ -1,4 +1,5 @@
 import { dbService } from "@/api/fbase";
+import Seo from "@/components/Base/Seo";
 import BlogEditor from "@/components/ToastUI/BlogEditor";
 import { useUser } from "@/store/useUser";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
@@ -47,6 +48,7 @@ const BlogViewer = () => {
 
     return (
         <>
+            <Seo title="Blog" />
             {editMode ? (
                 <BlogEditor
                     blogId={blogId}
