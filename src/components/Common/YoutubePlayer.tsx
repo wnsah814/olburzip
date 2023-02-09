@@ -23,7 +23,7 @@ const YouTubePlayer = ({ src, title }: prop) => {
                         aspect-ratio: 16 / 9;
                         border-radius: 4px;
                         box-shadow: 5px 5px 0px #ffe15d;
-                        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+                        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
                     }
 
                     iframe:hover {

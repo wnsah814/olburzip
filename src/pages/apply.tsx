@@ -93,7 +93,9 @@ const Apply: NextPage = () => {
                                 />
                             </div>
                             <div className="part">
-                                <label htmlFor="sid">학번</label>
+                                <label htmlFor="sid">
+                                    학번 (ex.2023123456)
+                                </label>
                                 <input
                                     id="sid"
                                     ref={idRef}
