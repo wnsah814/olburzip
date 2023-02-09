@@ -4,10 +4,12 @@ import { NextPage } from "next";
 import styles from "@/styles/About.module.css";
 import Link from "next/link";
 import Button from "@/components/Common/Button";
+import Seo from "@/components/Base/Seo";
 
 const About: NextPage = () => {
     return (
         <>
+            <Seo title="About" />
             <div className={styles.container}>
                 <PageTitle title={"어리버리란?"} />
                 <div

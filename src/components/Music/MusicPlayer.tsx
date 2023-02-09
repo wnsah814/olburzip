@@ -242,12 +242,16 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
 
     return (
         <div className="media-controls">
-            <div>{title}</div>
-            <div className="media-buttons">
+            <div className="media-top">
                 <button className="media-button" onClick={previous}>
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </button>
-
+                <div>{title}</div>
+                <button className="media-button" onClick={next}>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                </button>
+            </div>
+            <div className="media-buttons">
                 {looped ? (
                     <button
                         className="repeat-one-button media-button"
@@ -255,9 +259,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     >
                         <i className="button-icons">
                             <svg
+                                className="button-3"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
                                 fill="currentColor"
                                 viewBox="0 0 16 16"
                             >
@@ -273,9 +276,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     >
                         <i className="button-icons">
                             <svg
+                                className="button-3"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
                                 fill="currentColor"
                                 viewBox="0 0 16 16"
                             >
@@ -291,9 +293,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 >
                     <i className="button-icons">
                         <svg
+                            className="button-2"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                         >
@@ -309,9 +310,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     >
                         <i className="button-icons">
                             <svg
+                                className="button-1"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="48"
-                                height="48"
                                 fill="currentColor"
                                 viewBox="0 0 16 16"
                             >
@@ -324,9 +324,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     <button className="play-button media-button" onClick={play}>
                         <i className="button-icons">
                             <svg
+                                className="button-1"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="48"
-                                height="48"
                                 fill="#838383"
                                 viewBox="0 0 16 16"
                             >
@@ -343,9 +342,8 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 >
                     <i className="button-icons">
                         <svg
+                            className="button-2"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                         >
@@ -355,10 +353,6 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     </i>
                 </button>
 
-                {/* <button className="skip-button media-button" label="skip">
-                        <i className="fas fa-step-forward button-icons"></i>
-                        <span className="button-text milli">Skip</span>
-                    </button> */}
                 <div
                     id="volum-wrapper"
                     onMouseEnter={() => {
@@ -395,10 +389,10 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     <button
                         id="volume-button"
                         className="shuffle-button media-button"
-                        onClick={notSupport}
                     >
                         <i className="button-icons">
                             <svg
+                                className="button-3"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
                                 height="20"
@@ -412,10 +406,6 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         </i>
                     </button>
                 </div>
-
-                <button className="media-button" onClick={next}>
-                    <FontAwesomeIcon icon={faAngleRight} />
-                </button>
             </div>
             <div className="media-progress">
                 <div className="progress-bar-wrapper progress">
@@ -441,7 +431,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     {`${!time ? "0:00" : fmtMSS(time)}`}
                 </div>
                 <div className="progress-time-total">
-                    {`${!length ? "0:00" : fmtMSS(length - time)}`}
+                    {`${!length ? "0:00" : fmtMSS(length)}`}
                 </div>
             </div>
             <style jsx>
@@ -463,16 +453,15 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        margin: 1.5rem;
+                        margin: 1.5rem 0 1rem 0;
                         width: 35rem;
                         max-width: calc(100% - 24px * 2);
                         padding: 1.5rem;
                         position: relative;
                     }
 
-                    @media screen and (max-width: 700px) {
+                    @media screen and (max-width: 600px) {
                         .media-controls {
-                            margin: 1.5rem 0 0 0;
                             min-width: 100%;
                         }
                     }
@@ -494,6 +483,20 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         z-index: -1;
                     }
 
+                    .media-top {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        width: 100%;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .media-top {
+                            margin-bottom: 0.8rem;
+                        }
+                    }
+
                     .media-buttons {
                         display: flex;
                         flex-wrap: nowrap;
@@ -508,6 +511,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         flex-direction: column;
                         justify-content: center;
                         text-align: center;
+                        padding: 12px;
                     }
 
                     #volum-wrapper {
@@ -518,13 +522,20 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     }
 
                     #volume-range {
+                        width: 4.5rem;
+                        height: 6rem;
+                        bottom: 9rem;
                         position: absolute;
                         appearance: slider-vertical;
                     }
 
-                    @media (min-width: 421px) {
+                    @media (max-width: 600px) {
                         .media-button {
-                            padding: 12px;
+                            padding: 4px;
+                        }
+                        #volume-range {
+                            width: 4rem;
+                            bottom: 8.5rem;
                         }
                     }
 
@@ -537,6 +548,36 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         margin-bottom: 4px;
                         margin-top: auto;
                         padding: 16px;
+                    }
+
+                    .button-1 {
+                        width: 3em;
+                        height: 3em;
+                    }
+
+                    .button-2 {
+                        width: 2em;
+                        height: 2em;
+                    }
+
+                    .button-3 {
+                        width: 1.5em;
+                        height: 1.5em;
+                    }
+
+                    @media screen and (max-width: 400px) {
+                        .button-1 {
+                            width: 2.5em;
+                            height: 2.5em;
+                        }
+                        .button-2 {
+                            width: 1.5em;
+                            height: 1.5em;
+                        }
+                        .button-3 {
+                            width: 1.5em;
+                            height: 1.5em;
+                        }
                     }
 
                     .shuffle-button .button-icons,

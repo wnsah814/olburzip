@@ -57,8 +57,7 @@ export default function Layout({ children }: LayoutProps) {
                 {`
                     div {
                         width: 100vw;
-                        height: 100%;
-                        min-height: calc(100vh - 4rem);
+                        min-height: calc(100vh - var(--footer-height));
                         padding: var(--container-padding);
                     }
 

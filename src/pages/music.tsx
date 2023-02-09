@@ -1,3 +1,4 @@
+import Seo from "@/components/Base/Seo";
 import MusicPlayer from "@/components/Music/MusicPlayer";
 import styles from "@/styles/Music.module.css";
 import { useState } from "react";
@@ -54,6 +55,8 @@ export default function Music() {
     const [curSong, setCurSong] = useState<number>(0);
     return (
         <>
+            <Seo title="Music" />
+
             {/* <MusicList setCurSong={setCurSong} />
             <MusicPlayer curSong={curSong} /> */}
             <div className="body">
@@ -123,12 +126,9 @@ export default function Music() {
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                         {
-                            /* background-color: #fff8e7; */
-                        }
                         color: #545454;
                         position: relative;
-                        height: 100vh;
+                        height: calc(100vh - 4rem);
                     }
 
                     .media-list {
@@ -137,8 +137,8 @@ export default function Music() {
                         align-items: center;
                         justify-content: center;
                         width: 100%;
+                        height: 100%;
                         flex-wrap: wrap;
-                        margin-bottom: 3rem;
                     }
 
                     .honeycombs {
@@ -147,6 +147,7 @@ export default function Music() {
                     }
 
                     .honeycomb {
+                        outline: none;
                         cursor: pointer;
                         margin: 30px 8px 8px 0;
                         width: 104px;
@@ -157,7 +158,6 @@ export default function Music() {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        box-shadow: 0 0 1px var(--color-brown);
                     }
 
                     .honeycomb:before {
@@ -171,9 +171,6 @@ export default function Music() {
                         position: absolute;
                         top: -30px;
                         left: 0;
-                         {
-                            /* filter: drop-shadow(0 -2px 1px var(--color-brown)); */
-                        }
                     }
 
                     .honeycomb:after {
@@ -186,7 +183,7 @@ export default function Music() {
                         border-color: inherit;
                         border-left: 52px solid transparent;
                         border-right: 52px solid transparent;
-                        filter: drop-shadow(0 2px 1px var(--color-brown));
+                        filter: drop-shadow(0 3px 1px var(--color-brown));
                     }
 
                     .media-song {

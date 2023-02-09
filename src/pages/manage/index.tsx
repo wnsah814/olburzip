@@ -1,3 +1,4 @@
+import Seo from "@/components/Base/Seo";
 import ManagePage from "@/components/Manage/managePage";
 import { useUser } from "@/store/useUser";
 
@@ -5,6 +6,8 @@ export default function Manage() {
     const { data } = useUser();
     return (
         <>
+            <Seo title="Manage" />
+
             {data?.isSignedIn ? (
                 <>
                     {!data.isAd && (
