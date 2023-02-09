@@ -7,6 +7,7 @@ import { CommonProp } from "@/components/Layout";
 import { useUser } from "@/store/useUser";
 import Button from "@/components/Common/Button";
 import PageTitle from "@/components/Common/PageTitle";
+import Seo from "@/components/Base/Seo";
 
 export default function Blog({ userObj }: CommonProp) {
     const { data } = useUser();
@@ -28,6 +29,8 @@ export default function Blog({ userObj }: CommonProp) {
     }, []);
     return (
         <>
+            <Seo title="Blog" />
+
             <div className={styles.header_wrapper}>
                 <PageTitle title={"URB_log"} />
             </div>

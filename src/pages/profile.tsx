@@ -1,4 +1,5 @@
 import { dbService } from "@/api/fbase";
+import Seo from "@/components/Base/Seo";
 import { useUser } from "@/store/useUser";
 import styles from "@/styles/Profile.module.css";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
@@ -51,60 +52,64 @@ const Profile = () => {
     }, [data]);
 
     return (
-        <div className={styles.wrapper}>
-            {/* <div className={styles.header}>
+        <>
+            <Seo title="Profile" />
+
+            <div className={styles.wrapper}>
+                {/* <div className={styles.header}>
                 <h2>내 프로필</h2>
             </div> */}
 
-            <div
-                data-aos="fade-up"
-                data-aos-delay="600"
-                className={styles.card}
-            >
-                <div className={styles.dot}></div>
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                    className={styles.card}
+                >
+                    <div className={styles.dot}></div>
 
-                <div className={styles.imgContainer}>
-                    <img
-                        className={styles.profileImg}
-                        src={data?.photoURL}
-                        alt="profile_img"
-                    />
-                </div>
+                    <div className={styles.imgContainer}>
+                        <img
+                            className={styles.profileImg}
+                            src={data?.photoURL}
+                            alt="profile_img"
+                        />
+                    </div>
 
-                <div>
-                    <div className={styles.desc}>
-                        <span className={styles.title}>UID</span>
-                        <span>{data?.uid}</span>
+                    <div>
+                        <div className={styles.desc}>
+                            <span className={styles.title}>UID</span>
+                            <span>{data?.uid}</span>
+                        </div>
+                        <div className={styles.desc}>
+                            <span className={styles.title}>이름</span>
+                            <span>{data?.displayName}</span>
+                        </div>
+                        <div className={styles.desc}>
+                            <span className={styles.title}>등급</span>
+                            <span>
+                                {levelArr[level]}
+                                {level === 0 && (
+                                    <span
+                                        className={styles.applyBtn}
+                                        onClick={requestLevelUp}
+                                    >
+                                        얼벌인 신청
+                                    </span>
+                                )}
+                            </span>
+                        </div>
                     </div>
-                    <div className={styles.desc}>
-                        <span className={styles.title}>이름</span>
-                        <span>{data?.displayName}</span>
-                    </div>
-                    <div className={styles.desc}>
-                        <span className={styles.title}>등급</span>
-                        <span>
-                            {levelArr[level]}
-                            {level === 0 && (
-                                <span
-                                    className={styles.applyBtn}
-                                    onClick={requestLevelUp}
-                                >
-                                    얼벌인 신청
-                                </span>
-                            )}
-                        </span>
-                    </div>
-                </div>
 
-                <div>
-                    <img
-                        id={styles.backLogo}
-                        src="/assets/img/logo.svg"
-                        alt="logo"
-                    />
+                    <div>
+                        <img
+                            id={styles.backLogo}
+                            src="/assets/img/logo.svg"
+                            alt="logo"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

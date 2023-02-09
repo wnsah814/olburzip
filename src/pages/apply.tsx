@@ -10,6 +10,7 @@ import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Apply.module.css";
 import { useRouter } from "next/router";
+import Seo from "@/components/Base/Seo";
 
 const Apply: NextPage = () => {
     const nameRef = useRef<any>();
@@ -75,6 +76,7 @@ const Apply: NextPage = () => {
     };
     return (
         <>
+            <Seo title="Apply" />
             <div className={styles.container}>
                 <div className={styles.formWrapper}>
                     <h2 className={styles.title}>🐝얼벌 지원하기🐝</h2>

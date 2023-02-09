@@ -1,9 +1,11 @@
+import Seo from "@/components/Base/Seo";
 import PageTitle from "@/components/Common/PageTitle";
 import YouTubePlayer from "@/components/Common/YoutubePlayer";
 
 export default function Dance() {
     return (
         <>
+            <Seo title="Dance" />
             <div className={"container"}>
                 <div>
                     <PageTitle title={"율동 안무"} />

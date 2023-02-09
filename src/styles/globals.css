@@ -51,6 +51,7 @@ input[type="number"] {
 
 :root {
     --container-padding: 2rem;
+    --footer-height: 5rem;
     --header-color: #ffe15d;
     --color-white: #fff;
     --color-background: #fafbfc;

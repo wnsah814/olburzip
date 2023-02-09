@@ -1,3 +1,4 @@
+import Seo from "@/components/Base/Seo";
 import PageTitle from "@/components/Common/PageTitle";
 import styles from "@/styles/Member.module.css";
 
@@ -42,6 +43,8 @@ export default function Member() {
     ];
     return (
         <>
+            <Seo title="Member" />
+
             <div>
                 <PageTitle title={"운영진"} />
             </div>

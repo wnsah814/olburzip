@@ -68,7 +68,7 @@
 
 #backLogo {
     position: absolute;
-    width: 15rem;
+    width: 14rem;
     transform: translateY(-10rem) rotate(270deg);
     filter: opacity(10%);
 }
