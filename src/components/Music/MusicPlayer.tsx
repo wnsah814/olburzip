@@ -2,15 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
-
-interface Track {
-    url: string;
-    title: string;
-    tags: string[];
-}
+import parseLyrics from "@/api/parseLyrics";
+import { Track } from "@/pages/music";
 
 interface Prop {
+    isFull: boolean;
     trackList: Track[];
+    setFull: any;
     current: number;
     includeTags?: boolean;
     includeSearch?: boolean;
@@ -24,7 +22,7 @@ let showPlaylist = false;
 let autoPlay = false; // 처음 접속 했을 때 재생되는가, 근데 아래보니 방지한거 같기도 함
 let autoPlayNextTrack = false;
 
-const MusicPlayer = ({ trackList, current }: Prop) => {
+const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
     const [query, updateQuery] = useState("");
 
     // let playlist = [];
@@ -42,6 +40,9 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     const [looped, setLooped] = useState(false);
 
     const [filter, setFilter] = useState([]);
+
+    const [lyList, setLyList] = useState<any>();
+    const [curLy, setCurLy] = useState<string>("");
 
     const fmtMSS = (s: any) => new Date(1000 * s).toISOString().substr(15, 4);
 
@@ -150,14 +151,10 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     };
 
     useEffect(() => {
-        // console.log("set current", current);
         setCurTrack(current);
     }, [current]);
 
     useEffect(() => {
-        // console.log(`curTrack changed ${curTrack}`);
-        // console.log("audio", audio);
-        // console.log("trackList", trackList);
         if (audio !== undefined && trackList !== undefined) {
             audio.src = trackList[curTrack].url;
             setTitle(trackList[curTrack]?.title);
@@ -208,6 +205,12 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
         }
     };
 
+    useEffect(() => {
+        if (typeof trackList[curTrack].lyrics === "string") {
+            const lys = parseLyrics(trackList[curTrack].lyrics);
+            setLyList(lys);
+        }
+    }, [curTrack]);
     // const playlistItemClickHandler = (e) => {
     //     const num = Number(e.currentTarget.getAttribute("data-key"));
     //     const index = playlist.indexOf(num);
@@ -236,12 +239,51 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
     //     }
     // };
 
+    useEffect(() => {
+        const curTime = audio?.currentTime;
+        if (typeof lyList === "undefined") return;
+        for (let i = 0; i < lyList.length; ++i) {
+            if (curTime > lyList[i].startsAt && curTime < lyList[i].endsAt) {
+                setCurLy(lyList[i].content[0]?.content);
+            }
+        }
+    }, [time]);
+
     const notSupport = () => {
         alert("지원하지 않는 기능입니다.");
     };
 
     return (
         <div className="media-controls">
+            <div className="media-fullArea">
+                <button className="full-btn" onClick={setFull}>
+                    {isFull ? (
+                        <i>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z" />
+                            </svg>
+                        </i>
+                    ) : (
+                        <i>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                        </i>
+                    )}
+                </button>
+            </div>
             <div className="media-top">
                 <button className="media-button" onClick={previous}>
                     <FontAwesomeIcon icon={faAngleLeft} />
@@ -407,6 +449,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     </button>
                 </div>
             </div>
+            <div className="media-lyrics">{curLy}</div>
             <div className="media-progress">
                 <div className="progress-bar-wrapper progress">
                     <div className="progress-bar">
@@ -438,12 +481,35 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                 {`
                     button {
                         padding: 0;
+                        outline: none;
                     }
 
                     button:hover {
                         cursor: pointer;
                     }
 
+                    .media-fullArea {
+                        align-self: flex-end;
+                    }
+                    .full-btn {
+                        outline: none;
+                        border: none;
+                        background-color: inherit;
+                    }
+                    .media-lyrics {
+                        animation: fadein 3s;
+                        margin-top: 0.7rem;
+                        min-height: 1.5rem;
+                    }
+
+                    @keyframes fadein {
+                        from {
+                            opacity: 0;
+                        }
+                        to {
+                            opacity: 1;
+                        }
+                    }
                     .media-controls {
                         align-items: center;
                         background: #fffaee;
@@ -524,7 +590,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                     #volume-range {
                         width: 4.5rem;
                         height: 6rem;
-                        bottom: 9rem;
+                        bottom: 11rem;
                         position: absolute;
                         appearance: slider-vertical;
                     }
@@ -535,7 +601,7 @@ const MusicPlayer = ({ trackList, current }: Prop) => {
                         }
                         #volume-range {
                             width: 4rem;
-                            bottom: 8.5rem;
+                            bottom: 10.5rem;
                         }
                     }
 
