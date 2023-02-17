@@ -48,17 +48,22 @@ const Lyrics = () => {
                         font-size: 1.2rem;
                         margin-bottom: 0.5rem;
                     }
-                    @media (max-width: 1000px) {
+                    @media (max-width: 1030px) {
                         .lyric {
                             font-size: 1rem;
                         }
                     }
-                    @media (max-width: 9500px) {
+                    @media (max-width: 980px) {
+                        .lyric {
+                            font-size: 0.9rem;
+                        }
+                    }
+                    @media (max-width: 955px) {
                         .lyric {
                             font-size: 0.8rem;
                         }
                     }
-                    @media (max-width: 700px) {
+                    @media (max-width: 800px) {
                         .container {
                             display: none;
                         }
