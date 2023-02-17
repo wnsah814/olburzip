@@ -3,13 +3,13 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
 import parseLyrics from "@/api/parseLyrics";
-import { Track } from "@/pages/music";
+import { tracks } from "@/store/tracks";
+import { useMusicIndex } from "@/store/useMusicIndex";
+import { useMusicTime } from "@/store/useMusicTime";
 
 interface Prop {
     isFull: boolean;
-    trackList: Track[];
     setFull: any;
-    current: number;
     includeTags?: boolean;
     includeSearch?: boolean;
     showPlaylist?: boolean;
@@ -22,19 +22,20 @@ let showPlaylist = false;
 let autoPlay = false; // 처음 접속 했을 때 재생되는가, 근데 아래보니 방지한거 같기도 함
 let autoPlayNextTrack = false;
 
-const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
-    const [query, updateQuery] = useState("");
+const MusicPlayer = ({ isFull, setFull }: Prop) => {
+    const { musicIndex, isLoading, setMusicIndex } = useMusicIndex();
+    const { musicTime } = useMusicTime();
+    // const [query, updateQuery] = useState("");
 
     // let playlist = [];
-    let [curTrack, setCurTrack] = useState<number>(0);
     const [audio, setAudio] = useState<any>();
     const [active, setActive] = useState(false);
     const [title, setTitle] = useState("");
     const [length, setLength] = useState(0);
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState<number>(0);
     const [slider, setSlider] = useState<any>(1);
     const [drag, setDrag] = useState(0);
-    const [volume, setVolume] = useState(0.5);
+    const [volume, setVolume] = useState(0.8);
     let [end, setEnd] = useState(0);
     const [shuffled, setShuffled] = useState(false);
     const [looped, setLooped] = useState(false);
@@ -45,10 +46,15 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
     const [curLy, setCurLy] = useState<string>("");
 
     const fmtMSS = (s: any) => new Date(1000 * s).toISOString().substr(15, 4);
-
     useEffect(() => {
-        const audio = new Audio(trackList[curTrack].url);
-        // console.log("now audio created");
+        if (isLoading) {
+            return;
+        }
+        if (musicIndex === undefined) {
+            alert("문제가 발생하였습니다.");
+            return;
+        }
+        const audio = new Audio(tracks[musicIndex].url);
         const setAudioData = () => {
             setLength(audio.duration);
             setTime(audio.currentTime);
@@ -72,15 +78,15 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
         audio.addEventListener("ended", setAudioEnd);
 
         setAudio(audio);
-        setTitle(trackList[curTrack].title);
+        setTitle(tracks[musicIndex].title);
 
         return () => {
             audio.pause();
         };
-    }, []);
+    }, [isLoading]);
 
     // const tags = [];
-    // trackList.forEach((track) => {
+    // tracks.forEach((track) => {
     //     track.tags.forEach((tag) => {
     //         if (!tags.includes(tag)) {
     //             tags.push(tag);
@@ -123,7 +129,7 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
 
     useEffect(() => {
         if (audio !== undefined) {
-            pause();
+            // pause();
             const val = Math.round((drag * audio.duration) / 100);
             audio.currentTime = val;
         }
@@ -151,35 +157,34 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
     };
 
     useEffect(() => {
-        setCurTrack(current);
-    }, [current]);
-
-    useEffect(() => {
-        if (audio !== undefined && trackList !== undefined) {
-            audio.src = trackList[curTrack].url;
-            setTitle(trackList[curTrack]?.title);
+        if (
+            audio !== undefined &&
+            tracks !== undefined &&
+            musicIndex !== undefined
+        ) {
+            audio.src = tracks[musicIndex].url;
+            setTitle(tracks[musicIndex]?.title);
+            setMusicIndex(musicIndex);
             play();
         }
-    }, [curTrack]);
+    }, [musicIndex]);
 
     const previous = () => {
-        // console.log("prev", (curTrack - 1) % trackList.length);
-
-        setCurTrack(curTrack === 0 ? trackList.length - 1 : (prev) => prev - 1); //여기를 length 로 바꾸면 될듯
-        // const index = playlist.indexOf(curTrack);
+        if (musicIndex === undefined) return;
+        setMusicIndex(musicIndex === 0 ? tracks.length - 1 : musicIndex - 1); //여기를 length 로 바꾸면 될듯
+        // const index = playlist.indexOf(musicIndex);
         // index !== 0
-        //     ? setCurTrack((curTrack = playlist[index - 1]))
-        //     : setCurTrack((curTrack = playlist[playlist.length - 1]));
+        //     ? setMusicIndex((musicIndex = playlist[index - 1]))
+        //     : setMusicIndex((musicIndex = playlist[playlist.length - 1]));
     };
 
     const next = () => {
-        // console.log("next");
-        // const index = playlist.indexOf(curTrack);
-        // console.log("playlist.length", playlist.length);
-        setCurTrack(curTrack === trackList.length - 1 ? 0 : (prev) => prev + 1); //여기를 length 로 바꾸면 될듯
+        // const index = playlist.indexOf(musicIndex);
+        if (musicIndex === undefined) return;
+        setMusicIndex(musicIndex === tracks.length - 1 ? 0 : musicIndex + 1); //여기를 length 로 바꾸면 될듯
         // index !== playlist.length - 1
-        //     ? setCurTrack((curTrack = playlist[index + 1]))
-        //     : setCurTrack((curTrack = playlist[0]));
+        //     ? setMusicIndex((musicIndex = playlist[index + 1]))
+        //     : setMusicIndex((musicIndex = playlist[0]));
     };
 
     const shuffle = () => {
@@ -193,28 +198,29 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
 
     const backward = () => {
         if (audio !== undefined) {
-            const val = Math.round(audio.currentTime - 10);
+            const val = Math.round(audio.currentTime - 5);
             audio.currentTime = val;
         }
     };
 
     const forward = () => {
         if (audio !== undefined) {
-            const val = Math.round(audio.currentTime + 10);
+            const val = Math.round(audio.currentTime + 5);
             audio.currentTime = val;
         }
     };
 
     useEffect(() => {
-        if (typeof trackList[curTrack].lyrics === "string") {
-            const lys = parseLyrics(trackList[curTrack].lyrics);
+        if (musicIndex === undefined) return;
+        if (typeof tracks[musicIndex].lyrics === "string") {
+            const lys = parseLyrics(tracks[musicIndex].lyrics);
             setLyList(lys);
         }
-    }, [curTrack]);
+    }, [musicIndex]);
     // const playlistItemClickHandler = (e) => {
     //     const num = Number(e.currentTarget.getAttribute("data-key"));
     //     const index = playlist.indexOf(num);
-    //     setCurTrack((curTrack = playlist[index]));
+    //     setMusicIndex((musicIndex = playlist[index]));
     //     play();
     // };
 
@@ -223,8 +229,8 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
     //     if (isInitialFilter.current) {
     //         isInitialFilter.current = false;
     //     } else {
-    //         if (!playlist.includes(curTrack)) {
-    //             setCurTrack((curTrack = playlist[0]));
+    //         if (!playlist.includes(musicIndex)) {
+    //             setMusicIndex((musicIndex = playlist[0]));
     //         }
     //     }
     // }, [filter]);
@@ -238,19 +244,31 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
     //         setFilter([...filteredArray]);
     //     }
     // };
-
     useEffect(() => {
         const curTime = audio?.currentTime;
         if (typeof lyList === "undefined") return;
+
         for (let i = 0; i < lyList.length; ++i) {
             if (curTime > lyList[i].startsAt && curTime < lyList[i].endsAt) {
                 setCurLy(lyList[i].content[0]?.content);
+                return;
             }
         }
     }, [time]);
 
+    useEffect(() => {
+        if (musicTime === undefined || audio === undefined) return;
+        audio.currentTime = musicTime;
+    }, [musicTime]);
+
     const notSupport = () => {
         alert("지원하지 않는 기능입니다.");
+    };
+
+    const checkPlaying = () => {
+        if (active) {
+            play();
+        }
     };
 
     return (
@@ -374,7 +392,6 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                             </svg>
                         </i>
-                        {/* <span className="button-text milli">play</span> */}
                     </button>
                 )}
 
@@ -411,7 +428,7 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
                     <input
                         id="volume-range"
                         type="range"
-                        min="1"
+                        min="0"
                         max="100"
                         defaultValue="80"
                         onChange={(e: any) => {
@@ -428,25 +445,45 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
                             }
                         }
                     />
-                    <button
-                        id="volume-button"
-                        className="shuffle-button media-button"
-                    >
-                        <i className="button-icons">
-                            <svg
-                                className="button-3"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
-                                <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
-                                <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z" />
-                            </svg>
-                        </i>
-                    </button>
+                    {volume === 0 ? (
+                        <button
+                            id="volume-button"
+                            className="shuffle-button media-button"
+                        >
+                            <i className="button-icons">
+                                <svg
+                                    className="button-3"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zM6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96V5.04zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                            </i>
+                        </button>
+                    ) : (
+                        <button
+                            id="volume-button"
+                            className="shuffle-button media-button"
+                        >
+                            <i className="button-icons">
+                                <svg
+                                    className="button-3"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    fill="currentColor"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+                                    <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+                                    <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z" />
+                                </svg>
+                            </i>
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="media-lyrics">{curLy}</div>
@@ -465,8 +502,8 @@ const MusicPlayer = ({ isFull, setFull, trackList, current }: Prop) => {
                                 setSlider(e.target.value);
                                 setDrag(e.target.value);
                             }}
-                            onMouseUp={play}
-                            onTouchEnd={play}
+                            onMouseUp={checkPlaying}
+                            onTouchEnd={checkPlaying}
                         />
                     </div>
                 </div>
