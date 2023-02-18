@@ -59,6 +59,7 @@ export default function Layout({ children }: LayoutProps) {
                         width: 100vw;
                         min-height: calc(100vh - var(--footer-height));
                         padding: var(--container-padding);
+                        background-color: var(--color-white);
                     }
 
                     @media screen and (max-width: 480px) {

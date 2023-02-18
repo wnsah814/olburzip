@@ -31,7 +31,7 @@ const Lyrics = () => {
                     .container {
                         padding: 3rem;
                         width: 35rem;
-                        height: 51.7rem;
+                        height: 50rem;
                         background: #f2f2f2;
                         border-radius: 1rem;
                     }
