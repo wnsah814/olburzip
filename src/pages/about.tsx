@@ -12,7 +12,7 @@ const About: NextPage = () => {
             <Seo title="About" />
             <div className={styles.container}>
                 <div style={{ color: "var(--color-brown)" }}>
-                    🔽아래로 스크롤 하면 더 많은 정보가 준비되어 있어요!🔽
+                    🔽스크롤 하면 더 많은 정보가 준비되어 있어요🔽
                 </div>
                 <br />
                 <PageTitle title={"어리버리란?"} />
