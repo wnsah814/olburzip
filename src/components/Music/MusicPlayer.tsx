@@ -304,11 +304,17 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
             </div>
             <div className="media-top">
                 <button className="media-button" onClick={previous}>
-                    <FontAwesomeIcon icon={faAngleLeft} />
+                    <FontAwesomeIcon
+                        style={{ color: "#131212" }}
+                        icon={faAngleLeft}
+                    />
                 </button>
                 <div>{title}</div>
                 <button className="media-button" onClick={next}>
-                    <FontAwesomeIcon icon={faAngleRight} />
+                    <FontAwesomeIcon
+                        style={{ color: "#131212" }}
+                        icon={faAngleRight}
+                    />
                 </button>
             </div>
             <div className="media-buttons">
@@ -525,6 +531,10 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                         cursor: pointer;
                     }
 
+                    svg {
+                        background-color: transparent;
+                        color: #919191;
+                    }
                     .media-fullArea {
                         align-self: flex-end;
                     }

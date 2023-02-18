@@ -100,7 +100,7 @@
     .container:nth-child(even) {
         margin-left: -1rem;
         padding-left: 1rem;
-        width: 100%;
+        width: 100vw;
     }
 
     .logo {

@@ -1,5 +1,5 @@
 .wrapper {
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 9rem);
     display: flex;
     justify-content: center;
     align-items: center;

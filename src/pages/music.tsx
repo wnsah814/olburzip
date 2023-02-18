@@ -50,7 +50,7 @@ export default function Music() {
                         align-items: center;
                         justify-content: center;
                         color: #545454;
-                        height: calc(100vh - 5rem);
+                        min-height: calc(100vh - 5rem);
                         width: 560px;
                     }
 
