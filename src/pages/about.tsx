@@ -11,6 +11,10 @@ const About: NextPage = () => {
         <>
             <Seo title="About" />
             <div className={styles.container}>
+                <div style={{ color: "var(--color-brown)" }}>
+                    🔽아래로 스크롤 하면 더 많은 정보가 준비되어 있어요!🔽
+                </div>
+                <br />
                 <PageTitle title={"어리버리란?"} />
                 <div
                     data-aos="fade-zoom-in"
@@ -112,6 +116,11 @@ const About: NextPage = () => {
                     data-aos-easing="ease-in-sine"
                 >
                     <h3>ULLE JAN 1호 (홍보 잡지)</h3>
+                    <br />
+                    <a href="https://cafe.naver.com/hanyangcse/1688">
+                        네이버 카페에도 나와있어요(보러가기)
+                    </a>
+                    <br />
                     <div className={styles.imgs}>
                         <img
                             className={`${styles.img34} ${styles.img}`}
@@ -160,11 +169,11 @@ const About: NextPage = () => {
             <div className={styles.container}>
                 <PageTitle title={"화요일이 기대되는 회합"} />
                 <div data-aos="fade-in">
-                    <p>매주 화요일 18시부터 20시까지 율동 연습을 합니다</p>
+                    <p>매주 화요일 18시부터 1시간 정도 율동 연습을 합니다</p>
                     <p>회합 이후에는 뒤풀이도 있어요!</p>
                     <p>
-                        시험 몇주전에는 슬프게도 회합이 없답니다🥲 공부할 땐
-                        하는 사람들이거든요🔥
+                        (아쉽게도 시험 몇주전에는 회합이 없답니다🥲 공부할 땐
+                        하는 사람들이거든요🔥)
                     </p>
                 </div>
 
@@ -209,7 +218,13 @@ const About: NextPage = () => {
                 <PageTitle title={"대학생활의 꽃, MT"} />
                 <div data-aos="fade-in">
                     <h3>봄 엠티</h3>
-                    <p>고기도 먹구 술게임도 배우고 낭만 그 자체... </p>
+                    <p>봄에는 대성리에 갔어요! </p>
+                    <p>
+                        다같이 고기도 먹고... 술게임도 배우고... 폭죽도
+                        날리고... 낭만 그 자체...{" "}
+                    </p>
+                    <p>대학 엠티가 뭔지 제대로 배울 수 있답니다😵‍💫</p>
+                    <p>이번 년도에는 4월 1일 - 2일에 갈거랍니다~!</p>
                     <div className={styles.imgs}>
                         <img
                             className={`${styles.img43} ${styles.img}`}
@@ -228,9 +243,15 @@ const About: NextPage = () => {
                     <h3>가을 엠티</h3>
 
                     <p>
-                        파티룸! 노래도 부르고 당구도 치고 여러가지 놀이를
-                        즐겼죠.. 아 또 가고 싶다
+                        가을에는 파티룸에 갔어요! 배달음식 먹어 배를 채우고
+                        신나게 놀았답니당
                     </p>
+                    <p>
+                        {" "}
+                        노래도 부르고 당구도 치고 임원진이 준비한 게임도 다같이
+                        즐겼어요!
+                    </p>
+                    <p>올해도 갈 예정이라죠~?</p>
                     <div className={`${styles.imgs} ${styles.img}`}>
                         <img
                             className={`${styles.img43} ${styles.img}`}
