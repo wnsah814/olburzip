@@ -61,7 +61,7 @@ export default function Navigator() {
                         <svg
                             className={styles.mobileNavOpenSvg}
                             xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
+                            fill="black"
                             viewBox="0 0 16 16"
                         >
                             <path

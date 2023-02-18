@@ -57,7 +57,7 @@ const SignBtn = () => {
                     <svg
                         className={styles.mobileSignSvg}
                         xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
+                        fill="black"
                         viewBox="0 0 16 16"
                     >
                         <path
@@ -75,7 +75,7 @@ const SignBtn = () => {
                     <svg
                         className={styles.mobileSignSvg}
                         xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
+                        fill="black"
                         viewBox="0 0 16 16"
                     >
                         <path
