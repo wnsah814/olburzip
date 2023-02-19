@@ -6,6 +6,7 @@ import parseLyrics from "@/api/parseLyrics";
 import { tracks } from "@/store/tracks";
 import { useMusicIndex } from "@/store/useMusicIndex";
 import { useMusicTime } from "@/store/useMusicTime";
+import { useMusicRealTime } from "@/store/useMusicRealTime";
 
 interface Prop {
     isFull: boolean;
@@ -25,13 +26,14 @@ let autoPlayNextTrack = false;
 const MusicPlayer = ({ isFull, setFull }: Prop) => {
     const { musicIndex, isLoading, setMusicIndex } = useMusicIndex();
     const { musicTimeObj } = useMusicTime();
+    const { musicRealTime, setMusicRealTime } = useMusicRealTime();
     // const [query, updateQuery] = useState("");
     // let playlist = [];
     const [audio, setAudio] = useState<any>();
     const [active, setActive] = useState(false);
     const [title, setTitle] = useState("");
     const [length, setLength] = useState(0);
-    const [time, setTime] = useState<number>(0);
+    // const [time, setTime] = useState<number>(0);
     const [slider, setSlider] = useState<any>(1);
     const [drag, setDrag] = useState(0);
     const [volume, setVolume] = useState(0.8);
@@ -56,12 +58,12 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
         const audio = new Audio(tracks[musicIndex].url);
         const setAudioData = () => {
             setLength(audio.duration);
-            setTime(audio.currentTime);
+            setMusicRealTime(String(audio.currentTime));
         };
 
         const setAudioTime = () => {
             const curTime = audio.currentTime;
-            setTime(curTime);
+            setMusicRealTime(String(curTime));
             setSlider(
                 curTime ? ((curTime * 100) / audio.duration).toFixed(1) : 0
             );
@@ -163,8 +165,7 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
         ) {
             audio.src = tracks[musicIndex].url;
             setTitle(tracks[musicIndex]?.title);
-            setMusicIndex(musicIndex);
-            // play();
+            play();
         }
     }, [musicIndex]);
 
@@ -256,7 +257,7 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                 return;
             }
         }
-    }, [time]);
+    }, [musicRealTime]);
 
     useEffect(() => {
         console.log("changed");
@@ -513,7 +514,11 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                     </div>
                 </div>
                 <div className="progress-time-current">
-                    {`${!time ? "0:00" : fmtMSS(time)}`}
+                    {`${
+                        musicRealTime === undefined
+                            ? "0:00"
+                            : fmtMSS(musicRealTime)
+                    }`}
                 </div>
                 <div className="progress-time-total">
                     {`${!length ? "0:00" : fmtMSS(length)}`}
@@ -731,12 +736,6 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                         fill: #f26600;
                         margin-bottom: 8px;
                         padding: 24px;
-                    }
-
-                    .repeat-no-button {
-                    }
-
-                    .repeat-one-button {
                     }
 
                     .media-progress {

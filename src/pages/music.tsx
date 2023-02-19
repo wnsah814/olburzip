@@ -29,10 +29,15 @@ export default function Music() {
                     .wrapper {
                         width: 100%;
                         justify-content: space-around;
+                        align-items: center;
                         display: flex;
                         flex-wrap: no-wrap;
                     }
-
+                    @media (max-width: 900px) {
+                        .wrapper {
+                            flex-direction: column;
+                        }
+                    }
                     .lyrics-line {
                         color: var(--color-gray);
                         margin-bottom: 0.7rem;
@@ -50,8 +55,7 @@ export default function Music() {
                         align-items: center;
                         justify-content: center;
                         color: #545454;
-                        min-height: calc(100vh - 5rem);
-                        width: 560px;
+                        height: 100%;
                     }
 
                     @media (max-width: 560px) {

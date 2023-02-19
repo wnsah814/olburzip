@@ -13,14 +13,13 @@ export function useMusicTime() {
 
     return {
         musicTimeObj: data,
-
-        setMusicTime: (value: number) => {
-            musicTime = value;
-            return mutate();
+        setMusicTime: (time: number) => {
+            musicTime = time;
+            mutate();
         },
         toggleMusic: () => {
             musicToggle = !musicToggle;
-            return mutate();
+            mutate();
         },
     };
 }
