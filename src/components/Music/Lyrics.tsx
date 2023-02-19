@@ -5,9 +5,12 @@ import { useMusicTime } from "@/store/useMusicTime";
 
 const Lyrics = () => {
     const { musicIndex } = useMusicIndex();
-    const { setMusicTime } = useMusicTime();
+    const { musicTimeObj, setMusicTime, toggleMusic } = useMusicTime();
     const setTime = (e: any) => {
-        setMusicTime(e.target.dataset.start);
+        console.log(musicTimeObj);
+        setMusicTime(parseFloat(e.target.dataset.start));
+        toggleMusic();
+        console.log(musicTimeObj);
     };
     return (
         <>

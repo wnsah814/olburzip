@@ -24,9 +24,8 @@ let autoPlayNextTrack = false;
 
 const MusicPlayer = ({ isFull, setFull }: Prop) => {
     const { musicIndex, isLoading, setMusicIndex } = useMusicIndex();
-    const { musicTime } = useMusicTime();
+    const { musicTimeObj } = useMusicTime();
     // const [query, updateQuery] = useState("");
-
     // let playlist = [];
     const [audio, setAudio] = useState<any>();
     const [active, setActive] = useState(false);
@@ -165,7 +164,7 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
             audio.src = tracks[musicIndex].url;
             setTitle(tracks[musicIndex]?.title);
             setMusicIndex(musicIndex);
-            play();
+            // play();
         }
     }, [musicIndex]);
 
@@ -211,12 +210,14 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
     };
 
     useEffect(() => {
+        console.log("index changed");
         if (musicIndex === undefined) return;
         if (typeof tracks[musicIndex].lyrics === "string") {
             const lys = parseLyrics(tracks[musicIndex].lyrics);
             setLyList(lys);
         }
     }, [musicIndex]);
+
     // const playlistItemClickHandler = (e) => {
     //     const num = Number(e.currentTarget.getAttribute("data-key"));
     //     const index = playlist.indexOf(num);
@@ -244,12 +245,13 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
     //         setFilter([...filteredArray]);
     //     }
     // };
+
     useEffect(() => {
         const curTime = audio?.currentTime;
         if (typeof lyList === "undefined") return;
 
         for (let i = 0; i < lyList.length; ++i) {
-            if (curTime > lyList[i].startsAt && curTime < lyList[i].endsAt) {
+            if (curTime >= lyList[i].startsAt && curTime < lyList[i].endsAt) {
                 setCurLy(lyList[i].content[0]?.content);
                 return;
             }
@@ -257,13 +259,10 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
     }, [time]);
 
     useEffect(() => {
-        if (musicTime === undefined || audio === undefined) return;
-        audio.currentTime = musicTime;
-    }, [musicTime]);
-
-    const notSupport = () => {
-        alert("지원하지 않는 기능입니다.");
-    };
+        console.log("changed");
+        if (musicTimeObj === undefined || audio === undefined) return;
+        audio.currentTime = musicTimeObj.musicTime;
+    }, [musicTimeObj]);
 
     const checkPlaying = () => {
         if (active) {

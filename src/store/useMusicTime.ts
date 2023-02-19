@@ -1,16 +1,25 @@
 import useSWR from "swr";
 
-let MusicTime = 0.0;
+let musicTime = 0;
+let musicToggle = true;
 
 export function useMusicTime() {
-    const { data, mutate } = useSWR("musicTime", () => {
-        return MusicTime;
+    const { data, mutate } = useSWR("musicTimeObj", () => {
+        return {
+            musicTime,
+            musicToggle,
+        };
     });
 
     return {
-        musicTime: data,
+        musicTimeObj: data,
+
         setMusicTime: (value: number) => {
-            MusicTime = value;
+            musicTime = value;
+            return mutate();
+        },
+        toggleMusic: () => {
+            musicToggle = !musicToggle;
             return mutate();
         },
     };
