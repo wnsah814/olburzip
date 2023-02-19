@@ -15,6 +15,7 @@
 }
 
 #headerImg {
+    display: block;
     margin: 0.25rem;
     height: 3.5rem;
 }
