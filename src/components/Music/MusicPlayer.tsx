@@ -6,6 +6,7 @@ import parseLyrics from "@/api/parseLyrics";
 import { tracks } from "@/store/tracks";
 import { useMusicIndex } from "@/store/useMusicIndex";
 import { useMusicTime } from "@/store/useMusicTime";
+import { useMusicRealTime } from "@/store/useMusicRealTime";
 
 interface Prop {
     isFull: boolean;
@@ -24,15 +25,15 @@ let autoPlayNextTrack = false;
 
 const MusicPlayer = ({ isFull, setFull }: Prop) => {
     const { musicIndex, isLoading, setMusicIndex } = useMusicIndex();
-    const { musicTime } = useMusicTime();
+    const { musicTimeObj } = useMusicTime();
+    const { musicRealTime, setMusicRealTime } = useMusicRealTime();
     // const [query, updateQuery] = useState("");
-
     // let playlist = [];
     const [audio, setAudio] = useState<any>();
     const [active, setActive] = useState(false);
     const [title, setTitle] = useState("");
     const [length, setLength] = useState(0);
-    const [time, setTime] = useState<number>(0);
+    // const [time, setTime] = useState<number>(0);
     const [slider, setSlider] = useState<any>(1);
     const [drag, setDrag] = useState(0);
     const [volume, setVolume] = useState(0.8);
@@ -57,12 +58,12 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
         const audio = new Audio(tracks[musicIndex].url);
         const setAudioData = () => {
             setLength(audio.duration);
-            setTime(audio.currentTime);
+            setMusicRealTime(String(audio.currentTime));
         };
 
         const setAudioTime = () => {
             const curTime = audio.currentTime;
-            setTime(curTime);
+            setMusicRealTime(String(curTime));
             setSlider(
                 curTime ? ((curTime * 100) / audio.duration).toFixed(1) : 0
             );
@@ -164,7 +165,6 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
         ) {
             audio.src = tracks[musicIndex].url;
             setTitle(tracks[musicIndex]?.title);
-            setMusicIndex(musicIndex);
             play();
         }
     }, [musicIndex]);
@@ -211,12 +211,14 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
     };
 
     useEffect(() => {
+        console.log("index changed");
         if (musicIndex === undefined) return;
         if (typeof tracks[musicIndex].lyrics === "string") {
             const lys = parseLyrics(tracks[musicIndex].lyrics);
             setLyList(lys);
         }
     }, [musicIndex]);
+
     // const playlistItemClickHandler = (e) => {
     //     const num = Number(e.currentTarget.getAttribute("data-key"));
     //     const index = playlist.indexOf(num);
@@ -244,26 +246,24 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
     //         setFilter([...filteredArray]);
     //     }
     // };
+
     useEffect(() => {
         const curTime = audio?.currentTime;
         if (typeof lyList === "undefined") return;
 
         for (let i = 0; i < lyList.length; ++i) {
-            if (curTime > lyList[i].startsAt && curTime < lyList[i].endsAt) {
+            if (curTime >= lyList[i].startsAt && curTime < lyList[i].endsAt) {
                 setCurLy(lyList[i].content[0]?.content);
                 return;
             }
         }
-    }, [time]);
+    }, [musicRealTime]);
 
     useEffect(() => {
-        if (musicTime === undefined || audio === undefined) return;
-        audio.currentTime = musicTime;
-    }, [musicTime]);
-
-    const notSupport = () => {
-        alert("지원하지 않는 기능입니다.");
-    };
+        console.log("changed");
+        if (musicTimeObj === undefined || audio === undefined) return;
+        audio.currentTime = musicTimeObj.musicTime;
+    }, [musicTimeObj]);
 
     const checkPlaying = () => {
         if (active) {
@@ -514,7 +514,11 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                     </div>
                 </div>
                 <div className="progress-time-current">
-                    {`${!time ? "0:00" : fmtMSS(time)}`}
+                    {`${
+                        musicRealTime === undefined
+                            ? "0:00"
+                            : fmtMSS(musicRealTime)
+                    }`}
                 </div>
                 <div className="progress-time-total">
                     {`${!length ? "0:00" : fmtMSS(length)}`}
@@ -732,12 +736,6 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                         fill: #f26600;
                         margin-bottom: 8px;
                         padding: 24px;
-                    }
-
-                    .repeat-no-button {
-                    }
-
-                    .repeat-one-button {
                     }
 
                     .media-progress {

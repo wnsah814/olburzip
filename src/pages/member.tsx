@@ -54,7 +54,7 @@ export default function Member() {
                         key={i}
                         data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
-                        data-aos-delay={`${i * 200}`}
+                        data-aos-delay={`${i * 50}`}
                         data-aos-offset="0"
                         className={styles.card}
                     >
