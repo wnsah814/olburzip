@@ -499,7 +499,7 @@ const MusicPlayer = ({ isFull, setFull }: Prop) => {
                         <input
                             className="slider"
                             type="range"
-                            min="1"
+                            min="0"
                             max="100"
                             step="1"
                             value={slider}
