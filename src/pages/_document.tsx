@@ -6,10 +6,6 @@ export default function Document() {
             <Head>
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-                <meta
                     name="description"
                     content={`한양대학교 컴퓨터소프트웨어학부 우주최강 율동패 어리버리 URBUR
                         컴소의 근본있는 율동패로 율동을 배우고 공연을 준비합니다!
@@ -18,10 +14,7 @@ export default function Document() {
                         어-리버리 화이팅!!
                         `}
                 />
-                <meta
-                    property="og:title"
-                    content={`우주최강 율동패 어리버리`}
-                />
+                <meta property="og:title" content="우주최강 율동패 어리버리" />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={"https://urbur.icu"} />
                 <meta property="og:image" content={"/assets/img/logo.svg"} />
