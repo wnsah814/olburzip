@@ -1,5 +1,5 @@
 import Excel, { Border } from "exceljs";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { dbService } from "./fbase";
 
 const applyToXlsx = async () => {
@@ -71,7 +71,11 @@ const applyToXlsx = async () => {
             //     },
             // },
         ];
-        const appliedData = await getDocs(collection(dbService, "2023applied"));
+        const q = query(
+            collection(dbService, "2023applied"),
+            orderBy("createdAt", "desc")
+        );
+        const appliedData = await getDocs(q);
         const arr = appliedData.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),

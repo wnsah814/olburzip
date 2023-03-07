@@ -18,7 +18,7 @@ const ApplyList = () => {
     useEffect(() => {
         const q = query(
             collection(dbService, `${year}applied`),
-            orderBy("createdAt", "asc")
+            orderBy("createdAt", "desc")
         );
         onSnapshot(q, (snapshot) => {
             const memArr = snapshot.docs.map((doc) => ({
