@@ -2,7 +2,30 @@ import Seo from "@/components/Base/Seo";
 import PageTitle from "@/components/Common/PageTitle";
 import YouTubePlayer from "@/components/Common/YoutubePlayer";
 
+interface Video {
+    name: string;
+    src: string;
+}
+
 export default function Dance() {
+    const videos: Video[] = [
+        {
+            name: "꿈찾기",
+            src: "https://www.youtube.com/embed/omDdD4lvGcU",
+        },
+        {
+            name: "새물",
+            src: "https://www.youtube.com/embed/9ew4ZVys4X4?rel=0",
+        },
+        {
+            name: "우린 하나요",
+            src: "https://www.youtube.com/embed/72Rr-WeV8O4",
+        },
+        {
+            name: "날자",
+            src: "https://www.youtube.com/embed/dBHq2iaQV0k",
+        },
+    ];
     return (
         <>
             <Seo title="Dance" />
@@ -11,35 +34,17 @@ export default function Dance() {
                     <PageTitle title={"율동 안무"} />
                 </div>
                 <div className={"videos"}>
-                    <div className={"video"}>
-                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
-                            새물
-                        </h3>
-                        <YouTubePlayer
-                            src="https://www.youtube.com/embed/9ew4ZVys4X4?rel=0"
-                            title="YouTube video player"
-                        />
-                    </div>
-
-                    <div className={"video"}>
-                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
-                            꿈찾기
-                        </h3>
-                        <YouTubePlayer
-                            src="https://www.youtube.com/embed/omDdD4lvGcU"
-                            title="YouTube video player"
-                        />
-                    </div>
-
-                    <div className={"video"}>
-                        <h3 data-aos="zoom-in-up" data-aos-delay="300">
-                            우린 하나요
-                        </h3>
-                        <YouTubePlayer
-                            src="https://www.youtube.com/embed/72Rr-WeV8O4"
-                            title="YouTube video player"
-                        />
-                    </div>
+                    {videos.map((v, i) => (
+                        <div className={"video"} key={i}>
+                            <h3 data-aos="zoom-in-up" data-aos-delay="300">
+                                {v.name}
+                            </h3>
+                            <YouTubePlayer
+                                src={v.src}
+                                title="YouTube video player"
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
             <style jsx>
