@@ -3,6 +3,7 @@ import Button from "@/components/Common/Button";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import ManagersDB from "./managersDB";
+import VideosDB from "./videosDB";
 
 const DB = () => {
     const yearRef = useRef<any>();
@@ -58,6 +59,10 @@ const DB = () => {
                         <option value={"false"}>false</option>
                     </select>
                 </div>
+            </div>
+
+            <div className="container">
+                <VideosDB />
             </div>
 
             <div className="container">
