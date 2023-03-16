@@ -1,31 +1,31 @@
+import { dbService } from "@/api/fbase";
 import Seo from "@/components/Base/Seo";
 import PageTitle from "@/components/Common/PageTitle";
 import YouTubePlayer from "@/components/Common/YoutubePlayer";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 interface Video {
+    id?: string;
     name: string;
     src: string;
 }
 
 export default function Dance() {
-    const videos: Video[] = [
-        {
-            name: "꿈찾기",
-            src: "https://www.youtube.com/embed/omDdD4lvGcU",
-        },
-        {
-            name: "새물",
-            src: "https://www.youtube.com/embed/9ew4ZVys4X4?rel=0",
-        },
-        {
-            name: "우린 하나요",
-            src: "https://www.youtube.com/embed/72Rr-WeV8O4",
-        },
-        {
-            name: "날자",
-            src: "https://www.youtube.com/embed/dBHq2iaQV0k",
-        },
-    ];
+    const [videos, setVideos] = useState<any>([]);
+    useEffect(() => {
+        const q = query(
+            collection(dbService, "videos"),
+            orderBy("priority", "asc")
+        );
+        onSnapshot(q, (snapshot) => {
+            const danceArr = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setVideos(danceArr);
+        });
+    }, []);
     return (
         <>
             <Seo title="Dance" />
@@ -34,7 +34,7 @@ export default function Dance() {
                     <PageTitle title={"율동 안무"} />
                 </div>
                 <div className={"videos"}>
-                    {videos.map((v, i) => (
+                    {videos.map((v: any, i: number) => (
                         <div className={"video"} key={i}>
                             <h3 data-aos="zoom-in-up" data-aos-delay="300">
                                 {v.name}
