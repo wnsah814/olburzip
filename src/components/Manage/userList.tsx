@@ -33,14 +33,6 @@ const UserList = () => {
     };
     return (
         <>
-            <div>
-                <h2>유저 목록</h2>
-            </div>
-            <br />
-            {/* <div>
-                <input type={"text"} />
-                <button>검색</button>
-            </div> */}
             <div id={styles.users}>
                 {users.map((v: any, i: number) => (
                     <div key={i} className={styles.user}>

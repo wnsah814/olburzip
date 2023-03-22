@@ -4,6 +4,7 @@ import UserList from "./userList";
 import ApplyList from "./applyList";
 import DB from "./db";
 import LevelUp from "./levelUp";
+import RegisterList from "./registerList";
 
 const ManagePage = () => {
     const [menu, setMenu] = useState<number>(0);
@@ -11,8 +12,9 @@ const ManagePage = () => {
     const obj: any = {
         0: <UserList />,
         1: <ApplyList />,
-        2: <DB />,
-        3: <LevelUp />,
+        2: <RegisterList />,
+        3: <DB />,
+        4: <LevelUp />,
     };
 
     const chgMenu = (e: any) => {
@@ -36,9 +38,12 @@ const ManagePage = () => {
                         지원 목록
                     </div>
                     <div className={styles.menu} data-n={2} onClick={chgMenu}>
-                        DB 관리
+                        명부 관리
                     </div>
                     <div className={styles.menu} data-n={3} onClick={chgMenu}>
+                        DB 관리
+                    </div>
+                    <div className={styles.menu} data-n={4} onClick={chgMenu}>
                         등업 신청
                     </div>
                 </div>

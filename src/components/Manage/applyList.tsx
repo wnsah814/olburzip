@@ -3,16 +3,22 @@ import {
     collection,
     doc,
     getDoc,
+    getDocs,
     onSnapshot,
     orderBy,
     query,
+    serverTimestamp,
+    setDoc,
+    updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import styles from "@/styles/ApplyList.module.css";
 import applyToXlsx from "@/api/applyToXls";
+import Button from "../Common/Button";
 
 const ApplyList = () => {
-    const [members, setMembers] = useState<any>([]);
+    const [membersAllowed, setMembersAllowed] = useState<any>([]);
+    const [membersWaiting, setMembersWaiting] = useState<any>([]);
     const [year, setYear] = useState<number>(new Date().getFullYear());
 
     useEffect(() => {
@@ -21,11 +27,21 @@ const ApplyList = () => {
             orderBy("createdAt", "desc")
         );
         onSnapshot(q, (snapshot) => {
-            const memArr = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setMembers(memArr);
+            let allowedMem: any = [];
+            let waitingMem: any = [];
+            snapshot.docs.forEach((v) => {
+                const memObj = {
+                    id: v.id,
+                    ...v.data(),
+                };
+                if (v.data().allowed === true) {
+                    allowedMem.push(memObj);
+                } else {
+                    waitingMem.push(memObj);
+                }
+            });
+            setMembersAllowed(allowedMem);
+            setMembersWaiting(waitingMem);
         });
     }, [year]);
 
@@ -36,13 +52,33 @@ const ApplyList = () => {
             setYear(docRef.data().applyYear);
         })();
     }, []);
+
+    const allowAll = async () => {
+        const collectionRef = await getDocs(
+            collection(dbService, "2023applied")
+        );
+        collectionRef.forEach((v) => {
+            if (v.data().allowed === true) return;
+            updateDoc(doc(dbService, "2023applied", v.id), {
+                allowed: true,
+            });
+            setDoc(doc(dbService, "2023registered", v.id), {
+                name: v.data().name,
+                studentId: v.data().studentId,
+                phoneNumber: v.data().phoneNumber,
+                paid: false,
+                createdAt: serverTimestamp(),
+            });
+        });
+    };
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>
                 <h2>{year} 지원 현황</h2>
             </div>
-            <div>
-                <button className="xlsxBtn" onClick={applyToXlsx}>
+            <div id="buttons">
+                <Button onClick={applyToXlsx}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -54,70 +90,186 @@ const ApplyList = () => {
                         <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                     </svg>
                     <span>Download to xlsx</span>
-                </button>
+                </Button>
+                <Button onClick={allowAll}>Allow All</Button>
             </div>
-            <div className={styles.content}>
-                {members.map((v: any, i: number) => (
-                    <div key={i} className={styles.card}>
-                        <div className={styles.card_item}>
-                            <div className={styles.card_column}>
-                                <span className={styles.card_label}>이름</span>
-                                <span className={styles.card_content}>
-                                    {v?.name}
-                                </span>
-                            </div>
-                            <div className={styles.card_column}>
-                                <span className={styles.card_label}>학번</span>
-                                <span className={styles.card_content}>
-                                    {v?.studentId}
-                                </span>
-                            </div>
-                        </div>
-                        <div className={styles.card_item}>
-                            <div className={styles.card_column}>
-                                <span className={styles.card_label}>
-                                    연락처
-                                </span>
-                                <span className={styles.card_content}>
-                                    {v?.phoneNumber}
-                                </span>
-                            </div>
-                            <div className={styles.card_column}>
-                                <span className={styles.card_label}>MBTI</span>
-                                <span className={styles.card_content}>
-                                    {v?.mbti}
-                                </span>
-                            </div>
-                        </div>
-                        <div className={styles.card_item}>
-                            <span className={styles.card_label}>자기소개</span>
-                            <span
-                                className={`${styles.introduce} ${styles.card_content}`}
-                            >
-                                {v?.introduce}
-                            </span>
-                        </div>
-                    </div>
-                ))}
+            <div>
+                <div className="seperator">
+                    <h3>대기목록</h3>
+                </div>
+                <div className={styles.content}>
+                    {membersWaiting.length === 0
+                        ? "대기중인 인원이 없습니다."
+                        : membersWaiting.map((v: any, i: number) => (
+                              <>
+                                  <div key={i} className={styles.card}>
+                                      <div className={styles.card_item}>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  이름
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.name}
+                                              </span>
+                                          </div>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  학번
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.studentId}
+                                              </span>
+                                          </div>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  연락처
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.phoneNumber}
+                                              </span>
+                                          </div>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  MBTI
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.mbti}
+                                              </span>
+                                          </div>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <span className={styles.card_label}>
+                                              자기소개
+                                          </span>
+                                          <span
+                                              className={`${styles.introduce} ${styles.card_content}`}
+                                          >
+                                              {v?.introduce}
+                                          </span>
+                                      </div>
+                                  </div>
+                              </>
+                          ))}
+                </div>
+            </div>
+            <div>
+                <div className="seperator">
+                    <h3>완료목록</h3>
+                </div>
+                <div className={styles.content}>
+                    {membersAllowed.length === 0
+                        ? "지원 완료된 인원이 없습니다"
+                        : membersAllowed.map((v: any, i: number) => (
+                              <>
+                                  <div key={i} className={styles.card}>
+                                      <div className={styles.card_item}>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  이름
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.name}
+                                              </span>
+                                          </div>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  학번
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.studentId}
+                                              </span>
+                                          </div>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  연락처
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.phoneNumber}
+                                              </span>
+                                          </div>
+                                          <div className={styles.card_column}>
+                                              <span
+                                                  className={styles.card_label}
+                                              >
+                                                  MBTI
+                                              </span>
+                                              <span
+                                                  className={
+                                                      styles.card_content
+                                                  }
+                                              >
+                                                  {v?.mbti}
+                                              </span>
+                                          </div>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <span className={styles.card_label}>
+                                              자기소개
+                                          </span>
+                                          <span
+                                              className={`${styles.introduce} ${styles.card_content}`}
+                                          >
+                                              {v?.introduce}
+                                          </span>
+                                      </div>
+                                  </div>
+                              </>
+                          ))}
+                </div>
             </div>
             <style jsx>
                 {`
-                    .xlsxBtn {
+                    #buttons {
                         display: flex;
-                        padding: 0.7rem;
-                        border-radius: 0.3rem;
-                        border: none;
-                        background-color: var(--color-brown);
-                        color: var(--color-white);
+                    }
+                    .seperator {
                         margin-bottom: 1rem;
-                    }
-
-                    .xlsxBtn:hover {
-                        cursor: pointer;
-                    }
-
-                    .xlsxBtn > span {
-                        margin-left: 0.1rem;
                     }
                 `}
             </style>

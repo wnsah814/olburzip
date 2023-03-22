@@ -10,6 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     width: calc(100vw - 4rem);
+    margin-bottom: 1rem;
 }
 
 .card {

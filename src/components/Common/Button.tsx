@@ -20,7 +20,7 @@ const Button = (props: ButtonProps) => {
                         border: none;
                         background-color: var(--color-brown);
                         color: var(--color-white);
-                        margin-bottom: 1rem;
+                        margin: 0 0.5rem 1rem 0;
                     }
 
                     button:hover {
