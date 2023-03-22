@@ -59,6 +59,7 @@ const Apply: NextPage = () => {
             mbti: mbtiData,
             introduce: introData,
             createdAt: serverTimestamp(),
+            allowed: false,
         };
         const docRef = await getDoc(doc(dbService, "settings", "apply"));
         if (!docRef.exists()) return;
