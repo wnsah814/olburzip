@@ -4,9 +4,9 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useRef } from "react";
-const PostEditor = dynamic(() => import("@/components/ToastUI/Editor"), {
-    ssr: false,
-});
+// const PostEditor = dynamic(() => import("@/components/ToastUI/Editor"), {
+//     ssr: false,
+// });
 
 const NewBlogEditor = () => {
     const titleRef = useRef<any>();
@@ -44,7 +44,7 @@ const NewBlogEditor = () => {
                     저장
                 </button>
             </div>
-            <PostEditor editorRef={editorRef} />
+            {/* <PostEditor editorRef={editorRef} /> */}
             <style jsx>
                 {`
                     .header {
