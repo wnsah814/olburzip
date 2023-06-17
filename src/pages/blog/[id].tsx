@@ -1,15 +1,15 @@
 import { dbService } from "@/api/fbase";
 import Seo from "@/components/Base/Seo";
-import BlogEditor from "@/components/ToastUI/BlogEditor";
+// import BlogEditor from "@/components/ToastUI/BlogEditor";
 import { useUser } from "@/store/useUser";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const PostViewer = dynamic(() => import("@/components/ToastUI/Viewer"), {
-    ssr: false,
-});
+// const PostViewer = dynamic(() => import("@/components/ToastUI/Viewer"), {
+//     ssr: false,
+// });
 
 const BlogViewer = () => {
     const router = useRouter();
@@ -49,7 +49,7 @@ const BlogViewer = () => {
     return (
         <>
             <Seo title="Blog" />
-            {editMode ? (
+            {/* {editMode ? (
                 <BlogEditor
                     blogId={blogId}
                     oriTitle={title}
@@ -135,7 +135,7 @@ const BlogViewer = () => {
                         }
                     }
                 `}
-            </style>
+            </style> */}
         </>
     );
 };
