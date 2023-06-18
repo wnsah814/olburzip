@@ -63,3 +63,16 @@ input[type="number"] {
     --color-purple: #b01e68;
     --color-brown: #562b08;
 }
+
+.blog_content li {
+    margin-left: 0.5rem;
+    list-style: inside;
+}
+
+.blog_content p {
+    line-height: 1.75rem;
+}
+
+.blog_content a {
+    color: #3498da;
+}

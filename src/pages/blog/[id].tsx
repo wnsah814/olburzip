@@ -3,13 +3,10 @@ import Seo from "@/components/Base/Seo";
 // import BlogEditor from "@/components/ToastUI/BlogEditor";
 import { useUser } from "@/store/useUser";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-// const PostViewer = dynamic(() => import("@/components/ToastUI/Viewer"), {
-//     ssr: false,
-// });
+import TinyMceEditor from "@/components/TinyMCE/TinyMceEditor";
+import PostEditor from "@/components/TinyMCE/PostEditor";
 
 const BlogViewer = () => {
     const router = useRouter();
@@ -32,6 +29,14 @@ const BlogViewer = () => {
         setEditMode((prev) => !prev);
     };
 
+    let modeObj = {
+        mode: 2,
+        blogId: blogId,
+        title,
+        content,
+        toggleUpdateMode: updateThis,
+    };
+
     useEffect(() => {
         const getBlog = async () => {
             if (typeof blogId === "string") {
@@ -49,13 +54,8 @@ const BlogViewer = () => {
     return (
         <>
             <Seo title="Blog" />
-            {/* {editMode ? (
-                <BlogEditor
-                    blogId={blogId}
-                    oriTitle={title}
-                    oriContent={content}
-                    updateThis={updateThis}
-                />
+            {editMode ? (
+                <PostEditor modeObj={modeObj} />
             ) : (
                 <div className={"wrapper"}>
                     <div className={"header"}>
@@ -85,11 +85,13 @@ const BlogViewer = () => {
                             </div>
                         )}
                     </div>
-                    <div className={"content"}>
-                        {content && <PostViewer content={content} />}
-                    </div>
+                    <div
+                        className={"blog_content"}
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    ></div>
                 </div>
             )}
+
             <style jsx>
                 {`
                     .wrapper {
@@ -117,11 +119,14 @@ const BlogViewer = () => {
                         padding: 0.8rem;
                         font-size: 1rem;
                     }
+
                     .button:hover {
                         cursor: pointer;
                     }
 
-                    .content {
+                    .content > * {
+                        line-height: 2rem;
+                        margin-bottom: 1rem;
                     }
 
                     @media screen and (max-width: 480px) {
@@ -135,7 +140,7 @@ const BlogViewer = () => {
                         }
                     }
                 `}
-            </style> */}
+            </style>
         </>
     );
 };
