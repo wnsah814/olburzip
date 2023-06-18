@@ -1,4 +1,5 @@
 import { dbService } from "@/api/fbase";
+import TinyMceEditor from "@/components/TinyMCE/TinyMceEditor";
 import {
     addDoc,
     collection,
@@ -6,46 +7,62 @@ import {
     serverTimestamp,
     updateDoc,
 } from "firebase/firestore";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
-const PostEditor = dynamic(() => import("@/components/ToastUI/Editor"), {
-    ssr: false,
-});
+import { use, useEffect, useRef } from "react";
 
-interface Prop {
-    blogId: any;
-    oriTitle: any;
-    oriContent: any;
-    updateThis: any;
+// const PostEditor = dynamic(() => import("@/components/ToastUI/Editor"), {
+//     ssr: false,
+// });
+interface props {
+    modeObj: any;
 }
 
-const BlogEditor = ({ blogId, oriTitle, oriContent, updateThis }: Prop) => {
+const PostEditor = ({ modeObj }: props) => {
     const titleRef = useRef<any>();
     const editorRef = useRef<any>();
 
     useEffect(() => {
-        titleRef.current.value = oriTitle;
-    }, [oriTitle]);
+        console.log(modeObj);
+    });
+
+    useEffect(() => {
+        if (modeObj.title == undefined) return;
+        titleRef.current.value = modeObj.title;
+    }, [titleRef]);
 
     const router = useRouter();
 
     const submitUpdate = async () => {
         if (
             titleRef.current.value === "" ||
-            editorRef.current.getInstance().getHTML() === "<p><br></p>"
+            editorRef.current.getContent() === ""
         ) {
             alert("모든 칸을 채워주세요");
             return;
         }
-        const blogObj = {
-            title: titleRef.current.value,
-            content: editorRef.current.getInstance().getMarkdown(),
-            lastUpdate: serverTimestamp(),
-        };
-        await updateDoc(doc(dbService, "blogs", blogId), blogObj);
-        window.location.reload();
+
+        let data;
+        if (modeObj.mode === 1) {
+            const blogObj = {
+                title: titleRef.current.value,
+                content: editorRef.current.getContent(),
+                createdAt: serverTimestamp(),
+            };
+            data = await addDoc(collection(dbService, "blogs"), blogObj);
+        } else if (modeObj.mode === 2) {
+            const blogObj = {
+                title: titleRef.current.value,
+                content: editorRef.current.getContent(),
+                lastUpdate: serverTimestamp(),
+            };
+            await updateDoc(doc(dbService, "blogs", modeObj.blogId), blogObj);
+            window.location.reload();
+            // modeObj.toggleUpdateMode();
+        }
+        if (data === undefined) return;
+        router.push(`/blog/${data.id}`);
     };
+
     return (
         <>
             <div className={"header"}>
@@ -59,7 +76,10 @@ const BlogEditor = ({ blogId, oriTitle, oriContent, updateThis }: Prop) => {
                     저장
                 </button>
             </div>
-            <PostEditor editorRef={editorRef} oriContent={oriContent} />
+            <TinyMceEditor
+                editorRef={editorRef}
+                originalContents={modeObj.content}
+            />
             <style jsx>
                 {`
                     .header {
@@ -67,7 +87,8 @@ const BlogEditor = ({ blogId, oriTitle, oriContent, updateThis }: Prop) => {
                     }
 
                     .title {
-                        border: 1px solid #7c8fc7;
+                        border: 2px solid #eeeeee;
+                        border-radius: 0.5rem;
                         flex: 1;
                         padding: 1rem;
                         margin-bottom: 0.5rem;
@@ -76,6 +97,8 @@ const BlogEditor = ({ blogId, oriTitle, oriContent, updateThis }: Prop) => {
                     .button {
                         background-color: #562b08;
                         border: none;
+                        border-radius: 0.5rem;
+
                         color: white;
                         margin-left: 0.5rem;
                         width: 10rem;
@@ -87,4 +110,4 @@ const BlogEditor = ({ blogId, oriTitle, oriContent, updateThis }: Prop) => {
         </>
     );
 };
-export default BlogEditor;
+export default PostEditor;

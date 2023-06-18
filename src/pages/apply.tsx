@@ -125,7 +125,7 @@ const Apply: NextPage = () => {
                                         ref={mbtiRef}
                                         className={styles.input}
                                         type="text"
-                                        placeholder="MBTI가 뭐예요~?"
+                                        placeholder="당신의 MBTI는?"
                                     />
                                 </div>
 
