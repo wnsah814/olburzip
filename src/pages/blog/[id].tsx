@@ -1,11 +1,9 @@
 import { dbService } from "@/api/fbase";
 import Seo from "@/components/Base/Seo";
-// import BlogEditor from "@/components/ToastUI/BlogEditor";
 import { useUser } from "@/store/useUser";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import TinyMceEditor from "@/components/TinyMCE/TinyMceEditor";
 import PostEditor from "@/components/TinyMCE/PostEditor";
 
 const BlogViewer = () => {

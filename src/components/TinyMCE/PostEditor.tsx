@@ -10,9 +10,6 @@ import {
 import { useRouter } from "next/router";
 import { use, useEffect, useRef } from "react";
 
-// const PostEditor = dynamic(() => import("@/components/ToastUI/Editor"), {
-//     ssr: false,
-// });
 interface props {
     modeObj: any;
 }

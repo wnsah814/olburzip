@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { dbService, storageService } from "@/api/fbase";
-import { collection, doc } from "firebase/firestore";
+import { storageService } from "@/api/fbase";
 
 type EditorProps = {
     editorRef: any;
@@ -83,29 +82,9 @@ const TinyMceEditor = ({ editorRef, originalContents }: EditorProps) => {
                     plugins: plugins,
                     toolbar: edit_toolbar,
                     branding: false,
-                    // readonly: true,
 
                     // file_picker_types: 'file image media',
                     // imagetools_cors_hosts: ['urbur.icu', 'localhost'],
-                    // file_picker_callback: function(callback, value, meta) {
-                    //     console.log("callback", callback);
-                    //     console.log("value", value);
-                    //     console.log("meta", meta);
-                    //     // // Provide file and text for the link dialog
-                    //     // if (meta.filetype == 'file') {
-                    //     // callback('mypage.html', {text: 'My text'});
-                    //     // }
-
-                    //     // // Provide image and alt text for the image dialog
-                    //     // if (meta.filetype == 'image') {
-                    //     // callback('myimage.jpg', {alt: 'My alt text'});
-                    //     // }
-
-                    //     // // Provide alternative source and posted for the media dialog
-                    //     // if (meta.filetype == 'media') {
-                    //     // callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
-                    //     // }
-                    // },
 
                     /*** image upload ***/
                     image_title: true,
