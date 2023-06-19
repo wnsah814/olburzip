@@ -1,12 +1,11 @@
 import { dbService } from "@/api/fbase";
 import Seo from "@/components/Base/Seo";
-// import BlogEditor from "@/components/ToastUI/BlogEditor";
 import { useUser } from "@/store/useUser";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import TinyMceEditor from "@/components/TinyMCE/TinyMceEditor";
 import PostEditor from "@/components/TinyMCE/PostEditor";
+import Button from "@/components/Common/Button";
 
 const BlogViewer = () => {
     const router = useRouter();
@@ -14,11 +13,15 @@ const BlogViewer = () => {
 
     const { data } = useUser();
 
+    const [docSnap, setDocSnap] = useState<any>();
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<any>("");
     const [editMode, setEditMode] = useState<boolean>(false);
 
     const deleteThis = async () => {
+        const confirmDelete = confirm("정말로 삭제하시겠습니까?");
+
+        if (!confirmDelete) return;
         if (typeof blogId === "string") {
             await deleteDoc(doc(dbService, "blogs", blogId));
             router.push("/blog");
@@ -27,6 +30,17 @@ const BlogViewer = () => {
 
     const updateThis = async () => {
         setEditMode((prev) => !prev);
+    };
+
+    const getDate = (timestamp: any) => {
+        const date = timestamp.toDate();
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        const hours = ("0" + date.getHours()).slice(-2);
+        const minutes = ("0" + date.getMinutes()).slice(-2);
+        const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+        return formattedDateTime;
     };
 
     let modeObj = {
@@ -45,6 +59,7 @@ const BlogViewer = () => {
                 if (docSnap.exists()) {
                     setTitle(docSnap.data().title);
                     setContent(docSnap.data().content);
+                    setDocSnap(docSnap.data());
                 }
             }
         };
@@ -62,26 +77,41 @@ const BlogViewer = () => {
                         <div className={"title"}>
                             <h2>{title}</h2>
                         </div>
+                        <div className="author">
+                            <p>작성자: 관리자</p>
+                        </div>
+                        <div className="date">
+                            <p>
+                                최초작성일:{" "}
+                                {docSnap && getDate(docSnap?.createdAt)}
+                            </p>
+                            <p>
+                                {docSnap?.lastUpdate &&
+                                    `최종수정일: ${getDate(
+                                        docSnap?.lastUpdate
+                                    )}`}
+                            </p>
+                        </div>
                         {data?.isAd && (
-                            <div>
-                                <button
+                            <div className="buttons">
+                                <Button
                                     className={"button"}
                                     onClick={() => router.push("/blog")}
                                 >
                                     목록
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     className={"button"}
                                     onClick={deleteThis}
                                 >
                                     삭제
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     className={"button"}
                                     onClick={updateThis}
                                 >
                                     수정
-                                </button>
+                                </Button>
                             </div>
                         )}
                     </div>
@@ -101,32 +131,23 @@ const BlogViewer = () => {
 
                     .header {
                         display: flex;
-                        height: 3rem;
-                        line-height: 3rem;
+                        flex-direction: column;
+                        height: 100%;
+                        line-height: 1.3rem;
+                        padding-bottom: 1rem;
+                        margin-bottom: 1rem;
+                        border-bottom: 2px solid #eeeeee;
+                        font-size: 0.85rem;
                     }
 
                     .title {
+                        font-size: 1.2rem;
                         flex: 1;
+                        margin-bottom: 0.5rem;
                     }
 
-                    .button {
-                        background-color: var(--color-brown);
-                        border-radius: 0.5rem;
-                        border: none;
-                        margin-right: 0.5rem;
-                        color: white;
-                        width: 5rem;
-                        padding: 0.8rem;
-                        font-size: 1rem;
-                    }
-
-                    .button:hover {
-                        cursor: pointer;
-                    }
-
-                    .content > * {
-                        line-height: 2rem;
-                        margin-bottom: 1rem;
+                    .buttons {
+                        display: flex;
                     }
 
                     @media screen and (max-width: 480px) {
