@@ -27,6 +27,16 @@ export default function Blog({ userObj }: CommonProp) {
             setBlogs(blogArr);
         });
     }, []);
+
+    const getDate = (timestamp: any) => {
+        const date = timestamp.toDate();
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() + 1)).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        const formattedDate = `${year}-${month}-${day}`;
+        console.log(formattedDate); // "YYYY-MM-DD" 형식의 날짜 출력
+        return formattedDate;
+    };
     return (
         <>
             <Seo title="Blog" />
@@ -45,13 +55,43 @@ export default function Blog({ userObj }: CommonProp) {
                 data-aos-duration="600"
                 className={styles.blogs}
             >
+                <div
+                    className={[styles.blog, styles.center, styles.head].join(
+                        " "
+                    )}
+                >
+                    <span className={styles.blog_id}></span>
+                    <span className={styles.blog_title}>제목</span>
+                    <span className={styles.blog_author}>작성자</span>
+                    <span className={styles.blog_date}>작성일</span>
+                </div>
                 {blogs.map((v: any, i: number) => (
                     <Link key={i} href={`/blog/${v.id}`}>
                         <div key={i} className={styles.blog}>
-                            <span className={styles.blog_id}>
+                            <span
+                                className={[styles.blog_id, styles.center].join(
+                                    " "
+                                )}
+                            >
                                 {blogs.length - i - 1}
                             </span>
                             <span className={styles.blog_title}>{v.title}</span>
+                            <span
+                                className={[
+                                    styles.blog_author,
+                                    styles.center,
+                                ].join(" ")}
+                            >
+                                관리자
+                            </span>
+                            <span
+                                className={[
+                                    styles.blog_date,
+                                    styles.center,
+                                ].join(" ")}
+                            >
+                                {getDate(v.createdAt)}
+                            </span>
                         </div>
                     </Link>
                 ))}

@@ -8,7 +8,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/router";
-import { use, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface props {
     modeObj: any;
@@ -43,6 +43,7 @@ const PostEditor = ({ modeObj }: props) => {
             const blogObj = {
                 title: titleRef.current.value,
                 content: editorRef.current.getContent(),
+                // authorId: "author",
                 createdAt: serverTimestamp(),
             };
             data = await addDoc(collection(dbService, "blogs"), blogObj);
