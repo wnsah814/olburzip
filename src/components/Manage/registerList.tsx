@@ -75,6 +75,7 @@ const RegisterList = () => {
     };
 
     const banMember = async (e: any) => {
+        console.log(e);
         alert(`${e.target.dataset.name}을 추방했습니다!`);
         await deleteDoc(doc(dbService, "2023registered", e.target.dataset.id));
     };
@@ -171,14 +172,11 @@ const RegisterList = () => {
                         <div>
                             <Switch docId={v.id} isPaid={v.paid} />
                         </div>
-                        <div>
-                            <i
-                                id="deleteIcon"
-                                data-id={v.id}
-                                data-name={v.name}
-                                onClick={banMember}
-                            >
+                        <div onClick={banMember}>
+                            <i id="deleteIcon">
                                 <svg
+                                    data-id={v.id}
+                                    data-name={v.name}
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
                                     height="16"
