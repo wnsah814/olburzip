@@ -8,6 +8,7 @@ import { useUser } from "@/store/useUser";
 import Button from "@/components/Common/Button";
 import PageTitle from "@/components/Common/PageTitle";
 import Seo from "@/components/Base/Seo";
+import { getDate } from "@/api/decodeTimeStamp";
 
 export default function Blog({ userObj }: CommonProp) {
     const { data } = useUser();
@@ -28,15 +29,6 @@ export default function Blog({ userObj }: CommonProp) {
         });
     }, []);
 
-    const getDate = (timestamp: any) => {
-        const date = timestamp.toDate();
-        const year = date.getFullYear();
-        const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        const day = ("0" + date.getDate()).slice(-2);
-        const formattedDate = `${year}-${month}-${day}`;
-        console.log(formattedDate); // "YYYY-MM-DD" 형식의 날짜 출력
-        return formattedDate;
-    };
     return (
         <>
             <Seo title="Blog" />

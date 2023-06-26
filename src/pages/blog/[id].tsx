@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import PostEditor from "@/components/TinyMCE/PostEditor";
 import Button from "@/components/Common/Button";
+import { getDateWithTime } from "@/api/decodeTimeStamp";
 
 const BlogViewer = () => {
     const router = useRouter();
@@ -30,17 +31,6 @@ const BlogViewer = () => {
 
     const updateThis = async () => {
         setEditMode((prev) => !prev);
-    };
-
-    const getDate = (timestamp: any) => {
-        const date = timestamp.toDate();
-        const year = date.getFullYear();
-        const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        const day = ("0" + date.getDate()).slice(-2);
-        const hours = ("0" + date.getHours()).slice(-2);
-        const minutes = ("0" + date.getMinutes()).slice(-2);
-        const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
-        return formattedDateTime;
     };
 
     let modeObj = {
@@ -83,11 +73,11 @@ const BlogViewer = () => {
                         <div className="date">
                             <p>
                                 최초작성일:{" "}
-                                {docSnap && getDate(docSnap?.createdAt)}
+                                {docSnap && getDateWithTime(docSnap?.createdAt)}
                             </p>
                             <p>
                                 {docSnap?.lastUpdate &&
-                                    `최종수정일: ${getDate(
+                                    `최종수정일: ${getDateWithTime(
                                         docSnap?.lastUpdate
                                     )}`}
                             </p>

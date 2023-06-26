@@ -38,7 +38,6 @@ const RegisterList = () => {
                     cnt++;
                 }
             });
-            console.log(cnt);
             setPaidCnt(cnt);
             const dataArr = snapshot.docs.map((doc) => ({
                 id: doc.id,
@@ -76,6 +75,7 @@ const RegisterList = () => {
 
     const banMember = async (e: any) => {
         console.log(e);
+        console.log(e.target);
         alert(`${e.target.dataset.name}을 추방했습니다!`);
         await deleteDoc(doc(dbService, "2023registered", e.target.dataset.id));
     };
@@ -97,7 +97,6 @@ const RegisterList = () => {
                 data[i].phoneNumber
             }\n`;
         }
-        console.log(result);
         const downloadLink = document.createElement("a");
         const blob = new Blob([result], { type: "text/csv;charset=utf-8" });
         const url = URL.createObjectURL(blob);
@@ -172,20 +171,27 @@ const RegisterList = () => {
                         <div>
                             <Switch docId={v.id} isPaid={v.paid} />
                         </div>
-                        <div onClick={banMember}>
-                            <i id="deleteIcon">
-                                <svg
+                        <div
+                            className="delete-button"
+                            data-id={v.id}
+                            data-name={v.name}
+                            onClick={banMember}
+                        >
+                            <svg
+                                data-id={v.id}
+                                data-name={v.name}
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
                                     data-id={v.id}
                                     data-name={v.name}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                                </svg>
-                            </i>
+                                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+                                />
+                            </svg>
                         </div>
                     </div>
                 ))}
@@ -244,7 +250,7 @@ const RegisterList = () => {
                         display: flex;
                     }
 
-                    #deleteIcon:hover {
+                    .delete-button:hover {
                         cursor: pointer;
                     }
                 `}
