@@ -15,6 +15,10 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/ApplyList.module.css";
 import applyToXlsx from "@/api/applyToXls";
 import Button from "../Common/Button";
+import ApplyListSetting from "./applyListDelete";
+import ApplyListDelete from "./applyListDelete";
+import ApplyListAccept from "./applyListAccept";
+import { getDateWithTime } from "@/api/decodeTimeStamp";
 
 const ApplyList = () => {
     const [membersAllowed, setMembersAllowed] = useState<any>([]);
@@ -103,6 +107,7 @@ const ApplyList = () => {
                         : membersWaiting.map((v: any, i: number) => (
                               <>
                                   <div key={i} className={styles.card}>
+                                      <ApplyListAccept data={v} />
                                       <div className={styles.card_item}>
                                           <div className={styles.card_column}>
                                               <span
@@ -171,6 +176,13 @@ const ApplyList = () => {
                                               className={`${styles.introduce} ${styles.card_content}`}
                                           >
                                               {v?.introduce}
+                                          </span>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <span
+                                              className={`${styles.card_content} ${styles.timestamp}`}
+                                          >
+                                              {getDateWithTime(v.createdAt)}
                                           </span>
                                       </div>
                                   </div>
@@ -188,6 +200,7 @@ const ApplyList = () => {
                         : membersAllowed.map((v: any, i: number) => (
                               <>
                                   <div key={i} className={styles.card}>
+                                      <ApplyListDelete aid={v.id} />
                                       <div className={styles.card_item}>
                                           <div className={styles.card_column}>
                                               <span
@@ -256,6 +269,13 @@ const ApplyList = () => {
                                               className={`${styles.introduce} ${styles.card_content}`}
                                           >
                                               {v?.introduce}
+                                          </span>
+                                      </div>
+                                      <div className={styles.card_item}>
+                                          <span
+                                              className={`${styles.card_content} ${styles.timestamp}`}
+                                          >
+                                              {getDateWithTime(v.createdAt)}
                                           </span>
                                       </div>
                                   </div>
