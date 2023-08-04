@@ -1,99 +1,99 @@
 .wrapper {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .title {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .content {
-    display: flex;
-    flex-wrap: wrap;
-    width: calc(100vw - 4rem);
-    margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100vw - 4rem);
+  margin-bottom: 1rem;
 }
 
 .card {
-    position: relative;
-    width: 15rem;
-    height: 24rem;
-    background-color: white;
-    box-shadow: 0px 5px 7px #dddddd;
-    margin: 0 1rem 1rem 0;
-    padding: 0.5rem 1rem;
+  position: relative;
+  width: 15rem;
+  height: 24rem;
+  background-color: white;
+  box-shadow: 0px 5px 7px #dddddd;
+  margin: 0 1rem 1rem 0;
+  padding: 0.5rem 1rem;
 }
 
 .card_item {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .card_item:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .card_column {
-    flex: 1;
+  flex: 1;
 }
 
 .card_column:nth-child(1) {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* label */
 .card_label {
-    font-size: 0.6rem;
-    font-weight: bold;
-    margin-top: 0.625rem;
-    margin-bottom: 0.1rem;
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin-top: 0.625rem;
+  margin-bottom: 0.1rem;
 }
 
 /* content */
 .card_content {
-    font-size: 1rem;
-    margin-top: 0.2rem;
-    display: block;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  display: block;
 }
 
 .introduce {
-    background-color: #f4f4f4;
-    border-radius: 0.3rem;
-    padding: 0.25rem;
-    height: 5rem;
-    overflow-y: scroll;
-    display: block;
-    word-wrap: break-word;
+  background-color: #f4f4f4;
+  border-radius: 0.3rem;
+  padding: 0.25rem;
+  height: 5rem;
+  overflow-y: scroll;
+  display: block;
+  word-wrap: break-word;
 }
 
 .timestamp {
-    color: var(--color-gray);
-    text-align: center;
-    font-size: 0.75rem;
+  color: var(--color-gray);
+  text-align: center;
+  font-size: 0.75rem;
 }
 
 @media screen and (max-width: 480px) {
-    .content {
-        width: calc(100vw - 2rem);
-    }
+  .content {
+    width: calc(100vw - 2rem);
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .content {
-        flex-direction: column;
-    }
-    .card {
-        flex: 1;
-        width: 100%;
-    }
+  .content {
+    flex-direction: column;
+  }
+  .card {
+    flex: 1;
+    width: 100%;
+  }
 
-    .card_item:nth-child(1) {
-        display: flex;
-    }
+  .card_item:nth-child(1) {
+    display: flex;
+  }
 
-    .card_item:nth-child(2) {
-        display: flex;
-    }
+  .card_item:nth-child(2) {
+    display: flex;
+  }
 
-    .card_column:nth-child(1) {
-        margin-bottom: 0;
-    }
+  .card_column:nth-child(1) {
+    margin-bottom: 0;
+  }
 }

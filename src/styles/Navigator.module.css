@@ -1,96 +1,96 @@
 .mobileFullNav {
-    backdrop-filter: blur(2px) brightness(30%);
-    font-size: 1.3rem;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    justify-content: center;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+  backdrop-filter: blur(2px) brightness(30%);
+  font-size: 1.3rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .cancleBtn {
-    flex: 1;
-    width: 100%;
-    color: white;
+  flex: 1;
+  width: 100%;
+  color: white;
 }
 
 .mobileNav {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }
 
 .mobileNavigation {
-    display: flex;
-    flex-direction: row-reverse;
-    height: 4rem;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 4rem;
 }
 
 .mobileNavigation > div {
-    display: flex;
-    height: 4rem;
-    line-height: 4rem;
+  display: flex;
+  height: 4rem;
+  line-height: 4rem;
 }
 
 .desktopNavigation {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .desktopNavigation > div {
-    display: flex;
+  display: flex;
 }
 
 .mobileNavBtn {
-    width: 3rem;
-    background-color: inherit;
-    border: none;
-    margin-right: 0.5rem;
+  width: 3rem;
+  background-color: inherit;
+  border: none;
+  margin-right: 0.5rem;
 }
 
 .mobileNavOpenSvg {
-    width: 1.5rem;
-    height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .menuImg {
-    width: 4rem;
-    height: 4rem;
-    margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
 }
 
 .desktopNavs {
-    display: flex;
-    /* flex-direction: row-reverse; */
+  display: flex;
+  /* flex-direction: row-reverse; */
 }
 
 .desktopNav {
-    width: 5rem;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  width: 5rem;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .nav:hover {
-    background-color: white;
+  background-color: white;
 }
 
 @media screen and (max-width: 700px) {
-    .mobileNavigation {
-        display: flex;
-    }
-    .desktopNavigation {
-        display: none;
-    }
+  .mobileNavigation {
+    display: flex;
+  }
+  .desktopNavigation {
+    display: none;
+  }
 }
 
 @media screen and (width > 700px) {
-    .mobileNavigation {
-        display: none;
-    }
-    .desktopNavigation {
-        display: flex;
-    }
+  .mobileNavigation {
+    display: none;
+  }
+  .desktopNavigation {
+    display: flex;
+  }
 }

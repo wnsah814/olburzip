@@ -7,13 +7,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-    useEffect(() => {
-        AOS.init();
-    });
-    return (
-        <Layout>
-            <Component {...pageProps} />
-            <Analytics />
-        </Layout>
-    );
+  useEffect(() => {
+    AOS.init();
+  });
+  return (
+    <Layout>
+      <Component {...pageProps} />
+      <Analytics />
+    </Layout>
+  );
 }

@@ -1,13 +1,13 @@
 .blog iframe {
-    /* width: 35rem; */
-    aspect-ratio: 16 / 9;
-    border: none;
-    border-radius: 0.25rem;
-    /* box-shadow: 5px 5px 0px #ffe15d; */
+  /* width: 35rem; */
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 0.25rem;
+  /* box-shadow: 5px 5px 0px #ffe15d; */
 }
 @media screen and (max-width: 700px) {
-    .blog iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-    }
+  .blog iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
 }
