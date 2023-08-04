@@ -1,16 +1,16 @@
 export interface Track {
-    url: string;
-    title: string;
-    tags: string[];
-    lyrics: string;
+  url: string;
+  title: string;
+  tags: string[];
+  lyrics: string;
 }
 
 export const tracks: Track[] = [
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fdream.mp3?alt=media&token=32424e9d-0f4f-44e8-bfd2-127fd38995ce",
-        title: "꿈찾기",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<꿈찾기>
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fdream.mp3?alt=media&token=32424e9d-0f4f-44e8-bfd2-127fd38995ce",
+    title: "꿈찾기",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<꿈찾기>
         [00:21.90]희미하게 지워져갔지
         [00:26.00]지난날들의 꿈, 나의 어릴적
         [00:35.41]기억 속에 묻혀 사라진 내 어린 꿈들
@@ -45,12 +45,12 @@ export const tracks: Track[] = [
         [03:57.90]다시 만나는 날에 굳게 손잡고
         [04:02.30]다른 꿈들 함께 찾아가야지
         [04:05.70]그 어디선가 나를 기다리고 있을`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fnewwater.mp3?alt=media&token=352322ea-d969-418a-a692-62872d54a099",
-        title: "새물",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<새물>
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fnewwater.mp3?alt=media&token=352322ea-d969-418a-a692-62872d54a099",
+    title: "새물",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<새물>
         [00:28.35]싱그런 봄날에 따뜻한 햇살보다
         [00:35.13]뜨거운 태양 내리쬐는 거리를 벗삼아
         [00:41.80]화창한 가을날 시원한 바람보다
@@ -82,12 +82,12 @@ export const tracks: Track[] = [
         [02:58.20]흘리는 우리의 땀방울이
         [03:02.55]더러운 세상 씻어내는
         [03:05.55]맑은 새물 되는걸`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fallone.mp3?alt=media&token=ae903f8e-8596-4c6c-86d5-cd36d5d78fe0",
-        title: "우린 하나요",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<우린 하나요>
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fallone.mp3?alt=media&token=ae903f8e-8596-4c6c-86d5-cd36d5d78fe0",
+    title: "우린 하나요",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<우린 하나요>
         [00:16.00]우린 하나요 둘이 아니라
         [00:22.30]둘도 없는 우린 하나요
         [00:28.80]누가 뭐래도 우린 하나요
@@ -112,12 +112,12 @@ export const tracks: Track[] = [
         [02:48.20]햇살이 쏟아져 내려 우리를 축복하노니
         [02:55.00]이젠 두 번 다신 이별 않으리
         [03:01.74]이젠 두 번 다신 이별 않으리`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fbeone.mp3?alt=media&token=670d8291-a187-43f5-b9a6-dd39b1232cf1",
-        title: "우리 하나되어",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<우리하나되어>
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fbeone.mp3?alt=media&token=670d8291-a187-43f5-b9a6-dd39b1232cf1",
+    title: "우리 하나되어",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<우리하나되어>
         [00:28.50]작은 풀잎새로 이슬이 맺혀
         [00:35.60]이내 땅으로 내려와 냇물이 되고
         [00:42.50]들판 가로질러 바다로 가네
@@ -152,12 +152,12 @@ export const tracks: Track[] = [
         [03:05.95]우리 하나되어
         [03:08.85]해방의 바다 열어가리
         [03:13.30]우리 하나되어`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Ffly2.mp3?alt=media&token=bdf21aab-027b-402f-ab5a-c97d5fcd5009",
-        title: "날자2",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<날자2>
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Ffly2.mp3?alt=media&token=bdf21aab-027b-402f-ab5a-c97d5fcd5009",
+    title: "날자2",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<날자2>
         [00:13.80]낮은 둥지속에서 우리 꿈을 키우며 살아왔지
         [00:20.80]하늘로 날아올라 푸른 세상을 내려다 보는 꿈
         [00:28.00]홀로 작은 날개 퍼덕이며 더 높이 날수 없어
@@ -180,12 +180,12 @@ export const tracks: Track[] = [
         [02:28.99]통일의 바람을 타고 가로막은 장벽을 넘어
         [02:35.50]우리 날자 더 멀리 날자 우리 큰 희망을 노래하며
         [02:43.15]너와 나의 날개짓처럼 하나된 세상 펼쳐보자`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Frightnow.mp3?alt=media&token=be4dd81e-6bba-4014-bede-8b908b67751e",
-        title: "바로지금이에요",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<바로지금이에요>
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Frightnow.mp3?alt=media&token=be4dd81e-6bba-4014-bede-8b908b67751e",
+    title: "바로지금이에요",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<바로지금이에요>
             [00:24.49]아직은 때가 아니라고
             [00:30.30]조금 더 기다리라고
             [00:35.92]차일피일 미루다가
@@ -218,12 +218,12 @@ export const tracks: Track[] = [
             [02:58.33]우리만이 할 수 있어요
             [03:04.39]우리만이 할 수 있어요
             [03:10.12]우리만이 할 수 있어요`,
-    },
-    {
-        url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fwings.mp3?alt=media&token=e2c13513-ec6c-4e5f-a26d-49c06c45025a",
-        title: "날개",
-        tags: ["cute"],
-        lyrics: `[00:00.00]<날개>                
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/urbur-5e34d.appspot.com/o/musics%2Fwings.mp3?alt=media&token=e2c13513-ec6c-4e5f-a26d-49c06c45025a",
+    title: "날개",
+    tags: ["cute"],
+    lyrics: `[00:00.00]<날개>                
             [00:35.30]너와 나의 어깨 위에 날개를 달아
             [00:41.80]하늘높이 올라 날아갈 수 있게
             [00:49.60]드높은 철조망 흐르는 이념의 강들
@@ -250,5 +250,5 @@ export const tracks: Track[] = [
             [03:33.50]긴 세월 찢겨진 그 상처를 넘어
             [03:39.85]하나된 우리 큰 날개를 펴고
             [03:45.45]함께 가야할 그 곳으로`,
-    },
+  },
 ];

@@ -1,46 +1,46 @@
 #users {
-    width: 100%;
-    overflow-x: scroll;
+  width: 100%;
+  overflow-x: scroll;
 }
 
 .user {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
 }
 
 .user:nth-child(odd) {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .user span {
-    display: inline-block;
+  display: inline-block;
 }
 
 .user span:nth-child(1) {
-    width: 2rem;
+  width: 2rem;
 }
 
 .user span:nth-child(2) {
-    width: 6.5rem;
+  width: 6.5rem;
 }
 
 .user span:nth-child(3) {
-    /* width: 20rem; */
-    flex: 1;
+  /* width: 20rem; */
+  flex: 1;
 }
 
 .user select {
-    outline: none;
-    border: none;
-    background-color: #dedede;
-    padding: 0.2rem;
-    width: 5rem;
-    border-right: 10px solid transparent;
+  outline: none;
+  border: none;
+  background-color: #dedede;
+  padding: 0.2rem;
+  width: 5rem;
+  border-right: 10px solid transparent;
 }
 
 @media screen and (max-width: 700px) {
-    .user {
-        width: 130vw;
-    }
+  .user {
+    width: 130vw;
+  }
 }

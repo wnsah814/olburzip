@@ -1,17 +1,17 @@
 .mobileSignBtn {
-    width: 3rem;
-    background-color: inherit;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 3rem;
+  background-color: inherit;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mobileSignBtn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .mobileSignSvg {
-    width: 1.5rem;
-    height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }

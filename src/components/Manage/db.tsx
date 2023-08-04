@@ -36,17 +36,17 @@ const DB = () => {
     getSettings();
   }, []);
 
-  const tmpFunc = async () => {
-    const docs = await getDocs(collection(dbService, "2023registered"));
-    docs.forEach(async (v) => {
-      console.log(v.id, v.data());
-      await setDoc(doc(dbService, "members", v.id), {
-        ...v.data(),
-        year: "2023",
-        semester: "1",
-      });
-    });
-  };
+  // const tmpFunc = async () => {
+  //   const docs = await getDocs(collection(dbService, "2023registered"));
+  //   docs.forEach(async (v) => {
+  //     console.log(v.id, v.data());
+  //     await setDoc(doc(dbService, "members", v.id), {
+  //       ...v.data(),
+  //       year: "2023",
+  //       semester: "1",
+  //     });
+  //   });
+  // };
   return (
     <div>
       <div>
@@ -54,12 +54,12 @@ const DB = () => {
       </div>
       <div className="container">
         <div>
-          <h3>지원DB</h3>
+          <h3 className="title">지원DB</h3>
           <Button onClick={saveSettings}>저장</Button>
         </div>
 
         <div className="part">
-          <button onClick={tmpFunc}>temp</button>
+          {/* <button onClick={tmpFunc}>temp</button> */}
           <label htmlFor="applyYear">지원 시기</label>
           <input
             ref={yearRef}

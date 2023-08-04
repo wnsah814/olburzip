@@ -1,28 +1,28 @@
 .container {
-    height: 4rem;
-    line-height: 4rem;
-    display: flex;
-    background-color: var(--header-color);
+  height: 4rem;
+  line-height: 4rem;
+  display: flex;
+  background-color: var(--header-color);
 }
 
 .logo {
-    margin-left: 2rem;
-    font-weight: 800;
+  margin-left: 2rem;
+  font-weight: 800;
 }
 
 .logo a {
-    outline: none;
+  outline: none;
 }
 
 #headerImg {
-    display: block;
-    margin: 0.25rem;
-    height: 3.5rem;
+  display: block;
+  margin: 0.25rem;
+  height: 3.5rem;
 }
 
 .navi {
-    height: 100%;
-    flex: 1 0 auto;
-    font-weight: bold;
-    text-align: center;
+  height: 100%;
+  flex: 1 0 auto;
+  font-weight: bold;
+  text-align: center;
 }

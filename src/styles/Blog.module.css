@@ -1,22 +1,22 @@
 .header_wrapper {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .header {
-    flex: 1;
-    color: var(--color-brown);
+  flex: 1;
+  color: var(--color-brown);
 }
 
 .head {
-    font-weight: bold;
+  font-weight: bold;
 }
 .blog {
-    padding: 0.7rem;
-    /* border-radius: 4px; */
-    display: flex;
-    border-bottom: 1.5px solid #eeeeee;
+  padding: 0.7rem;
+  /* border-radius: 4px; */
+  display: flex;
+  border-bottom: 1.5px solid #eeeeee;
 }
 
 /* 
@@ -25,45 +25,45 @@
 } */
 
 .blogs a:hover div {
-    background-color: #dedede;
-    border-radius: 0px;
+  background-color: #dedede;
+  border-radius: 0px;
 }
 
 .blog_id {
-    min-width: 2.7rem;
-    flex: 0.4;
-    display: inline-block;
+  min-width: 2.7rem;
+  flex: 0.4;
+  display: inline-block;
 }
 
 .blog_title {
-    margin-left: 1.5rem;
-    flex: 5;
+  margin-left: 1.5rem;
+  flex: 5;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .blog_author {
-    flex: 1;
+  flex: 1;
 }
 
 .blog_date {
-    flex: 1.5;
+  flex: 1.5;
 }
 
 .video {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 700px) {
-    .wrapper {
-        padding: 0;
-    }
+  .wrapper {
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .button {
-        width: 100%;
-    }
+  .button {
+    width: 100%;
+  }
 }

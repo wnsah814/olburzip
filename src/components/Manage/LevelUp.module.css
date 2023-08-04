@@ -1,24 +1,24 @@
 .card {
-    width: 20rem;
-    height: 10rem;
-    background-color: white;
-    box-shadow: 0px 5px 7px #dddddd;
-    margin: 0 1rem 1rem 0;
-    padding: 0.5rem 1rem;
+  width: 20rem;
+  height: 10rem;
+  background-color: white;
+  box-shadow: 0px 5px 7px #dddddd;
+  margin: 0 1rem 1rem 0;
+  padding: 0.5rem 1rem;
 }
 
 .desc {
-    display: block;
-    font-size: 0.6rem;
-    font-weight: bold;
-    margin-top: 0.625rem;
-    margin-bottom: 0.1rem;
+  display: block;
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin-top: 0.625rem;
+  margin-bottom: 0.1rem;
 }
 
 .accBtn {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .accBtn > * {
-    width: 100%;
+  width: 100%;
 }

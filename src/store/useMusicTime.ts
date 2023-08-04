@@ -4,22 +4,22 @@ let musicTime = 0;
 let musicToggle = true;
 
 export function useMusicTime() {
-    const { data, mutate } = useSWR("musicTimeObj", () => {
-        return {
-            musicTime,
-            musicToggle,
-        };
-    });
-
+  const { data, mutate } = useSWR("musicTimeObj", () => {
     return {
-        musicTimeObj: data,
-        setMusicTime: (time: number) => {
-            musicTime = time;
-            mutate();
-        },
-        toggleMusic: () => {
-            musicToggle = !musicToggle;
-            mutate();
-        },
+      musicTime,
+      musicToggle,
     };
+  });
+
+  return {
+    musicTimeObj: data,
+    setMusicTime: (time: number) => {
+      musicTime = time;
+      mutate();
+    },
+    toggleMusic: () => {
+      musicToggle = !musicToggle;
+      mutate();
+    },
+  };
 }

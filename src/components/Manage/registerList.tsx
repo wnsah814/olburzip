@@ -188,7 +188,7 @@ const RegisterList = () => {
       <div className="buttons">
         <Button onClick={downloadCsv}>Download contacts.csv</Button>
         <Button onClick={registerToXls}>Download urbur2023.xlsx</Button>
-        <Button onClick={dupAllToNextSem}>명부 학기 이전</Button>
+        <Button onClick={dupAllToNextSem}>다음학기로 명단복제</Button>
       </div>
       <div id="list">
         <div id="thead" className="tr">
