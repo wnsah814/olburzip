@@ -1,16 +1,29 @@
 import { dbService } from "@/api/fbase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const Switch = ({ docId, isPaid }: { docId: string; isPaid: boolean }) => {
+    const [aYear, setAYear] = useState<number>(0);
+    const [aSem, setASem] = useState<number>(0);
+
+    useEffect(() => {
+        (async () => {
+            const docRef = await getDoc(doc(dbService, "settings", "apply"));
+            if (!docRef.exists()) return;
+            setAYear(docRef.data().applyYear);
+            setASem(docRef.data().applySemester);
+        })();
+    }, []);
+
     const togglePaid = async () => {
-        await updateDoc(doc(dbService, "2023registered", docId), {
+        await updateDoc(doc(dbService, `registered-${aYear}-${aSem}`, docId), {
             paid: !isPaid,
         });
     };
     return (
         <>
             <label onClick={togglePaid} className="switch">
-                <input checked={isPaid} type="checkbox" />
+                <input defaultChecked={isPaid} type="checkbox" />
                 <span className="slider round"></span>
             </label>
             <style jsx>
