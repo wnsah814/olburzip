@@ -39,10 +39,15 @@ const applyToXlsx = async () => {
     ];
     const q1 = query(
       collection(dbService, "members"),
+      where("year", "==", year_input),
       where("semester", "==", "1"),
       orderBy("name", "asc")
     );
     const memberData1 = await getDocs(q1);
+    if (memberData1.empty) {
+      alert(`${year_input}년 명부가 존재하지 않습니다`);
+      return;
+    }
     const arr1 = memberData1.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -54,6 +59,7 @@ const applyToXlsx = async () => {
 
     const q2 = query(
       collection(dbService, "members"),
+      where("year", "==", year_input),
       where("semester", "==", "2"),
       orderBy("name", "asc")
     );
