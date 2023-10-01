@@ -16,7 +16,7 @@ const Switch = ({ docId, isPaid }: { docId: string; isPaid: boolean }) => {
   }, []);
 
   const togglePaid = async () => {
-    await updateDoc(doc(dbService, `registered-${aYear}-${aSem}`, docId), {
+    await updateDoc(doc(dbService, `members`, docId), {
       paid: !isPaid,
     });
   };
