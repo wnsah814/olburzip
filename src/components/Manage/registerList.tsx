@@ -110,12 +110,14 @@ const RegisterList = () => {
 
     let nY = aYear;
     let nS = aSem;
-    if (aSem * 1 === 1) {
+    if (+aSem === 1) {
       nS = 2;
-    } else if (aSem * 1 === 2) {
-      nY = aYear + 1;
+    } else if (+aSem === 2) {
+      nY = +aYear + 1;
       nS = 1;
     }
+
+    console.log(nY, nS);
 
     docs.forEach(async (v) => {
       console.log(v.id, v.data());
@@ -127,6 +129,7 @@ const RegisterList = () => {
         createdAt: serverTimestamp(),
       });
     });
+    alert("다음학기로 명부를 복제했습니다.");
   };
 
   const downloadCsv = () => {
